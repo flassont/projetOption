@@ -43,8 +43,8 @@ public class MemberRegistration {
         memberEventSrc.fire(member);
     }
     
-    public void delete(Long id) throws Exception {
-        Member member = em.find(Member.class,id);
+    public void delete(String email) throws Exception {
+        Member member = em.find(Member.class,email);
         log.info("Deleting " + member.getName());
         em.remove(member);
         memberEventSrc.fire(member);

@@ -107,7 +107,7 @@ public class MemberResourceRESTService {
              
              System.out.println("ok3 " + email);
 
-             registration.delete(member.getId());
+             registration.delete(member.getEmail());
              
              System.out.println("ok4 " + email);
 

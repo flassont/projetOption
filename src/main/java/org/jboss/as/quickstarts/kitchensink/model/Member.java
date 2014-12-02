@@ -17,11 +17,15 @@
 package org.jboss.as.quickstarts.kitchensink.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Digits;
@@ -39,33 +43,46 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Member implements Serializable {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+//    @Id
+//    @GeneratedValue
+//    private Long id;
 
     @NotNull
     @Size(min = 1, max = 25)
     @Pattern(regexp = "[^0-9]*", message = "Must not contain numbers")
     private String name;
+    
+    @NotNull
+    @Size(min=1, max=25)
+    @Pattern(regexp="[^0-9]", message="Must not contain numbers")
+    private String surname;
 
     @NotNull
     @NotEmpty
     @Email
+    @Id
     private String email;
-
+    
     @NotNull
-    @Size(min = 10, max = 12)
-    @Digits(fraction = 0, integer = 12)
-    @Column(name = "phone_number")
-    private String phoneNumber;
+    @NotEmpty
+    private String password;
+    
+    @ManyToMany(mappedBy="members")
+    private Collection<Classes> classes;
 
-    public Long getId() {
-        return id;
-    }
+//    @NotNull
+//    @Size(min = 10, max = 12)
+//    @Digits(fraction = 0, integer = 12)
+//    @Column(name = "phone_number")
+//    private String phoneNumber;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     public String getName() {
         return name;
@@ -83,11 +100,11 @@ public class Member implements Serializable {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+//    public String getPhoneNumber() {
+//        return phoneNumber;
+//    }
+//
+//    public void setPhoneNumber(String phoneNumber) {
+//        this.phoneNumber = phoneNumber;
+//    }
 }
