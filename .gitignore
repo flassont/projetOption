@@ -26,3 +26,4 @@ target/
 .project
 .tern-project
 SERVICES.md
+.metadata
