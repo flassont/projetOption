@@ -38,6 +38,7 @@ function MembersCtrl($scope, $http, Members) {
         $scope.newMember.name = "Nicolas";
         
         $scope.newMember.phoneNumber = "0687504428";
+        
 
         Members.save($scope.newMember, function(data) {
 
@@ -59,6 +60,37 @@ function MembersCtrl($scope, $http, Members) {
         });
 
     };
+    
+    $scope.removeMember = function(member) {
+    	
+    	$scope.newMember = {};
+    	
+    	$scope.errors = {};
+        
+//        $scope.newMember.name = "Nicolas";
+//        
+//        $scope.newMember.phoneNumber = "0687504428";
+//        
+//        $scope.email = member.email;
+    	
+//        alert( member.email );
+        
+    	Members.remove( {memberId: member.email}, function(data) {
+    		// mark success on the registration form
+            $scope.successMessages = [ 'Member Removed' ];
+
+            // Update the list of members
+            $scope.refresh();
+
+    	}, function(result) {
+    		if ((result.status == 409) || (result.status == 400)) {
+                $scope.errors = result.data;
+            } else {
+                $scope.errorMessages = [ 'Unknown  server error' ];
+            }
+            $scope.$apply();
+    	} )
+    }
 
     // Call the refresh() function, to populate the list of members
     $scope.refresh();

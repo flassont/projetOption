@@ -31,6 +31,7 @@ import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
 import javax.validation.Validator;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -80,6 +81,54 @@ public class MemberResourceRESTService {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
         return member;
+    }
+    
+    @DELETE
+    @Path("/{memberId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteMember(final @PathParam("memberId") String email) {
+    	
+    	Response.ResponseBuilder builder = null;
+        
+       System.out.println("ok " + email);
+        
+        Member member = null;
+        try {
+            member = repository.findByEmail(email);
+        } catch (NoResultException e) {
+            // ignore
+        }
+        
+        System.out.println("ok2 " + email);
+
+         try {
+             // Validates member using bean validation
+             //validateMember(member);
+             
+             System.out.println("ok3 " + email);
+
+             registration.delete(member.getId());
+             
+             System.out.println("ok4 " + email);
+
+             // Create an "ok" response
+             builder = Response.ok();
+         } catch (ConstraintViolationException ce) {
+             // Handle bean validation issues
+             builder = createViolationResponse(ce.getConstraintViolations());
+         } catch (ValidationException e) {
+             // Handle the unique constrain violation
+             Map<String, String> responseObj = new HashMap<String, String>();
+             responseObj.put("email", "Email taken");
+             builder = Response.status(Response.Status.CONFLICT).entity(responseObj);
+         } catch (Exception e) {
+             // Handle generic exceptions
+             Map<String, String> responseObj = new HashMap<String, String>();
+             responseObj.put("error", e.getMessage());
+             builder = Response.status(Response.Status.BAD_REQUEST).entity(responseObj);
+         }
+         
+         return builder.build();
     }
 
     /**

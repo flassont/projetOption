@@ -42,4 +42,11 @@ public class MemberRegistration {
         em.persist(member);
         memberEventSrc.fire(member);
     }
+    
+    public void delete(Long id) throws Exception {
+        Member member = em.find(Member.class,id);
+        log.info("Deleting " + member.getName());
+        em.remove(member);
+        memberEventSrc.fire(member);
+    }
 }

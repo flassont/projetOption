@@ -10,7 +10,7 @@
 			<li ng-repeat="member in members | orderBy:orderBy" ng-class="{completed: todo.completed}">
 				<div class="view">
 					<input class="mark" type="checkbox" ng-model="member.completed" /> <span>{{member.email}}</span>
-					<span class="close" ng-click="removeTodo(todo)">x</span>
+					<span class="close" ng-click="removeMember(member)">x</span>
 				</div>
 			</li>
 		</ul>
@@ -18,7 +18,7 @@
 			ng-click="markAll(allChecked)" /> <label class="btn btn-info"
 			for="mark-all">Tout cocher</label>
 		<button class="btn btn-danger" ng-click="clearCompletedTodos()">Supprimer
-			les tâches cochées</button>
+			les tï¿½ches cochï¿½es</button>
 	</article>
 </section>
 
