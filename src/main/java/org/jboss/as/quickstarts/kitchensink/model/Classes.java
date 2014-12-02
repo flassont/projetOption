@@ -36,7 +36,6 @@ public class Classes implements Serializable {
 	@NotNull
 	@NotEmpty
 	@Enumerated(EnumType.STRING)
-	@Size(min=1,max=2)
 	private ClassType classType;
 	
 	@NotNull
