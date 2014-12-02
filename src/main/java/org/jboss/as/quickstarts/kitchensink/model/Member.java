@@ -26,6 +26,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Digits;
@@ -69,6 +70,9 @@ public class Member implements Serializable {
     
     @ManyToMany(mappedBy="members")
     private Collection<Classes> classes;
+    
+    @OneToMany
+    private Collection<Wishes> wishes;
 
 //    @NotNull
 //    @Size(min = 10, max = 12)

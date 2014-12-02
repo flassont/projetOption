@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
@@ -45,5 +46,8 @@ public class Classes implements Serializable {
 	
 	@ManyToMany
 	private Collection<Member> members;
+	
+	@OneToMany
+	private Collection<Wishes> wishes;
 
 }
