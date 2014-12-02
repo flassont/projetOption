@@ -17,3 +17,12 @@ jboss/server/minimal/work/**/*
 # deployed package files #
 
 *.DEPLOYED
+
+# files that are not source files #
+
+.settings/
+target/
+.classpath
+.project
+.tern-project
+SERVICES.md
