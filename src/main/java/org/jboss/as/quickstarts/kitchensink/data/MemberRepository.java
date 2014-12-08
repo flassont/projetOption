@@ -32,9 +32,9 @@ public class MemberRepository {
     @Inject
     private EntityManager em;
 
-    public Member findById(Long id) {
-        return em.find(Member.class, id);
-    }
+//    public Member findByEmail(Long id) {
+//        return em.find(Member.class, id);
+//    }
 
     public Member findByEmail(String email) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
