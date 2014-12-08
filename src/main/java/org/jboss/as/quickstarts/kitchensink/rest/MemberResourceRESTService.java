@@ -73,10 +73,10 @@ public class MemberResourceRESTService {
     }
 
     @GET
-    @Path("/{id:[0-9][0-9]*}")
+    @Path("/{email}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Member lookupMemberById(@PathParam("id") long id) {
-        Member member = repository.findById(id);
+    public Member lookupMemberByEmail(@PathParam("email") String email) {
+        Member member = repository.findByEmail(email);
         if (member == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
@@ -84,9 +84,9 @@ public class MemberResourceRESTService {
     }
     
     @DELETE
-    @Path("/{memberId}")
+    @Path("/{email}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteMember(final @PathParam("memberId") String email) {
+    public Response deleteMember(final @PathParam("email") String email) {
     	
     	Response.ResponseBuilder builder = null;
         
