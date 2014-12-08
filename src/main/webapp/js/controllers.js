@@ -37,7 +37,6 @@ function MembersCtrl($scope, $http, Members) {
         
         $scope.newMember.name = "Nicolas";
         
-        $scope.newMember.phoneNumber = "0687504428";
         
 
         Members.save($scope.newMember, function(data) {
@@ -69,7 +68,6 @@ function MembersCtrl($scope, $http, Members) {
         
 //        $scope.newMember.name = "Nicolas";
 //        
-//        $scope.newMember.phoneNumber = "0687504428";
 //        
 //        $scope.email = member.email;
     	
