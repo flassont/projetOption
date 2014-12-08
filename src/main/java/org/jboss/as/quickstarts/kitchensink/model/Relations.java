@@ -7,6 +7,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -17,7 +18,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @SuppressWarnings("serial")
 @Entity
 @XmlRootElement
-public class Wishes implements Serializable {
+public class Relations implements Serializable {
 	
 	@Id
 	@GeneratedValue
@@ -25,17 +26,17 @@ public class Wishes implements Serializable {
 	
 	@NotNull
 	@NotEmpty
-	@Email
-	private String memberId;
+	@ManyToOne
+	private Member member;
 	
 	@NotNull
 	@NotEmpty
 	@Enumerated(EnumType.STRING)
-	private WishState etat;
+	private RelationsState etat;
 	
 	@NotNull
 	@NotEmpty
-	@Pattern(regexp="[0-9]*")
-	private long idCours;
+	@ManyToOne
+	private Classes classes;
 
 }

@@ -44,10 +44,7 @@ public class Classes implements Serializable {
 	@Pattern(regexp="[0-9]*[.,][0-9]*")
 	private double duration;
 	
-	@ManyToMany
-	private Collection<Member> members;
-	
 	@OneToMany
-	private Collection<Wishes> wishes;
+	private Collection<Relations> relations;
 
 }

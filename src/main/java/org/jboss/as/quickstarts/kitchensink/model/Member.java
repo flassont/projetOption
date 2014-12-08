@@ -68,11 +68,8 @@ public class Member implements Serializable {
     @NotEmpty
     private String password;
     
-    @ManyToMany(mappedBy="members")
-    private Collection<Classes> classes;
-    
     @OneToMany
-    private Collection<Wishes> wishes;
+    private Collection<Relations> wishes;
 
 //    @NotNull
 //    @Size(min = 10, max = 12)
