@@ -69,7 +69,7 @@ public class Member implements Serializable {
     private String password;
     
     @OneToMany
-    private Collection<Relations> wishes;
+    private Collection<Relations> relations;
 
 //    @NotNull
 //    @Size(min = 10, max = 12)
@@ -92,6 +92,14 @@ public class Member implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+    
+    public String getSurname(String surname) {
+    	return this.surname;
+    }
+    
+    public void setSurname(String surname) {
+    	this.surname=surname;
+    }
 
     public String getEmail() {
         return email;
@@ -99,6 +107,18 @@ public class Member implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    
+    public String getPassword() {
+    	return this.password;
+    }
+    
+    public void setPassword(String pwd) {
+    	this.password=pwd;
+    }
+    
+    public Collection<Relations> getRelations() {
+    	return relations;
     }
 
 //    public String getPhoneNumber() {

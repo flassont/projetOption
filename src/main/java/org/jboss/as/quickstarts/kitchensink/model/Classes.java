@@ -46,5 +46,29 @@ public class Classes implements Serializable {
 	
 	@OneToMany
 	private Collection<Relations> relations;
+	
+	public long getId() {
+		return this.id;
+	}
+	
+	public String getEntitlement() {
+		return this.entitlement;
+	}
+	
+	public ClassType getClassType() {
+		return this.classType;
+	}
+	
+	public double getDuration() {
+		return duration;
+	}
+	
+	public void setDuration(double duration) {
+		this.duration=duration;
+	}
+	
+	public Collection<Relations> getRelations() {
+		return this.relations;
+	}
 
 }

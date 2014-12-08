@@ -32,11 +32,31 @@ public class Relations implements Serializable {
 	@NotNull
 	@NotEmpty
 	@Enumerated(EnumType.STRING)
-	private RelationsState etat;
+	private RelationState relationState;
 	
 	@NotNull
 	@NotEmpty
 	@ManyToOne
 	private Classes classes;
+	
+	public long getId() {
+		return this.id;
+	}
+	
+	public Member getMember() {
+		return this.member;
+	}
+	
+	public RelationState getRS() {
+		return this.relationState;
+	}
+	
+	public void setRS(RelationState rs) {
+		this.relationState=rs;
+	}
+	
+	public Classes getClasses() {
+		return this.classes;
+	}
 
 }
