@@ -36,6 +36,8 @@ function MembersCtrl($scope, $http, Members) {
         $scope.errors = {};
         
         $scope.newMember.name = "Nicolas";
+        $scope.newMember.surname = "Humeau";
+        $scope.newMember.password = "0000";
         
         
 
