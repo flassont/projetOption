@@ -53,7 +53,7 @@ import org.jboss.as.quickstarts.kitchensink.service.MemberRegistration;
 @Path("/members")
 @RequestScoped
 public class MemberResourceRESTService {
-    
+    // COmmit test
     @Inject
     private Logger log;
 
