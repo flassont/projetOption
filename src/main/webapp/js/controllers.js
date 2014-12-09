@@ -35,13 +35,7 @@ function MembersCtrl($scope, $http, Members) {
         $scope.errorMessages = '';
         $scope.errors = {};
         
-        $scope.newMember.name = "Nicolas";
-        $scope.newMember.surname = "Humeau";
-        $scope.newMember.password = "0000";
-        
-        
-
-        Members.save($scope.newMember, function(data) {
+       Members.save($scope.newMember, function(data) {
 
             // mark success on the registration form
             $scope.successMessages = [ 'Member Registered' ];

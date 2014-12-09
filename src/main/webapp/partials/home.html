@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- This is a partial, and is templated by AngularJS -->
 <section ng-controller="MembersCtrl">
-	<form id="member-form" ng-submit="register()">
-		<input id="newMember" placeholder="Ajouter un nouveau membre ?"
-			ng-model="newMember.email" />
+	<form id="member-form" ng-submit="register()">		
+		<input type="text" class="inputForm" placeholder="Pr&eacute;nom ?"
+			ng-model="newMember.surname" required autofocus/>
+		
+		<input type="text" class="inputForm" placeholder="Nom ?"
+			ng-model="newMember.name" required />
+		
+		<input type="email" class="inputForm" placeholder="Email ?"
+			ng-model="newMember.email" required />
+			
+		<input type="password" class="inputForm" placeholder="Mot de passe ?"
+			ng-model="newMember.password" required />
+			
+		<input style="display:none" class="btn btn-default" type="submit" value="Submit">
 	</form>
 	<article ng-show="members.length">
 		<ul id="member-list">
-			<li ng-repeat="member in members | orderBy:orderBy" ng-class="{completed: todo.completed}">
+			<li ng-repeat="member in members | orderBy:orderBy"
+				ng-class="{completed: todo.completed}">
 				<div class="view">
-					<input class="mark" type="checkbox" ng-model="member.completed" /> <span>{{member.email}}</span>
-					<span class="close" ng-click="removeMember(member)">x</span>
+					<input class="mark" type="checkbox" ng-model="member.completed" />
+					<span>{{member.email}}</span> <span class="close"
+						ng-click="removeMember(member)">x</span>
 				</div>
 			</li>
 		</ul>
@@ -18,12 +31,12 @@
 			ng-click="markAll(allChecked)" /> <label class="btn btn-info"
 			for="mark-all">Tout cocher</label>
 		<button class="btn btn-danger" ng-click="clearCompletedTodos()">Supprimer
-			les t�ches coch�es</button>
+			les membres coch&eacute;s</button>
 	</article>
 </section>
 
-  
-<div style="display:none">
+
+<div style="display: none">
 
 	<!-- Standard HTML form, with the submit function bound to the register() function defined in the the controller -->
 	<form id="reg" ng-submit="register()">
