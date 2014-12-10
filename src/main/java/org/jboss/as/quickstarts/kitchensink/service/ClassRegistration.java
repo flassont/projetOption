@@ -6,7 +6,7 @@ import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
-import org.jboss.as.quickstarts.kitchensink.model.Classes;
+import org.jboss.as.quickstarts.kitchensink.model.Intervention;
 
 public class ClassRegistration {
 	
@@ -17,17 +17,17 @@ public class ClassRegistration {
     private EntityManager em;
 
     @Inject
-    private Event<Classes> classesEventSrc;
+    private Event<Intervention> classesEventSrc;
 
-    public void save(Classes classes) throws Exception {
-        log.info("Saving " + classes.getEntitlement() + " " + classes.getClassType());
+    public void save(Intervention classes) throws Exception {
+        log.info("Saving " + classes.getId() + " " + classes.getFormePedago());
         em.persist(classes);
         classesEventSrc.fire(classes);
     }
     
     public void delete(long id) throws Exception {
-        Classes classes = em.find(Classes.class,id);
-        log.info("Deleting " + classes.getEntitlement() + " " + classes.getClassType());
+        Intervention classes = em.find(Intervention.class,id);
+        log.info("Deleting " + classes.getId() + " " + classes.getFormePedago());
         em.remove(classes);
         classesEventSrc.fire(classes);
     }

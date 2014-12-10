@@ -42,7 +42,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.jboss.as.quickstarts.kitchensink.data.MemberRepository;
-import org.jboss.as.quickstarts.kitchensink.model.Member;
+import org.jboss.as.quickstarts.kitchensink.model.Intervenant;
 import org.jboss.as.quickstarts.kitchensink.service.MemberRegistration;
 
 /**
@@ -68,15 +68,15 @@ public class MemberResourceRESTService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Member> listAllMembers() {
+    public List<Intervenant> listAllMembers() {
         return repository.findAllOrderedByName();
     }
 
     @GET
     @Path("/{email}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Member lookupMemberByEmail(@PathParam("email") String email) {
-        Member member = repository.findByEmail(email);
+    public Intervenant lookupMemberByEmail(@PathParam("email") String email) {
+        Intervenant member = repository.findByEmail(email);
         if (member == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
@@ -92,7 +92,7 @@ public class MemberResourceRESTService {
         
        System.out.println("ok " + email);
         
-        Member member = null;
+        Intervenant member = null;
         try {
             member = repository.findByEmail(email);
         } catch (NoResultException e) {
@@ -138,7 +138,7 @@ public class MemberResourceRESTService {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createMember(Member member) {
+    public Response createMember(Intervenant member) {
 
         Response.ResponseBuilder builder = null;
 
@@ -182,9 +182,9 @@ public class MemberResourceRESTService {
      * @throws ConstraintViolationException If Bean Validation errors exist
      * @throws ValidationException If member with the same email already exists
      */
-    private void validateMember(Member member) throws ConstraintViolationException, ValidationException {
+    private void validateMember(Intervenant member) throws ConstraintViolationException, ValidationException {
         // Create a bean validator and check for issues.
-        Set<ConstraintViolation<Member>> violations = validator.validate(member);
+        Set<ConstraintViolation<Intervenant>> violations = validator.validate(member);
 
         if (!violations.isEmpty()) {
             throw new ConstraintViolationException(new HashSet<ConstraintViolation<?>>(violations));
@@ -223,7 +223,7 @@ public class MemberResourceRESTService {
      * @return True if the email already exists, and false otherwise
      */
     public boolean emailAlreadyExists(String email) {
-        Member member = null;
+        Intervenant member = null;
         try {
             member = repository.findByEmail(email);
         } catch (NoResultException e) {

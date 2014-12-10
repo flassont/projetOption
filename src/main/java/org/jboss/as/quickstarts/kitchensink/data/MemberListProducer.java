@@ -25,7 +25,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 
-import org.jboss.as.quickstarts.kitchensink.model.Member;
+import org.jboss.as.quickstarts.kitchensink.model.Intervenant;
 
 @RequestScoped
 public class MemberListProducer {
@@ -33,17 +33,17 @@ public class MemberListProducer {
     @Inject
     private MemberRepository memberRepository;
 
-    private List<Member> members;
+    private List<Intervenant> members;
 
     // @Named provides access the return value via the EL variable name "members" in the UI (e.g.
     // Facelets or JSP view) test
     @Produces
     @Named
-    public List<Member> getMembers() {
+    public List<Intervenant> getMembers() {
         return members;
     }
 
-    public void onMemberListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Member member) {
+    public void onMemberListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Intervenant member) {
         retrieveAllMembersOrderedByName();
     }
 
