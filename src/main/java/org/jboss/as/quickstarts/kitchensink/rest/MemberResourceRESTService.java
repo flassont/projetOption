@@ -86,15 +86,15 @@ public class MemberResourceRESTService {
     @DELETE
     @Path("/{email}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteMember(final @PathParam("email") String email) {
+    public Response deleteIntervenant(final @PathParam("email") String email) {
     	
     	Response.ResponseBuilder builder = null;
         
-       System.out.println("ok " + email);
+    	System.out.println("ok " + email);
         
-        Intervenant member = null;
+        Intervenant intervenant = null;
         try {
-            member = repository.findByEmail(email);
+        	intervenant = repository.findByEmail(email);
         } catch (NoResultException e) {
             // ignore
         }
@@ -107,7 +107,7 @@ public class MemberResourceRESTService {
              
              System.out.println("ok3 " + email);
 
-             registration.delete(member.getEmail());
+             registration.delete(intervenant.getEmail());
              
              System.out.println("ok4 " + email);
 
