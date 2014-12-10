@@ -71,7 +71,7 @@ public class Intervenant implements Serializable {
         this.name = name;
     }
     
-    public String getSurname(String surname) {
+    public String getSurname() {
     	return this.surname;
     }
     
