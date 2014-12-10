@@ -4,7 +4,8 @@ var services = angular.module('membersService', ['ngResource']);
 
 services.factory('Members', function($resource){
   return $resource('rest/members/:memberId', {}, {
-	  delete: { method: 'DELETE', params: {memberId: '@memberId'}}
+	  'update': {method: 'PUT'} 
+	 // delete: { method: 'DELETE', params: {memberId: '@memberId'}}
   });
 });
 

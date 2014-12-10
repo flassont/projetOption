@@ -34,6 +34,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -83,6 +84,14 @@ public class MemberResourceRESTService {
         return member;
     }
     
+    @PUT
+    @Path("{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Intervenant update(Intervenant user) {
+        return null;
+    }
+    
     @DELETE
     @Path("/{email}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -90,26 +99,19 @@ public class MemberResourceRESTService {
     	
     	Response.ResponseBuilder builder = null;
         
-    	System.out.println("ok " + email);
-        
         Intervenant intervenant = null;
         try {
         	intervenant = repository.findByEmail(email);
         } catch (NoResultException e) {
             // ignore
         }
-        
-        System.out.println("ok2 " + email);
 
          try {
              // Validates member using bean validation
              //validateMember(member);
-             
-             System.out.println("ok3 " + email);
+
 
              registration.delete(intervenant.getEmail());
-             
-             System.out.println("ok4 " + email);
 
              // Create an "ok" response
              builder = Response.ok();
@@ -139,14 +141,19 @@ public class MemberResourceRESTService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response createMember(Intervenant member) {
+    	
 
         Response.ResponseBuilder builder = null;
 
-        try {
-            // Validates member using bean validation
-            validateMember(member);
+        try {          
 
-            registration.register(member);
+            if ( emailAlreadyExists(member.getEmail()) )
+            	registration.update(member);
+            else {
+            	// Validates member using bean validation
+                validateMember(member);
+            	registration.register(member);
+            }
 
             // Create an "ok" response
             builder = Response.ok();

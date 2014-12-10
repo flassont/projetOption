@@ -85,6 +85,100 @@ function MembersCtrl($scope, $http, Members) {
             $scope.$apply();
     	} )
     }
+    
+    $scope.updateMemberName = function(data, member) {
+    	
+   	 	$scope.errors = {};
+
+    	member.name = data;
+    	
+    	
+    	Members.save( member, function(data) {
+    		// mark success on the registration form
+            $scope.successMessages = [ 'Member Updated' ];
+
+            // Update the list of members
+            $scope.refresh();
+
+    	}, function(result) {
+    		if ((result.status == 409) || (result.status == 400)) {
+                $scope.errors = result.data;
+            } else {
+                $scope.errorMessages = [ 'Unknown  server error' ];
+            }
+            $scope.$apply();
+    	} )
+    }
+    
+    $scope.updateMemberSurname = function(data, member) {
+    	
+   	 	$scope.errors = {};
+    	
+    	member.surname = data;
+    	
+    	
+    	Members.save( member, function(data) {
+    		// mark success on the registration form
+            $scope.successMessages = [ 'Member Updated' ];
+
+            // Update the list of members
+            $scope.refresh();
+
+    	}, function(result) {
+    		if ((result.status == 409) || (result.status == 400)) {
+                $scope.errors = result.data;
+            } else {
+                $scope.errorMessages = [ 'Unknown  server error' ];
+            }
+            $scope.$apply();
+    	} )
+    }
+    
+    $scope.updateMemberEmail = function(data, member) {
+    	
+   	 	$scope.errors = {};
+        
+    	member.email = data;
+    	
+    	Members.save( member, function(data) {
+    		// mark success on the registration form
+            $scope.successMessages = [ 'Member Updated' ];
+
+            // Update the list of members
+            $scope.refresh();
+
+    	}, function(result) {
+    		if ((result.status == 409) || (result.status == 400)) {
+                $scope.errors = result.data;
+            } else {
+                $scope.errorMessages = [ 'Unknown  server error' ];
+            }
+            $scope.$apply();
+    	} )
+    }
+    
+    $scope.updateMemberPassword = function(data, member) {
+    	
+   	 	$scope.errors = {};
+        
+    	member.password = data;
+    	
+    	Members.save( member, function(data) {
+    		// mark success on the registration form
+            $scope.successMessages = [ 'Member Updated' ];
+
+            // Update the list of members
+            $scope.refresh();
+
+    	}, function(result) {
+    		if ((result.status == 409) || (result.status == 400)) {
+                $scope.errors = result.data;
+            } else {
+                $scope.errorMessages = [ 'Unknown  server error' ];
+            }
+            $scope.$apply();
+    	} )
+    }
 
     // Call the refresh() function, to populate the list of members
     $scope.refresh();

@@ -1,39 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- This is a partial, and is templated by AngularJS -->
-<section ng-controller="MembersCtrl">
-	<form id="member-form" ng-submit="register()">		
-		<input type="text" class="inputForm" placeholder="Pr&eacute;nom ?"
-			ng-model="newMember.surname" required autofocus/>
-		
-		<input type="text" class="inputForm" placeholder="Nom ?"
-			ng-model="newMember.name" required />
-		
-		<input type="email" class="inputForm" placeholder="Email ?"
-			ng-model="newMember.email" required />
-			
-		<input type="password" class="inputForm" placeholder="Mot de passe ?"
-			ng-model="newMember.password" required />
-			
-		<input style="display:none" class="btn btn-default" type="submit" value="Submit">
-	</form>
-	<article ng-show="members.length">
-		<ul id="member-list">
-			<li ng-repeat="member in members | orderBy:orderBy"
-				ng-class="{completed: todo.completed}">
-				<div class="view">
-					<input class="mark" type="checkbox" ng-model="member.completed" />
-					<span>{{member.email}}</span> <span class="close"
-						ng-click="removeMember(member)">x</span>
-				</div>
-			</li>
-		</ul>
-		<input id="mark-all" type="checkbox" ng-model="allChecked"
-			ng-click="markAll(allChecked)" /> <label class="btn btn-info"
-			for="mark-all">Tout cocher</label>
-		<button class="btn btn-danger" ng-click="clearCompletedTodos()">Supprimer
-			les membres coch&eacute;s</button>
-	</article>
-</section>
+<h2 id="inscription">Inscription</h2>
+<div ng-controller="MembersCtrl">
+	<section id="formInsription">
+		<form id="member-form" ng-submit="register()">
+			<input type="text" class="inputForm" placeholder="Pr&eacute;nom ?"
+				ng-model="newMember.surname" required autofocus /> <input
+				type="text" class="inputForm" placeholder="Nom ?"
+				ng-model="newMember.name" required /> <input type="email"
+				class="inputForm" placeholder="Email ?" ng-model="newMember.email"
+				required /> <input type="password" class="inputForm"
+				placeholder="Mot de passe ?" ng-model="newMember.password" required />
+
+			<input style="display: none" class="btn btn-default" type="submit"
+				value="Submit">
+		</form>
+		<article ng-show="members.length">
+<!-- 			<ul id="member-list"> -->
+<!-- 				<li ng-repeat="member in members | orderBy:orderBy" -->
+<!-- 					ng-class="{completed: todo.completed}"> -->
+<!-- 					<div class="view"> -->
+<!-- 						<input class="mark" type="checkbox" ng-model="member.completed" /> -->
+<!-- 						<span>{{member.email}}</span> <span class="close" -->
+<!-- 							ng-click="removeMember(member)">x</span> -->
+<!-- 					</div> -->
+<!-- 				</li> -->
+<!-- 			</ul> -->
+			<input id="mark-all" type="checkbox" ng-model="allChecked"
+				ng-click="markAll(allChecked)" /> <label class="btn btn-info"
+				for="mark-all">Tout cocher</label>
+			<button class="btn btn-danger" ng-click="clearCompletedTodos()">Supprimer
+				les membres coch&eacute;s</button>
+		</article>
+	</section>
+	<h2>Liste des Intervenants</h2>
+	<table class="table table-hover" ng-show="members.length">
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Pr&eacute;nom</th>
+				<th>Email</th>
+				<th>Mot de passe</th>
+				<th>Suppr.</th>
+			</tr>
+		</thead>
+		<tr ng-repeat="member in members | orderBy:orderBy"
+			ng-class="{completed: todo.completed}">
+			<td><a href="#" editable-text="member.name" 
+			onbeforesave="updateMemberName($data,member)">{{member.name}}</a></td>
+			<td><a href="#" editable-text="member.surname" 
+			onbeforesave="updateMemberSurname($data,member)">{{member.surname}}</a></td>
+			<td><a href="#" editable-text="member.email"
+			onbeforesave="updateMemberEmail($data,member)">{{member.email}}</a></td>
+			<td><a href="#" onbeforesave="updateMemberPassword($data,member)" editable-text="member.password" >{{member.password}}</a></td>
+			<td  ng-click="removeMember(member)">x</td>
+		</tr>
+	</table>
+</div>
 
 
 <div style="display: none">

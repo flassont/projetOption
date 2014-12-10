@@ -28,6 +28,7 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.validator.constraints.Email;
@@ -51,6 +52,8 @@ public class Intervenant implements Serializable {
     @NotNull
     @Size(min=1, max=25)
     @Pattern(regexp="[^0-9]*", message="Must not contain numbers")
+ // Obligé de rajouter ca sinon le champ n'est pas transmis en REST je ne sais pas pk
+    @XmlElement(name="surname")
     private String surname;
 
     @NotNull

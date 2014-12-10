@@ -19,10 +19,10 @@ p{
 	margin-top:100px;
 }
 
-section {
+#formInsription {
 	background: #fff;
 	background: rgba(255, 255, 255, 0.9);
-	margin: 80px 25% 40px;
+	margin: 0 25% 40px;
 	border: 1px solid #ccc;
 	position: relative;
 	border-top-left-radius: 2px;
@@ -32,6 +32,12 @@ section {
 	width:50%;
 	min-width: 500px;
 }
+
+#inscription {
+	text-align: center;
+	padding: 50px 0 20px;
+}
+
 article{
 	margin:0px!important;
 }
@@ -113,4 +119,13 @@ input[type="checkbox"]{
 #mark-all{
 	margin-top:30px;
 	margin-bottom:30px;
+}
+
+
+/* Code Projet Option */
+
+
+.table-hover>tbody>tr:hover {
+	background-color: #ccccff;
+}
 }
