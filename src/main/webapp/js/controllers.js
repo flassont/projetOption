@@ -35,12 +35,7 @@ function MembersCtrl($scope, $http, Members) {
         $scope.errorMessages = '';
         $scope.errors = {};
         
-        $scope.newMember.name = "Nicolas";
-        
-        $scope.newMember.phoneNumber = "0687504428";
-        
-
-        Members.save($scope.newMember, function(data) {
+       Members.save($scope.newMember, function(data) {
 
             // mark success on the registration form
             $scope.successMessages = [ 'Member Registered' ];
@@ -69,7 +64,6 @@ function MembersCtrl($scope, $http, Members) {
         
 //        $scope.newMember.name = "Nicolas";
 //        
-//        $scope.newMember.phoneNumber = "0687504428";
 //        
 //        $scope.email = member.email;
     	

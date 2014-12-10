@@ -19,17 +19,12 @@ package org.jboss.as.quickstarts.kitchensink.model;
 import java.io.Serializable;
 import java.util.Collection;
 
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -55,7 +50,7 @@ public class Member implements Serializable {
     
     @NotNull
     @Size(min=1, max=25)
-    @Pattern(regexp="[^0-9]", message="Must not contain numbers")
+    @Pattern(regexp="[^0-9]*", message="Must not contain numbers")
     private String surname;
 
     @NotNull
@@ -68,7 +63,8 @@ public class Member implements Serializable {
     @NotEmpty
     private String password;
     
-    @OneToMany
+    // Ceci permet de ne pas avoir d'erreur, à comprendre cf : http://stackoverflow.com/questions/22821695/lazyinitializationexception-failed-to-lazily-initialize-a-collection-of-roles
+    @OneToMany(fetch = FetchType.EAGER)
     private Collection<Relations> relations;
 
 //    @NotNull
