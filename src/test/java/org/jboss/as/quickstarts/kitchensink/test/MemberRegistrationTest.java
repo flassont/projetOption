@@ -55,12 +55,13 @@ public class MemberRegistrationTest {
     @Test
     public void testRegister() throws Exception {
         Member newMember = new Member();
-        newMember.setName("Jane Doe");
+        newMember.setName("Doe");
+        newMember.setSurname("Jane");
         newMember.setEmail("jane@mailinator.com");
         //newMember.setPhoneNumber("2125551234");
         memberRegistration.register(newMember);
         assertNotNull(newMember.getEmail());
-        log.info(newMember.getName() + " was persisted with id " + newMember.getEmail());
+        log.info(newMember.getName() + " was persisted with email " + newMember.getEmail());
     }
 
 }
