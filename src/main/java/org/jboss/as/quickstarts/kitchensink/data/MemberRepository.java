@@ -55,9 +55,7 @@ public class MemberRepository {
         // feature in JPA 2.0
         // criteria.select(member).orderBy(cb.asc(member.get(Member_.name)));
         criteria.select(member).orderBy(cb.asc(member.get("name")));
-//        System.out.println("ok");
-//        System.out.println(em.createQuery(criteria).getResultList());
-        System.out.println("nico" + em.createQuery(criteria).getResultList().get(0).getSurname("0"));
+
         return em.createQuery(criteria).getResultList();
     }
 }
