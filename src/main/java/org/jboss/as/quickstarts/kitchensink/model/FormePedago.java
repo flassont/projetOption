@@ -25,7 +25,7 @@ public class FormePedago {
 	
 	@NotNull
 	@NotEmpty
-	private String formule;
+	private double coef;
 	
 	@OneToMany
 	private Collection<Intervention> interventions;
@@ -38,12 +38,12 @@ public class FormePedago {
 		return this.annee;
 	}
 	
-	public String getFormule() {
-		return this.formule;
+	public double getCoef() {
+		return this.coef;
 	}
 	
-	public void setFormule(String formule) {
-		this.formule=formule;
+	public void setCoef(double coef) {
+		this.coef=coef;
 	}
 	
 	public Collection<Intervention> getInterventions() {

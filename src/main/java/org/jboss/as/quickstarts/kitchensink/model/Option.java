@@ -7,13 +7,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-public class Promotion extends Responsabilite {
+public class Option extends Responsabilite {
 	
 	@NotNull
 	@NotEmpty
@@ -24,9 +25,8 @@ public class Promotion extends Responsabilite {
 	@Pattern(regexp="[0-9]*")
 	private int nbEleves;
 	
-	@NotNull
-	@NotEmpty
-	private Intervenant responsable;
+	@OneToMany(fetch = FetchType.EAGER)
+    private Collection<Relation> relations;
 	
 	@NotNull
 	@NotEmpty
@@ -52,12 +52,8 @@ public class Promotion extends Responsabilite {
 		this.nbEleves=nbEleves;
 	}
 	
-	public Intervenant getResponsable() {
-		return this.responsable;
-	}
-	
-	public void setResponsable(Intervenant responsable) {
-		this.responsable=responsable;
+	public Collection<Relation> getRelations() {
+		return this.relations;
 	}
 	
 	public int getAnnee() {
