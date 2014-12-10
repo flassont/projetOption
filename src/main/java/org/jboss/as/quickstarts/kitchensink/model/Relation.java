@@ -27,37 +27,46 @@ public class Relation implements Serializable {
 	
 	@NotNull
 	@NotEmpty
+	@Pattern(regexp="[2-9][0-9][0-9][0-9]")
+	private int annee;
+	
+	@NotNull
+	@NotEmpty
 	@ManyToOne(fetch = FetchType.EAGER)
-	private Intervenant member;
+	private Intervenant intervenant;
 	
 	@NotNull
 	@NotEmpty
 	@Enumerated(EnumType.STRING)
-	private EtatRelation relationState;
+	private EtatRelation etatRelation;
 	
 	@NotNull
 	@NotEmpty
 	@ManyToOne(fetch = FetchType.EAGER)
-	private Intervention classes;
+	private Responsabilite responsabilite;
 	
 	public long getId() {
 		return this.id;
 	}
 	
-	public Intervenant getMember() {
-		return this.member;
+	public int getAnnee() {
+		return this.annee;
 	}
 	
-	public EtatRelation getRS() {
-		return this.relationState;
+	public Intervenant getIntervenant() {
+		return this.intervenant;
 	}
 	
-	public void setRS(EtatRelation rs) {
-		this.relationState=rs;
+	public EtatRelation getEtatRelation() {
+		return this.etatRelation;
 	}
 	
-	public Intervention getClasses() {
-		return this.classes;
+	public void setEtatRelation(EtatRelation er) {
+		this.etatRelation=er;
+	}
+	
+	public Responsabilite getResponsabilite() {
+		return this.responsabilite;
 	}
 
 }
