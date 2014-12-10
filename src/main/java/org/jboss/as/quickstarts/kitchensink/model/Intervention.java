@@ -6,6 +6,7 @@ import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -25,24 +26,16 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @XmlRootElement
 //@Table(uniqueConstraints = @UniqueConstraint(columnNames = "id"))
-public class Intervention implements Serializable {
-	
-	@Id
-	@GeneratedValue
-	private long interventionId;
+public class Intervention extends Responsabilite implements Serializable {
 	
 	@NotNull
 	@NotEmpty
-	private long moduleId;
-	
-//	@NotNull
-//	@NotEmpty
-//	@Size(min=1, max=50)
-//	private String entitlement;
+	@ManyToOne(fetch=FetchType.EAGER)
+	private Module module;
 	
 	@NotNull
 	@NotEmpty
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	private FormePedago formePedago;
 	
 	@NotNull
@@ -58,13 +51,18 @@ public class Intervention implements Serializable {
 	@OneToOne
 	private Relation relations;
 	
-	public long getId() {
-		return this.interventionId;
+	@NotNull
+	@NotEmpty
+	@Pattern(regexp="[2-9][0-9][0-9][0-9]")
+	private long annee;
+	
+	public Module getModule() {
+		return this.module;
 	}
 	
-//	public String getEntitlement() {
-//		return this.entitlement;
-//	}
+	public void setModule(Module mod) {
+		this.module=mod;
+	}
 	
 	public FormePedago getFormePedago() {
 		return this.formePedago;

@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -26,37 +27,46 @@ public class Relation implements Serializable {
 	
 	@NotNull
 	@NotEmpty
-	@ManyToOne
-	private Intervenant member;
+	@Pattern(regexp="[2-9][0-9][0-9][0-9]")
+	private int annee;
+	
+	@NotNull
+	@NotEmpty
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Intervenant intervenant;
 	
 	@NotNull
 	@NotEmpty
 	@Enumerated(EnumType.STRING)
-	private EtatRelation relationState;
+	private EtatRelation etatRelation;
 	
 	@NotNull
 	@NotEmpty
-	@ManyToOne
-	private Intervention classes;
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Responsabilite responsabilite;
 	
 	public long getId() {
 		return this.id;
 	}
 	
-	public Intervenant getMember() {
-		return this.member;
+	public int getAnnee() {
+		return this.annee;
 	}
 	
-	public EtatRelation getRS() {
-		return this.relationState;
+	public Intervenant getIntervenant() {
+		return this.intervenant;
 	}
 	
-	public void setRS(EtatRelation rs) {
-		this.relationState=rs;
+	public EtatRelation getEtatRelation() {
+		return this.etatRelation;
 	}
 	
-	public Intervention getClasses() {
-		return this.classes;
+	public void setEtatRelation(EtatRelation er) {
+		this.etatRelation=er;
+	}
+	
+	public Responsabilite getResponsabilite() {
+		return this.responsabilite;
 	}
 
 }
