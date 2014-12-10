@@ -24,7 +24,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-import org.jboss.as.quickstarts.kitchensink.model.Member;
+import org.jboss.as.quickstarts.kitchensink.model.Intervenant;
 
 @ApplicationScoped
 public class MemberRepository {
@@ -36,10 +36,10 @@ public class MemberRepository {
 //        return em.find(Member.class, id);
 //    }
 
-    public Member findByEmail(String email) {
+    public Intervenant findByEmail(String email) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Member> criteria = cb.createQuery(Member.class);
-        Root<Member> member = criteria.from(Member.class);
+        CriteriaQuery<Intervenant> criteria = cb.createQuery(Intervenant.class);
+        Root<Intervenant> member = criteria.from(Intervenant.class);
         // Swap criteria statements if you would like to try out type-safe criteria queries, a new
         // feature in JPA 2.0 hoho haha
         // criteria.select(member).where(cb.equal(member.get(Member_.name), email));
@@ -47,10 +47,10 @@ public class MemberRepository {
         return em.createQuery(criteria).getSingleResult();
     }
 
-    public List<Member> findAllOrderedByName() {
+    public List<Intervenant> findAllOrderedByName() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Member> criteria = cb.createQuery(Member.class);
-        Root<Member> member = criteria.from(Member.class);
+        CriteriaQuery<Intervenant> criteria = cb.createQuery(Intervenant.class);
+        Root<Intervenant> member = criteria.from(Intervenant.class);
         // Swap criteria statements if you would like to try out type-safe criteria queries, a new
         // feature in JPA 2.0
         // criteria.select(member).orderBy(cb.asc(member.get(Member_.name)));

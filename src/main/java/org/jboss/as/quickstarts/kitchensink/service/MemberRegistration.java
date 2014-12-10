@@ -16,7 +16,7 @@
  */
 package org.jboss.as.quickstarts.kitchensink.service;
 
-import org.jboss.as.quickstarts.kitchensink.model.Member;
+import org.jboss.as.quickstarts.kitchensink.model.Intervenant;
 
 import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
@@ -35,16 +35,16 @@ public class MemberRegistration {
     private EntityManager em;
 
     @Inject
-    private Event<Member> memberEventSrc;
+    private Event<Intervenant> memberEventSrc;
 
-    public void register(Member member) throws Exception {
+    public void register(Intervenant member) throws Exception {
         log.info("Registering " + member.getName());
         em.persist(member);
         memberEventSrc.fire(member);
     }
     
     public void delete(String email) throws Exception {
-        Member member = em.find(Member.class,email);
+        Intervenant member = em.find(Intervenant.class,email);
         log.info("Deleting " + member.getName());
         em.remove(member);
         memberEventSrc.fire(member);

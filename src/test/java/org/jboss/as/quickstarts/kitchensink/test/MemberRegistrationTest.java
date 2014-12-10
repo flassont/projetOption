@@ -24,7 +24,7 @@ import javax.inject.Inject;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.as.quickstarts.kitchensink.model.Member;
+import org.jboss.as.quickstarts.kitchensink.model.Intervenant;
 import org.jboss.as.quickstarts.kitchensink.service.MemberRegistration;
 import org.jboss.as.quickstarts.kitchensink.util.Resources;
 import org.jboss.shrinkwrap.api.Archive;
@@ -39,7 +39,7 @@ public class MemberRegistrationTest {
     @Deployment
     public static Archive<?> createTestArchive() {
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addClasses(Member.class, MemberRegistration.class, Resources.class)
+                .addClasses(Intervenant.class, MemberRegistration.class, Resources.class)
                 .addAsResource("META-INF/test-persistence.xml", "META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 // Deploy our test datasource
@@ -54,13 +54,14 @@ public class MemberRegistrationTest {
 
     @Test
     public void testRegister() throws Exception {
-        Member newMember = new Member();
-        newMember.setName("Jane Doe");
+        Intervenant newMember = new Intervenant();
+        newMember.setName("Doe");
+        newMember.setSurname("Jane");
         newMember.setEmail("jane@mailinator.com");
         //newMember.setPhoneNumber("2125551234");
         memberRegistration.register(newMember);
         assertNotNull(newMember.getEmail());
-        log.info(newMember.getName() + " was persisted with id " + newMember.getEmail());
+        log.info(newMember.getName() + " was persisted with email " + newMember.getEmail());
     }
 
 }
