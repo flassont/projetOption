@@ -34,12 +34,8 @@ public class Intervention implements Serializable {
 	
 	@NotNull
 	@NotEmpty
-	private long moduleId;
-	
-//	@NotNull
-//	@NotEmpty
-//	@Size(min=1, max=50)
-//	private String entitlement;
+	@ManyToOne(fetch=FetchType.EAGER)
+	private Module module;
 	
 	@NotNull
 	@NotEmpty
@@ -59,13 +55,22 @@ public class Intervention implements Serializable {
 	@OneToOne
 	private Relation relations;
 	
+	@NotNull
+	@NotEmpty
+	@Pattern(regexp="[2-9][0-9][0-9][0-9]")
+	private long annee;
+	
 	public long getId() {
 		return this.interventionId;
 	}
 	
-//	public String getEntitlement() {
-//		return this.entitlement;
-//	}
+	public Module getModule() {
+		return this.module;
+	}
+	
+	public void setModule(Module mod) {
+		this.module=mod;
+	}
 	
 	public FormePedago getFormePedago() {
 		return this.formePedago;
