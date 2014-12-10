@@ -39,10 +39,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 //@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Intervenant implements Serializable {
 
-//    @Id
-//    @GeneratedValue
-//    private Long id;
-
     @NotNull
     @Size(min = 1, max = 25)
     @Pattern(regexp = "[^0-9]*", message = "Must not contain numbers")
@@ -66,23 +62,6 @@ public class Intervenant implements Serializable {
     // Ceci permet de ne pas avoir d'erreur, à comprendre cf : http://stackoverflow.com/questions/22821695/lazyinitializationexception-failed-to-lazily-initialize-a-collection-of-roles
     @OneToMany(fetch = FetchType.EAGER)
     private Collection<Relation> relations;
-    
-    @OneToMany(fetch = FetchType.EAGER)
-    private Collection<UV> uvs;
-
-//    @NotNull
-//    @Size(min = 10, max = 12)
-//    @Digits(fraction = 0, integer = 12)
-//    @Column(name = "phone_number")
-//    private String phoneNumber;
-
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
 
     public String getName() {
         return name;
@@ -119,16 +98,5 @@ public class Intervenant implements Serializable {
     public Collection<Relation> getRelations() {
     	return relations;
     }
-    
-    public Collection<UV> getUVs() {
-    	return this.uvs;
-    }
 
-//    public String getPhoneNumber() {
-//        return phoneNumber;
-//    }
-//
-//    public void setPhoneNumber(String phoneNumber) {
-//        this.phoneNumber = phoneNumber;
-//    }
 }
