@@ -66,6 +66,9 @@ public class Intervenant implements Serializable {
     // Ceci permet de ne pas avoir d'erreur, à comprendre cf : http://stackoverflow.com/questions/22821695/lazyinitializationexception-failed-to-lazily-initialize-a-collection-of-roles
     @OneToMany(fetch = FetchType.EAGER)
     private Collection<Relation> relations;
+    
+    @OneToMany(fetch = FetchType.EAGER)
+    private Collection<UV> uvs;
 
 //    @NotNull
 //    @Size(min = 10, max = 12)
@@ -115,6 +118,10 @@ public class Intervenant implements Serializable {
     
     public Collection<Relation> getRelations() {
     	return relations;
+    }
+    
+    public Collection<UV> getUVs() {
+    	return this.uvs;
     }
 
 //    public String getPhoneNumber() {

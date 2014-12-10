@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -26,7 +27,7 @@ public class Relation implements Serializable {
 	
 	@NotNull
 	@NotEmpty
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Intervenant member;
 	
 	@NotNull
@@ -36,7 +37,7 @@ public class Relation implements Serializable {
 	
 	@NotNull
 	@NotEmpty
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Intervention classes;
 	
 	public long getId() {

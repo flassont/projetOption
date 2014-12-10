@@ -6,6 +6,7 @@ import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -42,7 +43,7 @@ public class Intervention implements Serializable {
 	
 	@NotNull
 	@NotEmpty
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	private FormePedago formePedago;
 	
 	@NotNull
