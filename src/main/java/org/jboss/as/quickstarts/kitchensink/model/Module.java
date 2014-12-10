@@ -11,11 +11,7 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-public class Module {
-	
-	@Id
-	@GeneratedValue
-	private long id;
+public class Module extends Responsabilite {
 	
 	@NotNull
 	@NotEmpty
@@ -34,10 +30,6 @@ public class Module {
 	@NotEmpty
 	@ManyToOne(fetch=FetchType.EAGER)
 	private UV uv;
-	
-	public long getId() {
-		return this.id;
-	}
 	
 	public int getAnnee() {
 		return this.annee;

@@ -13,11 +13,7 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-public class Promotion {
-
-	@Id
-	@GeneratedValue
-	private long id;
+public class Promotion extends Responsabilite {
 	
 	@NotNull
 	@NotEmpty
@@ -30,15 +26,15 @@ public class Promotion {
 	
 	@NotNull
 	@NotEmpty
+	private Intervenant responsable;
+	
+	@NotNull
+	@NotEmpty
 	@Pattern(regexp="[2-9][0-9][0-9][0-9]")
 	private int annee;
 	
 	@ManyToMany(fetch=FetchType.EAGER)
 	private Collection<UV> uvs;
-	
-	public long getId() {
-		return this.id;
-	}
 	
 	public String getNom() {
 		return this.nom;
@@ -54,6 +50,14 @@ public class Promotion {
 	
 	public void setNbEleves(int nbEleves) {
 		this.nbEleves=nbEleves;
+	}
+	
+	public Intervenant getResponsable() {
+		return this.responsable;
+	}
+	
+	public void setResponsable(Intervenant responsable) {
+		this.responsable=responsable;
 	}
 	
 	public int getAnnee() {

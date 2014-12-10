@@ -26,11 +26,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @XmlRootElement
 //@Table(uniqueConstraints = @UniqueConstraint(columnNames = "id"))
-public class Intervention implements Serializable {
-	
-	@Id
-	@GeneratedValue
-	private long interventionId;
+public class Intervention extends Responsabilite implements Serializable {
 	
 	@NotNull
 	@NotEmpty
@@ -59,10 +55,6 @@ public class Intervention implements Serializable {
 	@NotEmpty
 	@Pattern(regexp="[2-9][0-9][0-9][0-9]")
 	private long annee;
-	
-	public long getId() {
-		return this.interventionId;
-	}
 	
 	public Module getModule() {
 		return this.module;

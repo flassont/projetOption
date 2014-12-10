@@ -15,11 +15,7 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-public class UV {
-
-	@Id
-	@GeneratedValue
-	private long id;
+public class UV extends Responsabilite {
 	
 	@NotNull
 	@NotEmpty
@@ -40,10 +36,6 @@ public class UV {
 	
 	@ManyToMany(fetch=FetchType.EAGER)
 	private Collection<Promotion> promos;
-	
-	public long getId() {
-		return this.id;
-	}
 	
 	public String getIntitule() {
 		return this.intitule;
