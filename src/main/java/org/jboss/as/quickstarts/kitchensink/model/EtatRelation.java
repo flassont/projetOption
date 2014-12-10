@@ -1,6 +1,6 @@
 package org.jboss.as.quickstarts.kitchensink.model;
 
-public enum RelationState {
+public enum EtatRelation {
 	
 	NOT_YET_VALIDATED, DENIED, ACCEPTED
 

@@ -18,7 +18,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @SuppressWarnings("serial")
 @Entity
 @XmlRootElement
-public class Relations implements Serializable {
+public class Relation implements Serializable {
 	
 	@Id
 	@GeneratedValue
@@ -27,35 +27,35 @@ public class Relations implements Serializable {
 	@NotNull
 	@NotEmpty
 	@ManyToOne
-	private Member member;
+	private Intervenant member;
 	
 	@NotNull
 	@NotEmpty
 	@Enumerated(EnumType.STRING)
-	private RelationState relationState;
+	private EtatRelation relationState;
 	
 	@NotNull
 	@NotEmpty
 	@ManyToOne
-	private Classes classes;
+	private Intervention classes;
 	
 	public long getId() {
 		return this.id;
 	}
 	
-	public Member getMember() {
+	public Intervenant getMember() {
 		return this.member;
 	}
 	
-	public RelationState getRS() {
+	public EtatRelation getRS() {
 		return this.relationState;
 	}
 	
-	public void setRS(RelationState rs) {
+	public void setRS(EtatRelation rs) {
 		this.relationState=rs;
 	}
 	
-	public Classes getClasses() {
+	public Intervention getClasses() {
 		return this.classes;
 	}
 

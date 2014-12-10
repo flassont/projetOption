@@ -36,8 +36,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 @SuppressWarnings("serial")
 @Entity
 @XmlRootElement
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
-public class Member implements Serializable {
+//@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+public class Intervenant implements Serializable {
 
 //    @Id
 //    @GeneratedValue
@@ -65,7 +65,7 @@ public class Member implements Serializable {
     
     // Ceci permet de ne pas avoir d'erreur, à comprendre cf : http://stackoverflow.com/questions/22821695/lazyinitializationexception-failed-to-lazily-initialize-a-collection-of-roles
     @OneToMany(fetch = FetchType.EAGER)
-    private Collection<Relations> relations;
+    private Collection<Relation> relations;
 
 //    @NotNull
 //    @Size(min = 10, max = 12)
@@ -113,7 +113,7 @@ public class Member implements Serializable {
     	this.password=pwd;
     }
     
-    public Collection<Relations> getRelations() {
+    public Collection<Relation> getRelations() {
     	return relations;
     }
 
