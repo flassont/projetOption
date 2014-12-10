@@ -1,28 +1,21 @@
 package org.jboss.as.quickstarts.kitchensink.model;
 
-import java.util.Collection;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-public class UV {
-
+public class Module {
+	
 	@Id
 	@GeneratedValue
 	private long id;
-	
-	@NotNull
-	@NotEmpty
-	private String intitule;
 	
 	@NotNull
 	@NotEmpty
@@ -31,14 +24,23 @@ public class UV {
 	
 	@NotNull
 	@NotEmpty
-	@ManyToOne(fetch = FetchType.EAGER)
+	private String intitule;
+	
+	@NotNull
+	@NotEmpty
 	private Intervenant responsable;
 	
-	@OneToMany(fetch=FetchType.EAGER)
-	private Collection<Module> modules;
+	@NotNull
+	@NotEmpty
+	@ManyToOne(fetch=FetchType.EAGER)
+	private UV uv;
 	
 	public long getId() {
 		return this.id;
+	}
+	
+	public int getAnnee() {
+		return this.annee;
 	}
 	
 	public String getIntitule() {
@@ -49,10 +51,6 @@ public class UV {
 		this.intitule=intitule;
 	}
 	
-	public int getAnnee() {
-		return this.annee;
-	}
-	
 	public Intervenant getResponsable() {
 		return this.responsable;
 	}
@@ -61,4 +59,8 @@ public class UV {
 		this.responsable=respo;
 	}
 	
+	public UV getUV() {
+		return this.uv;
+	}
+
 }
