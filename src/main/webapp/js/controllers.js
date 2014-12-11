@@ -14,6 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+function TabsCtrl($scope) {
+	$scope.dude = "dude";
+}
+
 function MembersCtrl($scope, $http, Members) {
 
     // Define a refresh function, that updates the data from the REST service
