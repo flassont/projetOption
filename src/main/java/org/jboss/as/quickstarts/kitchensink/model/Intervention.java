@@ -46,9 +46,6 @@ public class Intervention extends Responsabilite implements Serializable {
 	@Pattern(regexp="[0-9]*[.,][0-9]*")
 	private double nbHeuresCompl;
 	
-	@OneToMany(fetch = FetchType.EAGER)
-    private Collection<Relation> relations;
-	
 	@NotNull
 	@NotEmpty
 	@Pattern(regexp="[2-9][0-9][0-9][0-9]")
@@ -80,10 +77,6 @@ public class Intervention extends Responsabilite implements Serializable {
 	
 	public void setNbHeuresCompl(double nbHC) {
 		this.nbHeuresCompl=nbHC;
-	}
-	
-	public Collection<Relation> getRelations() {
-		return this.relations;
 	}
 
 }

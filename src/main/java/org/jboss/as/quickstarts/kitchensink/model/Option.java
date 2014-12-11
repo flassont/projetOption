@@ -25,9 +25,6 @@ public class Option extends Responsabilite {
 	@Pattern(regexp="[0-9]*")
 	private int nbEleves;
 	
-	@OneToMany(fetch = FetchType.EAGER)
-    private Collection<Relation> relations;
-	
 	@NotNull
 	@NotEmpty
 	@Pattern(regexp="[2-9][0-9][0-9][0-9]")
@@ -50,10 +47,6 @@ public class Option extends Responsabilite {
 	
 	public void setNbEleves(int nbEleves) {
 		this.nbEleves=nbEleves;
-	}
-	
-	public Collection<Relation> getRelations() {
-		return this.relations;
 	}
 	
 	public int getAnnee() {

@@ -26,9 +26,6 @@ public class Module extends Responsabilite {
 	@NotEmpty
 	private String intitule;
 	
-	@OneToMany(fetch = FetchType.EAGER)
-    private Collection<Relation> relations;
-	
 	@ManyToMany(fetch=FetchType.EAGER)
 	private Collection<Intervention> interventions;
 	
@@ -45,10 +42,6 @@ public class Module extends Responsabilite {
 	
 	public void setIntitule(String intitule) {
 		this.intitule=intitule;
-	}
-	
-	public Collection<Relation> getRelations() {
-		return this.relations;
 	}
 	
 	public Collection<Intervention> getInterventions() {

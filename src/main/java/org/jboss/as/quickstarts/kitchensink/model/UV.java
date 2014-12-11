@@ -26,9 +26,6 @@ public class UV extends Responsabilite {
 	@Pattern(regexp="[2-9][0-9][0-9][0-9]")
 	private int annee;
 	
-	@OneToMany(fetch = FetchType.EAGER)
-    private Collection<Relation> relations;
-	
 	@ManyToMany(fetch=FetchType.EAGER)
 	private Collection<Module> modules;
 	
@@ -45,10 +42,6 @@ public class UV extends Responsabilite {
 	
 	public int getAnnee() {
 		return this.annee;
-	}
-	
-	public Collection<Relation> getRelations() {
-		return this.relations;
 	}
 	
 	public Collection<Module> getModules() {
