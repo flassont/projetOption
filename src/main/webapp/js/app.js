@@ -8,7 +8,7 @@
 // Cette application est monopage, chaque partie est liée en utilisant une URL relative. 
 // On lie le module pour les membres avec l'application
 
-angular.module('emn-webapp', ['membersService',"xeditable"])
+var app = angular.module('emn-webapp', ['membersService',"xeditable"])
 	
 	.config([ '$routeProvider', function($routeProvider) {
         $routeProvider
