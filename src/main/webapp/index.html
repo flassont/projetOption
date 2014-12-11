@@ -34,8 +34,9 @@
 </head>
 <body>
 	<div ng-controller="TabsCtrl">
-		<ul class="nav navbar angled-navbar">
-			<li><a href="#/dude">{{dude}}</a></li>
+		<ul class="nav nav-tabs">
+			<li role="presentation" ng-class="{ active: isActive('/') }"><a href="#">Home</a></li>
+			<li role="presentation" ng-class="{ active: isActive('/dude') }"><a href="#/dude">{{dude}}</a></li>
 		</ul>
 	</div>
     <aside id="container" class="container">
