@@ -15,8 +15,11 @@
  * limitations under the License.
  */
 
-function TabsCtrl($scope) {
+function TabsCtrl($scope, $location) {
 	$scope.dude = "dude";
+	$scope.isActive = function (viewLocation) { 
+        return viewLocation === $location.path();
+    };
 }
 
 function MembersCtrl($scope, $http, Members) {
