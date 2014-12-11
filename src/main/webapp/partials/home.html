@@ -52,7 +52,7 @@
 			onbeforesave="updateMemberSurname($data,member)">{{member.surname}}</a></td>
 			<td><a href="#" editable-text="member.email"
 			onbeforesave="updateMemberEmail($data,member)">{{member.email}}</a></td>
-			<td><a href="#" onbeforesave="updateMemberPassword($data,member)" editable-text="member.password" >{{member.password}}</a></td>
+			<td><a href="#" e-name="password" e-type="password" onbeforesave="updateMemberPassword($data,member)" editable-text="member.password" >{{member.password}}</a></td>
 			<td  ng-click="removeMember(member)">x</td>
 		</tr>
 	</table>
