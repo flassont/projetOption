@@ -33,14 +33,16 @@
     
 </head>
 <body>
-    <aside id="container" class="container">
-
 	<div ng-controller="TabsCtrl">
 		<ul class="nav navbar angled-navbar">
 			<li><a href="#/dude">{{dude}}</a></li>
 		</ul>
 	</div>
-
+    <aside id="container" class="container">
+        <div id="content" ng-view>
+            <!-- This div will be tempalted by AngularJS -->
+            [Template content will be inserted here]
+        </div>
         
         <footer id="footer">
             <p>
