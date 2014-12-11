@@ -26,16 +26,11 @@ public class UV extends Responsabilite {
 	@Pattern(regexp="[2-9][0-9][0-9][0-9]")
 	private int annee;
 	
-	@NotNull
-	@NotEmpty
-	@ManyToOne(fetch = FetchType.EAGER)
-	private Intervenant responsable;
-	
-	@OneToMany(fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.EAGER)
 	private Collection<Module> modules;
 	
 	@ManyToMany(fetch=FetchType.EAGER)
-	private Collection<Promotion> promos;
+	private Collection<Option> options;
 	
 	public String getIntitule() {
 		return this.intitule;
@@ -49,20 +44,12 @@ public class UV extends Responsabilite {
 		return this.annee;
 	}
 	
-	public Intervenant getResponsable() {
-		return this.responsable;
-	}
-	
-	public void setResponsable(Intervenant respo) {
-		this.responsable=respo;
-	}
-	
 	public Collection<Module> getModules() {
 		return this.modules;
 	}
 	
-	public Collection<Promotion> getPromotions() {
-		return this.promos;
+	public Collection<Option> getOptions() {
+		return this.options;
 	}
 	
 }

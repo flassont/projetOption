@@ -1,10 +1,14 @@
 package org.jboss.as.quickstarts.kitchensink.model;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -22,14 +26,11 @@ public class Module extends Responsabilite {
 	@NotEmpty
 	private String intitule;
 	
-	@NotNull
-	@NotEmpty
-	private Intervenant responsable;
+	@ManyToMany(fetch=FetchType.EAGER)
+	private Collection<Intervention> interventions;
 	
-	@NotNull
-	@NotEmpty
-	@ManyToOne(fetch=FetchType.EAGER)
-	private UV uv;
+	@ManyToMany(fetch=FetchType.EAGER)
+	private Collection<UV> uvs;
 	
 	public int getAnnee() {
 		return this.annee;
@@ -43,16 +44,12 @@ public class Module extends Responsabilite {
 		this.intitule=intitule;
 	}
 	
-	public Intervenant getResponsable() {
-		return this.responsable;
+	public Collection<Intervention> getInterventions() {
+		return this.interventions;
 	}
 	
-	public void setResponsable(Intervenant respo) {
-		this.responsable=respo;
-	}
-	
-	public UV getUV() {
-		return this.uv;
+	public Collection<UV> getUVs() {
+		return this.uvs;
 	}
 
 }

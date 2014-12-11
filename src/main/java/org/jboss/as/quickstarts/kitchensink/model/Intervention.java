@@ -28,10 +28,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 //@Table(uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class Intervention extends Responsabilite implements Serializable {
 	
-	@NotNull
-	@NotEmpty
-	@ManyToOne(fetch=FetchType.EAGER)
-	private Module module;
+	@ManyToMany(fetch=FetchType.EAGER)
+	private Collection<Module> modules;
 	
 	@NotNull
 	@NotEmpty
@@ -48,20 +46,17 @@ public class Intervention extends Responsabilite implements Serializable {
 	@Pattern(regexp="[0-9]*[.,][0-9]*")
 	private double nbHeuresCompl;
 	
-	@OneToOne
-	private Relation relations;
-	
 	@NotNull
 	@NotEmpty
 	@Pattern(regexp="[2-9][0-9][0-9][0-9]")
-	private long annee;
+	private int annee;
 	
-	public Module getModule() {
-		return this.module;
+	public Collection<Module> getModules() {
+		return this.modules;
 	}
 	
-	public void setModule(Module mod) {
-		this.module=mod;
+	public void setModules(Collection<Module> mod) {
+		this.modules=mod;
 	}
 	
 	public FormePedago getFormePedago() {
@@ -82,10 +77,6 @@ public class Intervention extends Responsabilite implements Serializable {
 	
 	public void setNbHeuresCompl(double nbHC) {
 		this.nbHeuresCompl=nbHC;
-	}
-	
-	public Relation getRelations() {
-		return this.relations;
 	}
 
 }

@@ -7,19 +7,26 @@
 // Ici on définit l'application
 // Cette application est monopage, chaque partie est liée en utilisant une URL relative. 
 // On lie le module pour les membres avec l'application
-var app = angular.module('emn-webapp', ['membersService',"xeditable"]).config(
-        [ '$routeProvider', function($routeProvider) {
-            $routeProvider.
-            // if URL fragment is /, then load the home partial, with the
-            // MembersCtrl controller
-            when('/', {
-                templateUrl : 'partials/home.html',
-                controller : MembersCtrl
-            // Add a default route
-            }).otherwise({
-                redirectTo : '/'
-            });
-        } ]);
+
+angular.module('emn-webapp', ['membersService',"xeditable"])
+	
+	.config([ '$routeProvider', function($routeProvider) {
+        $routeProvider
+        // if URL fragment is /, then load the home partial, with the
+        // MembersCtrl controller
+        .when('/', {
+            templateUrl : 'partials/home.html',
+            controller : MembersCtrl
+        })
+        .when('/dude', {
+        	templateUrl : 'partials/aham.html',
+            controller : MembersCtrl
+        })
+        // Add a default route
+        .otherwise({
+            redirectTo : '/dude'
+        });
+    }]);
 
 //Ajout du theme pour xeditable
 app.run(function(editableOptions) {
