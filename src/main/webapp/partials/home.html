@@ -2,19 +2,29 @@
 <!-- This is a partial, and is templated by AngularJS -->
 <h2 id="inscription">Inscription</h2>
 <div ng-controller="MembersCtrl">
-	<section id="formInsription">
-		<form id="member-form" ng-submit="register()">
-			<input type="text" class="inputForm" placeholder="Pr&eacute;nom ?"
-				ng-model="newMember.surname" required autofocus /> <input
-				type="text" class="inputForm" placeholder="Nom ?"
-				ng-model="newMember.name" required /> <input type="email"
-				class="inputForm" placeholder="Email ?" ng-model="newMember.email"
-				required /> <input type="password" class="inputForm"
-				placeholder="Mot de passe ?" ng-model="newMember.password" required />
-
-			<input style="display: none" class="btn btn-default" type="submit"
+<div class="row">
+	<div class="panel panel-default col-md-6 col-md-offset-3">
+  		<div class="panel-body">
+  			<form role="form" ng-submit="register()">
+  				<div class="form-group">
+    				<input type="text" class="form-control" placeholder="Pr&eacute;nom ?" ng-model="newMember.surname" required />
+  				</div>
+  				<div class="form-group">
+    				<input type="text" class="form-control" placeholder="Nom ?" ng-model="newMember.name" required />
+  				</div>
+  				<div class="form-group">
+    				<input type="email" class="form-control" placeholder="Email ?" ng-model="newMember.email" required />
+  				</div>
+  				<div class="form-group">
+					<input type="password" class="form-control"  placeholder="Mot de passe ?" ng-model="newMember.password" required />
+				</div>
+				<input style="display: none" class="btn btn-default" type="submit"
 				value="Submit">
-		</form>
+			</form>
+  		</div>
+	</div>
+</div>
+	<section id="formInsription">
 		<article ng-show="members.length">
 <!-- 			<ul id="member-list"> -->
 <!-- 				<li ng-repeat="member in members | orderBy:orderBy" -->

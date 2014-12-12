@@ -34,10 +34,12 @@
 </head>
 <body>
 	<div ng-controller="TabsCtrl">
+	<div class="container">
 		<ul class="nav nav-tabs">
-			<li role="presentation" ng-class="{ active: isActive('/') }"><a href="#">Home</a></li>
+			<li role="presentation"s ng-class="{ active: isActive('/') }"><a href="#">Home</a></li>
 			<li role="presentation" ng-class="{ active: isActive('/dude') }"><a href="#/dude">{{dude}}</a></li>
 		</ul>
+	</div>
 	</div>
     <aside id="container" class="container">
         <div id="content" ng-view>
