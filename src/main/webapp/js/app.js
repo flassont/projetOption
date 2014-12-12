@@ -24,7 +24,7 @@ var app = angular.module('emn-webapp', ['membersService',"xeditable"])
         })
         // Add a default route
         .otherwise({
-            redirectTo : '/dude'
+            redirectTo : '/'
         });
     }]);
 

@@ -34,12 +34,19 @@
 </head>
 <body>
 	<div ng-controller="TabsCtrl">
-	<div class="container">
-		<ul class="nav nav-tabs">
-			<li role="presentation"s ng-class="{ active: isActive('/') }"><a href="#">Intervenant</a></li>
-			<li role="presentation" ng-class="{ active: isActive('/dude') }"><a href="#/dude">Explorer</a></li>
-		</ul>
-	</div>
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">Brand</a>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li ng-class="{ active: isActive('/') }"><a href="#">Intervenant</a></li>
+						<li ng-class="{ active: isActive('/dude') }"><a href="#/dude">Explorer</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
 	</div>
     <aside id="container" class="container">
         <div id="content" ng-view>
