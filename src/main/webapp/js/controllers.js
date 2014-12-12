@@ -16,7 +16,6 @@
  */
 
 function TabsCtrl($scope, $location) {
-	$scope.dude = "dude";
 	$scope.isActive = function (viewLocation) { 
         return viewLocation === $location.path();
     };
@@ -197,4 +196,7 @@ function MembersCtrl($scope, $http, Members) {
 
     // Set the default orderBy to the name property
     $scope.orderBy = 'name';
+    
+    //Initialisation de l'onglet actif connexion/inscription
+    $scope.formActiveTab = 'connexion';
 }

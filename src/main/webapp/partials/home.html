@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- This is a partial, and is templated by AngularJS -->
-<h2 id="inscription">Inscription</h2>
 <div ng-controller="MembersCtrl">
 <div class="row">
-	<div class="panel panel-default col-md-6 col-md-offset-3">
-  		<div class="panel-body">
+	<div class="page-header col-md-6 col-md-offset-3">
+		<ul class="nav nav-tabs" role="tablist">
+			<li role="presentation" class="active col-md-6"><a href="#home" role="tab" data-toggle="tab" ng-click="formActiveTab = 'connexion'" style="text-align: center">Se connecter</a></li>
+			<li role="presentation" class="col-md-6"><a href="#profile" role="tab" data-toggle="tab" ng-click="formActiveTab = 'inscription'" style="text-align: center">S'inscrire</a></li>
+		</ul>
+		<div class="panel-body" ng-show="formActiveTab == 'connexion'">
+  		ici le formulaire de connexion (voir onglet s'inscrire)
+  		</div>
+  		<div class="panel-body" ng-show="formActiveTab == 'inscription'">
   			<form role="form" ng-submit="register()">
   				<div class="form-group">
     				<input type="text" class="form-control input-lg" placeholder="Pr&eacute;nom ?" ng-model="newMember.surname" required />
@@ -18,12 +24,12 @@
   				<div class="form-group">
 					<input type="password" class="form-control input-lg"  placeholder="Mot de passe ?" ng-model="newMember.password" required />
 				</div>
-				<button type="submit" class="btn btn-primary">S'inscrire</button>
+				<button type="submit" class="btn btn-primary">Inscription</button>
 			</form>
   		</div>
-	</div>
+  	</div>
 </div>
-	<section id="formInsription">
+	<section id="formInsription" style="display: none">
 		<article ng-show="members.length">
 <!-- 			<ul id="member-list"> -->
 <!-- 				<li ng-repeat="member in members | orderBy:orderBy" -->
