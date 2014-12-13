@@ -117,7 +117,7 @@ public class MemberResourceRESTService {
              builder = Response.ok();
          } catch (ConstraintViolationException ce) {
              // Handle bean validation issues
-             builder = createViolationResponse(ce.getConstraintViolations());
+             builder = RESTServicesResources.createViolationResponse(ce.getConstraintViolations());
          } catch (ValidationException e) {
              // Handle the unique constrain violation
              Map<String, String> responseObj = new HashMap<String, String>();
@@ -210,6 +210,7 @@ public class MemberResourceRESTService {
      * @param violations A set of violations that needs to be reported
      * @return JAX-RS response containing all violations
      */
+  //TODO methode a supprimer si RESTServicesResources.createViolationResponse() fonctionne correctement
     private Response.ResponseBuilder createViolationResponse(Set<ConstraintViolation<?>> violations) {
         log.fine("Validation completed. violations found: " + violations.size());
 
