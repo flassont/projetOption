@@ -6,10 +6,10 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
-import org.jboss.as.quickstarts.kitchensink.model.Module;
+import org.jboss.as.quickstarts.kitchensink.model.Responsabilite;
 
 @Stateless
-public class ModuleRegistration {
+public class ResponsabiliteRegistration {
 	
 	@Inject
     private Logger log;
@@ -17,8 +17,8 @@ public class ModuleRegistration {
     @Inject
     private EntityManager em;
     
-    public void register(Module module) throws Exception {
-        log.info("Registering " + module.getIntitule());
-        em.persist(module);
+    public void register(Responsabilite responsabilite) throws Exception {
+        log.info("Registering " + responsabilite.getIntitule());
+        em.persist(responsabilite);
     }
 }

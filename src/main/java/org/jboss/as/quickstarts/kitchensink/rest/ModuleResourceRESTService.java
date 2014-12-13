@@ -19,7 +19,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.jboss.as.quickstarts.kitchensink.model.Module;
-import org.jboss.as.quickstarts.kitchensink.service.ModuleRegistration;
+import org.jboss.as.quickstarts.kitchensink.service.ResponsabiliteRegistration;
 
 @Path("/modules")
 @RequestScoped
@@ -35,7 +35,7 @@ public class ModuleResourceRESTService {
     //private ModuleRepository repository;
 
     @Inject
-    ModuleRegistration registration;
+    ResponsabiliteRegistration registration;
     
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
