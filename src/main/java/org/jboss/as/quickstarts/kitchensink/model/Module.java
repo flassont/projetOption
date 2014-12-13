@@ -18,8 +18,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Module extends Responsabilite {
 	
 	@NotNull
-	@NotEmpty
-	@Pattern(regexp="[2-9][0-9][0-9][0-9]")
 	private int annee;
 	
 	@NotNull

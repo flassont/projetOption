@@ -1,25 +1,11 @@
-/*
- * JBoss, Home of Professional Open Source
- * Copyright 2013, Red Hat, Inc. and/or its affiliates, and individual
- * contributors by the @authors tag. See the copyright.txt in the
- * distribution for a full listing of individual contributors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 function TabsCtrl($scope, $location) {
 	$scope.isActive = function (viewLocation) { 
         return viewLocation === $location.path();
     };
 }
+
+
 
 function MembersCtrl($scope, $http, Members) {
 
@@ -199,4 +185,43 @@ function MembersCtrl($scope, $http, Members) {
     
     //Initialisation de l'onglet actif connexion/inscription
     $scope.formActiveTab = 'connexion';
+}
+
+
+
+function ModulesCtrl($scope, $http, Modules) {
+	
+	$scope.reset = function() {
+        // clear input fields
+        $scope.newModule = {};
+    };
+	
+	$scope.register = function() {
+        $scope.successMessages = '';
+        $scope.errorMessages = '';
+        $scope.errors = {};
+        
+       Modules.save($scope.newModule, function(data) {
+
+            // mark success on the registration form
+            $scope.successMessages = [ 'Module Registered' ];
+
+            // Update the list of members
+            $scope.refresh();
+
+            // Clear the form
+            $scope.reset();
+        }, function(result) {
+            if ((result.status == 409) || (result.status == 400)) {
+                $scope.errors = result.data;
+            } else {
+                $scope.errorMessages = [ 'Unknown  server error' ];
+            }
+            $scope.$apply();
+        });
+
+    };
+    
+    $scope.reset();
+    
 }

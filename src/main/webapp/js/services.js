@@ -9,6 +9,10 @@ services.factory('Members', function($resource){
   });
 });
 
+services.factory('Modules', function($resource){
+	  return $resource('rest/modules/:moduleId', {}, {});
+});
+
 //services.factory('Member', function($resource){
 //	  return $resource('rest/members:memberId', {});
 //	});
