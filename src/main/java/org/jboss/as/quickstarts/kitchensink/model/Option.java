@@ -18,10 +18,6 @@ public class Option extends Responsabilite {
 	
 	@NotNull
 	@NotEmpty
-	private String nom;
-	
-	@NotNull
-	@NotEmpty
 	@Pattern(regexp="[0-9]*")
 	private int nbEleves;
 	
@@ -32,14 +28,6 @@ public class Option extends Responsabilite {
 	
 	@ManyToMany(fetch=FetchType.EAGER)
 	private Collection<UV> uvs;
-	
-	public String getNom() {
-		return this.nom;
-	}
-	
-	public void setNom(String nom) {
-		this.nom=nom;
-	}
 	
 	public int getNbEleves() {
 		return this.nbEleves;

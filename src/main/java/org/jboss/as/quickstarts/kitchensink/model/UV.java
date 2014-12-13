@@ -19,10 +19,6 @@ public class UV extends Responsabilite {
 	
 	@NotNull
 	@NotEmpty
-	private String intitule;
-	
-	@NotNull
-	@NotEmpty
 	@Pattern(regexp="[2-9][0-9][0-9][0-9]")
 	private int annee;
 	
@@ -31,14 +27,6 @@ public class UV extends Responsabilite {
 	
 	@ManyToMany(fetch=FetchType.EAGER)
 	private Collection<Option> options;
-	
-	public String getIntitule() {
-		return this.intitule;
-	}
-	
-	public void setIntitule(String intitule) {
-		this.intitule=intitule;
-	}
 	
 	public int getAnnee() {
 		return this.annee;

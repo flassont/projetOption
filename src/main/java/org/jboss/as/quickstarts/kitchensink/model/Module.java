@@ -20,10 +20,6 @@ public class Module extends Responsabilite {
 	@NotNull
 	private int annee;
 	
-	@NotNull
-	@NotEmpty
-	private String intitule;
-	
 	@ManyToMany(fetch=FetchType.EAGER)
 	private Collection<Intervention> interventions;
 	
@@ -32,14 +28,6 @@ public class Module extends Responsabilite {
 	
 	public int getAnnee() {
 		return this.annee;
-	}
-	
-	public String getIntitule() {
-		return this.intitule;
-	}
-	
-	public void setIntitule(String intitule) {
-		this.intitule=intitule;
 	}
 	
 	public Collection<Intervention> getInterventions() {
