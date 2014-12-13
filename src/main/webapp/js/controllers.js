@@ -189,7 +189,7 @@ function MembersCtrl($scope, $http, Members) {
 
 
 
-function ModulesCtrl($scope, $http, Modules) {
+function ModulesCtrl($scope, $http, Responsabilites) {
 	
 	$scope.reset = function() {
         // clear input fields
@@ -201,10 +201,47 @@ function ModulesCtrl($scope, $http, Modules) {
         $scope.errorMessages = '';
         $scope.errors = {};
         
-       Modules.save($scope.newModule, function(data) {
+       Responsabilites.save({ responsabilite: 'modules' }, $scope.newModule, function(data) {
 
             // mark success on the registration form
             $scope.successMessages = [ 'Module Registered' ];
+
+            // Update the list of members
+            $scope.refresh();
+
+            // Clear the form
+            $scope.reset();
+        }, function(result) {
+            if ((result.status == 409) || (result.status == 400)) {
+                $scope.errors = result.data;
+            } else {
+                $scope.errorMessages = [ 'Unknown  server error' ];
+            }
+            $scope.$apply();
+        });
+
+    };
+    
+    $scope.reset();
+    
+}
+
+function UVsCtrl($scope, $http, Responsabilites) {
+	
+	$scope.reset = function() {
+        // clear input fields
+        $scope.newUV = {};
+    };
+	
+	$scope.register = function() {
+        $scope.successMessages = '';
+        $scope.errorMessages = '';
+        $scope.errors = {};
+        
+       Responsabilites.save({ responsabilite: 'uvs' }, $scope.newUV, function(data) {
+
+            // mark success on the registration form
+            $scope.successMessages = [ 'UV Registered' ];
 
             // Update the list of members
             $scope.refresh();

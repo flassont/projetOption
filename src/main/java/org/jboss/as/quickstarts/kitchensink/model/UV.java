@@ -18,8 +18,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class UV extends Responsabilite {
 	
 	@NotNull
-	@NotEmpty
-	@Pattern(regexp="[2-9][0-9][0-9][0-9]")
 	private int annee;
 	
 	@ManyToMany(fetch=FetchType.EAGER)

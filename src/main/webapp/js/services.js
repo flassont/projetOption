@@ -9,8 +9,8 @@ services.factory('Members', function($resource){
   });
 });
 
-services.factory('Modules', function($resource){
-	  return $resource('rest/responsabilites/modules/:moduleId', {}, {});
+services.factory('Responsabilites', function($resource){
+	  return $resource('rest/responsabilites/:responsabilite/:responsabiliteId', {}, {});
 });
 
 //services.factory('Member', function($resource){

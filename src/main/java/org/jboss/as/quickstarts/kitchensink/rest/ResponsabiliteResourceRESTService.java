@@ -20,6 +20,7 @@ import javax.ws.rs.core.Response;
 
 import org.jboss.as.quickstarts.kitchensink.model.Module;
 import org.jboss.as.quickstarts.kitchensink.model.Responsabilite;
+import org.jboss.as.quickstarts.kitchensink.model.UV;
 import org.jboss.as.quickstarts.kitchensink.service.ResponsabiliteRegistration;
 
 @Path("/responsabilites")
@@ -44,6 +45,14 @@ public class ResponsabiliteResourceRESTService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response createModule(Module module) {
         return createResponsabilite(module);
+    }
+    
+    @POST
+    @Path("/uvs")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response createUV(UV uv) {
+        return createResponsabilite(uv);
     }
     
     private Response createResponsabilite(Responsabilite responsabilite) {
