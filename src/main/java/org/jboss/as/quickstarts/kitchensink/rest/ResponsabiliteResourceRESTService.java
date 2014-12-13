@@ -2,6 +2,7 @@ package org.jboss.as.quickstarts.kitchensink.rest;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -12,12 +13,14 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.jboss.as.quickstarts.kitchensink.data.ResponsabiliteRepository;
 import org.jboss.as.quickstarts.kitchensink.model.Module;
 import org.jboss.as.quickstarts.kitchensink.model.Responsabilite;
 import org.jboss.as.quickstarts.kitchensink.model.UV;
@@ -33,18 +36,24 @@ public class ResponsabiliteResourceRESTService {
     @Inject
     private Validator validator;
 
-    //@Inject
-    //private ModuleRepository repository;
+    @Inject
+    private ResponsabiliteRepository repository;
 
     @Inject
     ResponsabiliteRegistration registration;
     
-    @POST
-    @Path("/modules")
-    @Consumes(MediaType.APPLICATION_JSON)
+    @GET
+    @Path("/uvs")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createModule(Module module) {
-        return createResponsabilite(module);
+    public List<UV> listAllUVs() {
+        return  repository.findAllOrderedByIntitule(UV.class);
+    }
+    
+    @GET
+    @Path("/modules")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Module> listAllMembers() {
+        return  repository.findAllOrderedByIntitule(Module.class);
     }
     
     @POST
@@ -53,6 +62,14 @@ public class ResponsabiliteResourceRESTService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response createUV(UV uv) {
         return createResponsabilite(uv);
+    }
+    
+    @POST
+    @Path("/modules")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response createModule(Module module) {
+        return createResponsabilite(module);
     }
     
     private Response createResponsabilite(Responsabilite responsabilite) {

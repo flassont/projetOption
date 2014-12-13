@@ -195,6 +195,10 @@ function ModulesCtrl($scope, $http, Responsabilites) {
         // clear input fields
         $scope.newModule = {};
     };
+    
+    $scope.refresh = function() {
+        $scope.modules = Responsabilites.query({ responsabilite: 'modules' });
+    };
 	
 	$scope.register = function() {
         $scope.successMessages = '';
@@ -221,6 +225,8 @@ function ModulesCtrl($scope, $http, Responsabilites) {
         });
 
     };
+
+    $scope.refresh();
     
     $scope.reset();
     
@@ -231,6 +237,10 @@ function UVsCtrl($scope, $http, Responsabilites) {
 	$scope.reset = function() {
         // clear input fields
         $scope.newUV = {};
+    };
+    
+    $scope.refresh = function() {
+        $scope.uvs = Responsabilites.query({ responsabilite: 'uvs' });
     };
 	
 	$scope.register = function() {
@@ -258,6 +268,8 @@ function UVsCtrl($scope, $http, Responsabilites) {
         });
 
     };
+    
+    $scope.refresh();
     
     $scope.reset();
     

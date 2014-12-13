@@ -14,6 +14,21 @@
 			</form>
 		</div>
 	</div>
+	<div class="row">
+		<h2>Liste des modules</h2>
+		<table class="table table-hover" ng-show="modules.length">
+			<thead>
+				<tr>
+					<th>Intitul&eacute;</th>
+					<th>Ann&eacute;e</th>
+				</tr>
+			</thead>
+			<tr ng-repeat="module in modules | orderBy:orderBy" >
+				<td>{{module.intitule}}</a></td>
+				<td>{{module.annee}}</a></td>
+			</tr>
+		</table>
+	</div>
 </div>
 
 <div ng-controller="UVsCtrl">
@@ -30,5 +45,20 @@
 				<button type="submit" class="btn btn-primary">Enregistrer</button>
 			</form>
 		</div>
+	</div>
+	<div class="row">
+		<h2>Liste des UV</h2>
+		<table class="table table-hover" ng-show="uvs.length">
+			<thead>
+				<tr>
+					<th>Intitul&eacute;</th>
+					<th>Ann&eacute;e</th>
+				</tr>
+			</thead>
+			<tr ng-repeat="uv in uvs | orderBy:orderBy" >
+				<td>{{uv.intitule}}</a></td>
+				<td>{{uv.annee}}</a></td>
+			</tr>
+		</table>
 	</div>
 </div>
