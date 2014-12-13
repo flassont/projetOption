@@ -10,7 +10,7 @@ services.factory('Members', function($resource){
 });
 
 services.factory('Modules', function($resource){
-	  return $resource('rest/modules/:moduleId', {}, {});
+	  return $resource('rest/responsabilites/modules/:moduleId', {}, {});
 });
 
 //services.factory('Member', function($resource){

@@ -19,11 +19,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.jboss.as.quickstarts.kitchensink.model.Module;
+import org.jboss.as.quickstarts.kitchensink.model.Responsabilite;
 import org.jboss.as.quickstarts.kitchensink.service.ResponsabiliteRegistration;
 
-@Path("/modules")
+@Path("/responsabilites")
 @RequestScoped
-public class ModuleResourceRESTService {
+public class ResponsabiliteResourceRESTService {
 	
 	@Inject
     private Logger log;
@@ -38,18 +39,22 @@ public class ModuleResourceRESTService {
     ResponsabiliteRegistration registration;
     
     @POST
+    @Path("/modules")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response createModule(Module module) {
+        return createResponsabilite(module);
+    }
+    
+    private Response createResponsabilite(Responsabilite responsabilite) {
     	
-
-        Response.ResponseBuilder builder = null;
+    	Response.ResponseBuilder builder = null;
 
         try {          
 
             // Validates module using bean validation
-        	validateModule(module);
-            registration.register(module);
+        	validateResponsabilite(responsabilite);
+            registration.register(responsabilite);
             
             // Create an "ok" response
             builder = Response.ok();
@@ -78,9 +83,9 @@ public class ModuleResourceRESTService {
         return Response.status(Response.Status.BAD_REQUEST).entity(responseObj);
     }
     
-    private void validateModule(Module module) throws ConstraintViolationException {
+    private void validateResponsabilite(Responsabilite responsabilite) throws ConstraintViolationException {
         // Create a bean validator and check for issues.
-        Set<ConstraintViolation<Module>> violations = validator.validate(module);
+        Set<ConstraintViolation<Responsabilite>> violations = validator.validate(responsabilite);
 
         if (!violations.isEmpty()) {
             throw new ConstraintViolationException(new HashSet<ConstraintViolation<?>>(violations));
