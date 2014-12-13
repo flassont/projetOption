@@ -44,15 +44,12 @@ public class ModuleResourceRESTService {
     	
 
         Response.ResponseBuilder builder = null;
-        System.out.println("un");
 
         try {          
 
-            // Validates member using bean validation
-        	System.out.println("deux");
-            System.out.println("trois");
+            // Validates module using bean validation
+        	validateModule(module);
             registration.register(module);
-            System.out.println("quatre");
             
             // Create an "ok" response
             builder = Response.ok();
