@@ -187,28 +187,28 @@ function MembersCtrl($scope, $http, Members) {
     $scope.formActiveTab = 'connexion';
 }
 
-
-
-function ModulesCtrl($scope, $http, Responsabilites) {
+function UVsModulesCtrl($scope, $http, Responsabilites) {
 	
 	$scope.reset = function() {
         // clear input fields
+        $scope.newUV = {};
         $scope.newModule = {};
     };
     
     $scope.refresh = function() {
+        $scope.uvs = Responsabilites.query({ responsabilite: 'uvs' });
         $scope.modules = Responsabilites.query({ responsabilite: 'modules' });
     };
 	
-	$scope.register = function() {
+	$scope.registeruv = function() {
         $scope.successMessages = '';
         $scope.errorMessages = '';
         $scope.errors = {};
         
-       Responsabilites.save({ responsabilite: 'modules' }, $scope.newModule, function(data) {
+       Responsabilites.save({ responsabilite: 'uvs' }, $scope.newUV, function(data) {
 
             // mark success on the registration form
-            $scope.successMessages = [ 'Module Registered' ];
+            $scope.successMessages = [ 'UV Registered' ];
 
             // Update the list of members
             $scope.refresh();
@@ -225,33 +225,16 @@ function ModulesCtrl($scope, $http, Responsabilites) {
         });
 
     };
-
-    $scope.refresh();
     
-    $scope.reset();
-    
-}
-
-function UVsCtrl($scope, $http, Responsabilites) {
-	
-	$scope.reset = function() {
-        // clear input fields
-        $scope.newUV = {};
-    };
-    
-    $scope.refresh = function() {
-        $scope.uvs = Responsabilites.query({ responsabilite: 'uvs' });
-    };
-	
-	$scope.register = function() {
+    $scope.registermodule = function() {
         $scope.successMessages = '';
         $scope.errorMessages = '';
         $scope.errors = {};
         
-       Responsabilites.save({ responsabilite: 'uvs' }, $scope.newUV, function(data) {
+       Responsabilites.save({ responsabilite: 'modules' }, $scope.newModule, function(data) {
 
             // mark success on the registration form
-            $scope.successMessages = [ 'UV Registered' ];
+            $scope.successMessages = [ 'Module Registered' ];
 
             // Update the list of members
             $scope.refresh();

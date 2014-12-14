@@ -1,41 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<div ng-controller="ModulesCtrl">
-	<div class="row">
-		<div class="page-header col-md-6 col-md-offset-3">
-			<h2>Ajouter module</h2>
-			<form role="form" ng-submit="register()">
-  				<div class="form-group">
-    				<input type="text" class="form-control input-lg" placeholder="Intitul&eacute;?" ng-model="newModule.intitule" required />
-  				</div>
-  				<div class="form-group">
-    				<input type="text" class="form-control input-lg" placeholder="Ann&eacute;e ?" ng-model="newModule.annee" required />
-  				</div>
-				<button type="submit" class="btn btn-primary">Enregistrer</button>
-			</form>
-		</div>
-	</div>
-	<div class="row">
-		<h2>Liste des modules</h2>
-		<table class="table table-hover" ng-show="modules.length">
-			<thead>
-				<tr>
-					<th>Intitul&eacute;</th>
-					<th>Ann&eacute;e</th>
-				</tr>
-			</thead>
-			<tr ng-repeat="module in modules | orderBy:orderBy" >
-				<td>{{module.intitule}}</a></td>
-				<td>{{module.annee}}</a></td>
-			</tr>
-		</table>
-	</div>
-</div>
 
-<div ng-controller="UVsCtrl">
+<div ng-controller="UVsModulesCtrl">
 	<div class="row">
 		<div class="page-header col-md-6 col-md-offset-3">
 			<h2>Ajouter UV</h2>
-			<form role="form" ng-submit="register()">
+			<form role="form" ng-submit="registeruv()">
   				<div class="form-group">
     				<input type="text" class="form-control input-lg" placeholder="Intitul&eacute;?" ng-model="newUV.intitule" required />
   				</div>
@@ -58,6 +27,35 @@
 			<tr ng-repeat="uv in uvs | orderBy:orderBy" >
 				<td>{{uv.intitule}}</a></td>
 				<td>{{uv.annee}}</a></td>
+			</tr>
+		</table>
+	</div>
+	<div class="row">
+		<div class="page-header col-md-6 col-md-offset-3">
+			<h2>Ajouter module</h2>
+			<form role="form" ng-submit="registermodule()">
+  				<div class="form-group">
+    				<input type="text" class="form-control input-lg" placeholder="Intitul&eacute;?" ng-model="newModule.intitule" required />
+  				</div>
+  				<div class="form-group">
+    				<input type="text" class="form-control input-lg" placeholder="Ann&eacute;e ?" ng-model="newModule.annee" required />
+  				</div>
+				<button type="submit" class="btn btn-primary">Enregistrer</button>
+			</form>
+		</div>
+	</div>
+	<div class="row">
+		<h2>Liste des modules</h2>
+		<table class="table table-hover" ng-show="modules.length">
+			<thead>
+				<tr>
+					<th>Intitul&eacute;</th>
+					<th>Ann&eacute;e</th>
+				</tr>
+			</thead>
+			<tr ng-repeat="module in modules | orderBy:orderBy" >
+				<td>{{module.intitule}}</a></td>
+				<td>{{module.annee}}</a></td>
 			</tr>
 		</table>
 	</div>
