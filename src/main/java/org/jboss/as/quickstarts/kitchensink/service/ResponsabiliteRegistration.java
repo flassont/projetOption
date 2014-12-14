@@ -21,4 +21,9 @@ public class ResponsabiliteRegistration {
         log.info("Registering " + responsabilite.getIntitule());
         em.persist(responsabilite);
     }
+    
+    public void update(Responsabilite responsabilite) throws Exception {
+        log.info("Updating " + responsabilite.getIntitule());
+        em.merge(responsabilite);
+    }
 }

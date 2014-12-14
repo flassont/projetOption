@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.persistence.NoResultException;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
@@ -16,11 +17,14 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.jboss.as.quickstarts.kitchensink.data.ResponsabiliteRepository;
+import org.jboss.as.quickstarts.kitchensink.model.Intervenant;
 import org.jboss.as.quickstarts.kitchensink.model.Module;
 import org.jboss.as.quickstarts.kitchensink.model.Responsabilite;
 import org.jboss.as.quickstarts.kitchensink.model.UV;
@@ -41,6 +45,17 @@ public class ResponsabiliteResourceRESTService {
 
     @Inject
     ResponsabiliteRegistration registration;
+    
+    @GET
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Responsabilite lookupResponsabiliteById(@PathParam("id") long id) {
+        Responsabilite responsabilite = repository.findById(id);
+        if (responsabilite == null) {
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+        return responsabilite;
+    }
     
     @GET
     @Path("/uvs")
@@ -76,12 +91,16 @@ public class ResponsabiliteResourceRESTService {
     	
     	Response.ResponseBuilder builder = null;
 
-        try {          
-
-            // Validates module using bean validation
-        	validateResponsabilite(responsabilite);
-            registration.register(responsabilite);
-            
+        try {
+        	
+        	if ( idAlreadyExists(responsabilite.getId()) )
+            	registration.update(responsabilite);
+            else {
+            	// Validates responsabilite using bean validation
+            	validateResponsabilite(responsabilite);
+            	registration.register(responsabilite);
+            }
+        	
             // Create an "ok" response
             builder = Response.ok();
         } catch (ConstraintViolationException ce) {
@@ -118,5 +137,12 @@ public class ResponsabiliteResourceRESTService {
             throw new ConstraintViolationException(new HashSet<ConstraintViolation<?>>(violations));
         }
     }
-
+    
+    public boolean idAlreadyExists(long id) {
+        Responsabilite responsabilite = null;
+        try {
+            responsabilite = repository.findById(id);
+        } catch (NoResultException e) {}
+        return responsabilite != null;
+    }
 }

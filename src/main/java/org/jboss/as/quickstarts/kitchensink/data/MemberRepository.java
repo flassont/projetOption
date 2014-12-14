@@ -41,7 +41,7 @@ public class MemberRepository {
         CriteriaQuery<Intervenant> criteria = cb.createQuery(Intervenant.class);
         Root<Intervenant> member = criteria.from(Intervenant.class);
         // Swap criteria statements if you would like to try out type-safe criteria queries, a new
-        // feature in JPA 2.0 hoho haha
+        // feature in JPA 2.0
         // criteria.select(member).where(cb.equal(member.get(Member_.name), email));
         criteria.select(member).where(cb.equal(member.get("email"), email));
         return em.createQuery(criteria).getSingleResult();
