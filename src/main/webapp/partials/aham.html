@@ -22,14 +22,47 @@
 				<tr>
 					<th>Intitul&eacute;</th>
 					<th>Ann&eacute;e</th>
+					<th>Ajouter un module &agrave; cet UV</th>
 				</tr>
 			</thead>
 			<tr ng-repeat="uv in uvs | orderBy:orderBy" >
-				<td>{{uv.intitule}}</a></td>
-				<td>{{uv.annee}}</a></td>
+				<td>{{uv.intitule}}</td>
+				<td>{{uv.annee}}</td>
+				<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajouter module</button></td>
 			</tr>
 		</table>
 	</div>
+
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Ajouter un module &agrave; cet UV</h4>
+				</div>
+				<div class="modal-body">
+					<table class="table table-hover" ng-show="modules.length">
+						<thead>
+							<tr>
+								<th>Intitul&eacute;</th>
+								<th>Ann&eacute;e</th>
+								<th>Ajouter</th>
+							</tr>
+						</thead>
+						<tr ng-repeat="module in modules | orderBy:orderBy" >
+							<td>{{module.intitule}}</td>
+							<td>{{module.annee}}</td>
+							<td><button type="button" class="btn btn-primary">Ajouter</button></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="page-header col-md-6 col-md-offset-3">
 			<h2>Ajouter module</h2>
@@ -54,8 +87,8 @@
 				</tr>
 			</thead>
 			<tr ng-repeat="module in modules | orderBy:orderBy" >
-				<td>{{module.intitule}}</a></td>
-				<td>{{module.annee}}</a></td>
+				<td>{{module.intitule}}</td>
+				<td>{{module.annee}}</td>
 			</tr>
 		</table>
 	</div>
