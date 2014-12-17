@@ -34,36 +34,60 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ * 
+ * @author Nicolas, Téo, Amandine
+ * Une personne appartenant au departement informatique de l'ecole
+ * On pourra envisager de mettre a disposition l'application a d'autres departements de l'ecole
+ *
+ */
 @SuppressWarnings("serial")
 @Entity
 @XmlRootElement
 //@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Intervenant implements Serializable {
 
+    /**
+     * Nom de l'intervenant
+     */
     @NotNull
     @Size(min = 1, max = 25)
     @Pattern(regexp = "[^0-9]*", message = "Must not contain numbers")
     private String name;
-    
+
+    /**
+     * Prenom de l'intervenant
+     */
     @NotNull
     @Size(min=1, max=25)
     @Pattern(regexp="[^0-9]*", message="Must not contain numbers")
- // Obligé de rajouter ca sinon le champ n'est pas transmis en REST je ne sais pas pk
-    @XmlElement(name="surname")
+    @XmlElement(name="surname") // Obligé de rajouter ca sinon le champ n'est pas transmis en REST je ne sais pas pourquoi
     private String surname;
 
+    /**
+     * Adresse email de l'intervenant
+     * Cle primaire : l'adresse email est unique au sein de l'ecole
+     */
     @NotNull
     @NotEmpty
     @Email
     @Id
+    // TODO spécifier que l'adresse doit être celle de l'école ? Comme ca, on serait bien certains qu'elle est unique
     private String email;
-    
+
+    /**
+     * Mot de passe de l'intervenant
+     */
     @NotNull
     @NotEmpty
+    // TODO voir l'encodage du mot de passe
     private String password;
-    
-    // Ceci permet de ne pas avoir d'erreur, à comprendre cf : http://stackoverflow.com/questions/22821695/lazyinitializationexception-failed-to-lazily-initialize-a-collection-of-roles
-    @OneToMany(fetch = FetchType.EAGER)
+
+    /**
+     * Liste des relations entre l'intervenant et des responsabilites
+     */
+    @OneToMany(fetch = FetchType.EAGER) // Ceci permet de ne pas avoir d'erreur, à comprendre cf
+    // http://stackoverflow.com/questions/22821695/lazyinitializationexception-failed-to-lazily-initialize-a-collection-of-roles
     private Collection<Relation> relations;
 
     public String getName() {

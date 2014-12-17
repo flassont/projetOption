@@ -10,23 +10,49 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ * 
+ * @author Nicolas, Téo, Amandine
+ * Forme pedagogique de l'Intervention
+ * Chaque forme pedagogique implique un coefficient multiplicateur different pour le total d'UP
+ * Pour chaque intervenant :
+ * total UP = nombre d'UP pour un module * coefficient multiplicateur lie a la forme pedagogique
+ * Pour le moment, les formes pedagogiques envisagees sont :
+ * PC : Petite Classe
+ * CM : Cours Magistral
+ * TP : Travaux Pratiques
+ * TD : Travaux Diriges
+ * D'autres telles que les MOOC pourront etre rajoutees par la suite
+ *
+ */
 @Entity
 public class FormePedago {
 	
+	/**
+	 * intitule de la forme pedagogique
+	 */
 	@NotNull
 	@NotEmpty
 	@Id
 	private String formePedago;
 	
+	/**
+	 * annee pour laquelle le multiplicateur est valable
+	 */	
 	@NotNull
 	@NotEmpty
-	@Pattern(regexp="[2-9][0-9][0-9][0-9]")
 	private int annee;
-	
+
+	/**
+	 * coefficient multiplicateur associe
+	 */
 	@NotNull
 	@NotEmpty
 	private double coef;
 	
+	/**
+	 * interventions ayant la forme pedagogique sus-citee
+	 */
 	@OneToMany
 	private Collection<Intervention> interventions;
 	

@@ -22,30 +22,54 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ * 
+ * @author Nicolas, Téo, Amandine
+ * Pour un Module appartenant à un UV, il y a plusieurs formes pedagogiques
+ * Chaque forme pedagogique peut faire l'objet de plusieurs interventions
+ * (s'il y a plusieurs groupes de TP, par exemple)
+ *
+ */
 @SuppressWarnings("serial")
 @Entity
 @XmlRootElement
 //@Table(uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class Intervention extends Responsabilite implements Serializable {
 	
+	/**
+	 * Liste des modules incluant l'Intervention concernee
+	 */
 	@ManyToMany(fetch=FetchType.EAGER)
 	private Collection<Module> modules;
 	
+	/**
+	 * Forme pedagogique de l'intervention
+	 */
 	@NotNull
 	@NotEmpty
 	@ManyToOne(fetch = FetchType.EAGER)
 	private FormePedago formePedago;
 	
+	/**
+	 * Nombre d'heures assurees par les intervenants dans le cadre de l'intervention
+	 */
 	@NotNull
 	@NotEmpty
 	@Pattern(regexp="[0-9]*[.,][0-9]*")
 	private double nbHeuresProf;
 	
+	/**
+	 * Nombre d'heures complementaires
+	 * Par exemple, les MOOC en sus des interventions en classe
+	 */
 	@NotNull
 	@NotEmpty
 	@Pattern(regexp="[0-9]*[.,][0-9]*")
 	private double nbHeuresCompl;
 	
+	/**
+	 * Annee pour laquelle l'Intervention est valable
+	 */
 	@NotNull
 	@NotEmpty
 	@Pattern(regexp="[2-9][0-9][0-9][0-9]")

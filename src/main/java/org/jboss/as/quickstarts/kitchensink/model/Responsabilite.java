@@ -11,17 +11,34 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ * 
+ * @author Nicolas, Téo, Amandine
+ * Responsabilite avec laquelle un intervenant peut etablir une relation
+ * UV, Module, Intervention, Option
+ *
+ */
 @Entity
 public abstract class Responsabilite {
 	
+	/**
+	 * Id de la responsabilite
+	 * Cle primaire
+	 */
 	@Id
 	@GeneratedValue
 	private long id;
 	
+	/**
+	 * Intitule de la responsabilite
+	 */
 	@NotNull
 	@NotEmpty
 	private String intitule;
 	
+	/**
+	 * Ensemble des relations liees a une Responsabilite
+	 */
 	@OneToMany(fetch = FetchType.EAGER)
     private Collection<Relation> relations;
 	
