@@ -32,7 +32,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Option extends Responsabilite {
 	
 	/**
-	 * Le nombre d'eleves de l'option
+	 * Le nombre d'eleves de l'option fuafua
 	 */
 	@NotNull
 	@NotEmpty
