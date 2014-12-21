@@ -15,7 +15,7 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- * 
+ * jjj
  * @author Nicolas, Téo, Amandine
  * Chaque UV est constituée de différents modules regroupant chacun des interventions
  * A la fin de l'annee, les eleves doivent valider individuellement chaque module
