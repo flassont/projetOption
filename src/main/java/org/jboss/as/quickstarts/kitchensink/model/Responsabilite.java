@@ -37,6 +37,14 @@ public abstract class Responsabilite {
 	private String intitule;
 	
 	/**
+	 * Nombre d'eleves geres dans le cadre de la Responsabilite
+	 * Le nombre d'eleves peut etre utilise pour calculer le nombre d'UP de l'intervenant
+	 */
+	@NotNull
+	@NotEmpty
+	private int nbEleves;
+	
+	/**
 	 * Ensemble des relations liees a une Responsabilite
 	 */
 	@OneToMany(fetch = FetchType.EAGER)
@@ -52,6 +60,14 @@ public abstract class Responsabilite {
 	
 	public void setIntitule(String intitule) {
 		this.intitule=intitule;
+	}
+	
+	public int getNbEleves() {
+		return this.nbEleves;
+	}
+	
+	public void setNbEleves(int nbEleves) {
+		this.nbEleves=nbEleves;
 	}
 	
 	public Collection<Relation> getRelations() {

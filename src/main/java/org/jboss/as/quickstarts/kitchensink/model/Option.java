@@ -32,14 +32,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Option extends Responsabilite {
 	
 	/**
-	 * Le nombre d'eleves de l'option
-	 */
-	@NotNull
-	@NotEmpty
-	@Pattern(regexp="[0-9]*")
-	private int nbEleves;
-	
-	/**
 	 * Annee pour laquelle l'option est valable
 	 */
 	@NotNull
@@ -52,14 +44,6 @@ public class Option extends Responsabilite {
 	 */
 	@ManyToMany(fetch=FetchType.EAGER)
 	private Collection<UV> uvs;
-	
-	public int getNbEleves() {
-		return this.nbEleves;
-	}
-	
-	public void setNbEleves(int nbEleves) {
-		this.nbEleves=nbEleves;
-	}
 	
 	public int getAnnee() {
 		return this.annee;
