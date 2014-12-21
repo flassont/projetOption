@@ -1,3 +1,10 @@
+Chatroom gitter:
+
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/amandineslx/projetOption?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
+
+
+
 kitchensink-angularjs: Shows how to use AngularJS with JAX-RS and Java EE on JBoss
 ========================
 Author: Pete Muir
