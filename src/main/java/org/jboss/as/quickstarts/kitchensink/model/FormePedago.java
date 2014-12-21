@@ -68,12 +68,12 @@ public class FormePedago {
 		return this.coef;
 	}
 	
-	public void setCoef(double coef) {
-		this.coef=coef;
-	}
-	
 	public Collection<Intervention> getInterventions() {
 		return this.interventions;
+	}
+	
+	public void setCoef(double coef) {
+		this.coef=coef;
 	}
 
 }

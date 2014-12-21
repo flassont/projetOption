@@ -84,12 +84,12 @@ public class Relation implements Serializable {
 		return this.etatRelation;
 	}
 	
-	public void setEtatRelation(EtatRelation er) {
-		this.etatRelation=er;
-	}
-	
 	public Responsabilite getResponsabilite() {
 		return this.responsabilite;
+	}
+	
+	public void setEtatRelation(EtatRelation er) {
+		this.etatRelation=er;
 	}
 
 }

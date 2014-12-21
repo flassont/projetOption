@@ -38,7 +38,7 @@ public abstract class Responsabilite {
 	
 	/**
 	 * Nombre d'eleves geres dans le cadre de la Responsabilite
-	 * Le nombre d'eleves peut etre utilise pour calculer le nombre d'UP de l'intervenant
+	 * Le nombre d'eleves peut etre utilise pour calculer le nombre d'UP de l'Intervenant
 	 */
 	@NotNull
 	@NotEmpty
@@ -50,6 +50,13 @@ public abstract class Responsabilite {
 	@NotNull
 	@NotEmpty
 	private int annee;
+	
+	/**
+	 * Coefficient permettant de calculer le nombre d'UP que la Responsabilite va rapporter a l'Intervenant
+	 */
+	@NotEmpty
+	@NotNull
+	private double coeffUP;
 	
 	/**
 	 * Ensemble des relations liees a une Responsabilite
@@ -65,24 +72,28 @@ public abstract class Responsabilite {
 		return this.intitule;
 	}
 	
-	public void setIntitule(String intitule) {
-		this.intitule=intitule;
-	}
-	
 	public int getNbEleves() {
 		return this.nbEleves;
-	}
-	
-	public void setNbEleves(int nbEleves) {
-		this.nbEleves=nbEleves;
 	}
 	
 	public int getAnnee() {
 		return this.annee;
 	}
 	
+	public double getCoeffUP() {
+		return this.coeffUP;
+	}
+	
 	public Collection<Relation> getRelations() {
 		return this.relations;
+	}
+	
+	public void setIntitule(String intitule) {
+		this.intitule=intitule;
+	}
+	
+	public void setNbEleves(int nbEleves) {
+		this.nbEleves=nbEleves;
 	}
 
 }

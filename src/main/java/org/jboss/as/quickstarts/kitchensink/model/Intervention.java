@@ -55,7 +55,6 @@ public class Intervention extends Responsabilite implements Serializable {
 	 */
 	@NotNull
 	@NotEmpty
-	@Pattern(regexp="[0-9]*[.,][0-9]*")
 	private double nbHeuresProf;
 	
 	/**
@@ -64,15 +63,10 @@ public class Intervention extends Responsabilite implements Serializable {
 	 */
 	@NotNull
 	@NotEmpty
-	@Pattern(regexp="[0-9]*[.,][0-9]*")
 	private double nbHeuresCompl;
 	
 	public Collection<Module> getModules() {
 		return this.modules;
-	}
-	
-	public void setModules(Collection<Module> mod) {
-		this.modules=mod;
 	}
 	
 	public FormePedago getFormePedago() {
@@ -83,12 +77,16 @@ public class Intervention extends Responsabilite implements Serializable {
 		return this.nbHeuresProf;
 	}
 	
-	public void setNbHeuresProf(double nbHP) {
-		this.nbHeuresProf=nbHP;
-	}
-	
 	public double getNbHeuresCompl() {
 		return this.nbHeuresCompl;
+	}
+	
+	public void setModules(Collection<Module> mod) {
+		this.modules=mod;
+	}
+	
+	public void setNbHeuresProf(double nbHP) {
+		this.nbHeuresProf=nbHP;
 	}
 	
 	public void setNbHeuresCompl(double nbHC) {

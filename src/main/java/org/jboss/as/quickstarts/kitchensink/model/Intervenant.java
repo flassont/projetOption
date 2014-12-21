@@ -89,41 +89,48 @@ public class Intervenant implements Serializable {
     @OneToMany(fetch = FetchType.EAGER) // Ceci permet de ne pas avoir d'erreur, à comprendre cf
     // http://stackoverflow.com/questions/22821695/lazyinitializationexception-failed-to-lazily-initialize-a-collection-of-roles
     private Collection<Relation> relations;
+    
+    /**
+     * Catégorie de l'intervenant
+     */
+    @NotNull
+    @NotEmpty
+    private CategIntervenant categ;
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
     
     public String getSurname() {
     	return this.surname;
     }
-    
-    public void setSurname(String surname) {
-    	this.surname=surname;
-    }
 
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
     
     public String getPassword() {
     	return this.password;
     }
     
-    public void setPassword(String pwd) {
-    	this.password=pwd;
-    }
-    
     public Collection<Relation> getRelations() {
     	return relations;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public void setSurname(String surname) {
+    	this.surname=surname;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    public void setPassword(String pwd) {
+    	this.password=pwd;
     }
 
 }
