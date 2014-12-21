@@ -23,15 +23,27 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class EtatRelation {
 	
-	@Id
-	@GeneratedValue
-	private int id;
-	
+	/**
+	 * Etat de la relation
+	 * Cle primaire
+	 */
 	@NotNull
 	@NotEmpty
-	private String etatRelation;
+	@Id
+	private String etat;
 	
+	/**
+	 * Liste des responsabilites ayant pour etat celui sus-cite
+	 */
 	@OneToMany
 	private Collection<Responsabilite> responsabilites;
+	
+	public String getEtat() {
+		return this.etat;
+	}
+	
+	public Collection<Responsabilite> getResponsabilites() {
+		return this.responsabilites;
+	}
 
 }

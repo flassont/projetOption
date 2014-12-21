@@ -118,6 +118,10 @@ public class Intervenant implements Serializable {
     public Collection<Relation> getRelations() {
     	return relations;
     }
+    
+    public CategIntervenant getCateg() {
+    	return this.categ;
+    }
 
     public void setName(String name) {
         this.name = name;

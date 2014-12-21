@@ -10,33 +10,61 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ * 
+ * @author Nicolas, Téo, Amandine
+ * L'intervenant peut appartenir à différentes catégories
+ * PERM_DPT : permanent du departement informatique
+ * NON_PERM_DPT : non permanent du departement informatique
+ * ECOLE : intervenant de l'ecole qui n'est pas necessairement du departement informatique
+ * EXT : intervenant exterieur
+ *
+ */
 @Entity
 public class CategIntervenant {
 	
+	/**
+	 * Id
+	 * Cle primaire
+	 */
 	@Id
 	@GeneratedValue
 	private int id;
 	
 	/**
-	 * Categorie a laquelle appartient l'intervenant
-	 * PERM_DPT : permanent du departement informatique
-	 * NON_PERM_DPT : non permanent du departement informatique
-	 * ECOLE : intervenant de l'ecole qui n'est pas necessairement du departement informatique
-	 * EXT : intervenant exterieur
+	 * Nom de la categorie
 	 */
 	@NotNull
 	@NotEmpty
-	private String categ;
+	private String nom;
 	
+	/**
+	 * Annee pour laquelle est valable la categorie
+	 */
 	@NotNull
 	@NotEmpty
 	private int annee;
 	
+	/**
+	 * Liste des intervenants appartenant a la categorie sus-citee
+	 */
 	@OneToMany
 	private Collection<Intervenant> intervenants;
 	
+	public int getId() {
+		return this.id;
+	}
+	
 	public String getCateg() {
-		return this.categ;
+		return this.nom;
+	}
+	
+	public int getAnnee() {
+		return this.annee;
+	}
+	
+	public Collection<Intervenant> getIntervenants() {
+		return this.intervenants;
 	}
 
 }

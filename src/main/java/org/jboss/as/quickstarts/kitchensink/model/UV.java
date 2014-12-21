@@ -35,13 +35,13 @@ public class UV extends Responsabilite {
 	 * Liste des options dans lesquelles l'UV est enseignee
 	 */
 	@ManyToMany(fetch=FetchType.EAGER)
-	private Collection<Option> options;
+	private Collection<Formation> options;
 	
 	public Collection<Module> getModules() {
 		return this.modules;
 	}
 	
-	public Collection<Option> getOptions() {
+	public Collection<Formation> getOptions() {
 		return this.options;
 	}
 	

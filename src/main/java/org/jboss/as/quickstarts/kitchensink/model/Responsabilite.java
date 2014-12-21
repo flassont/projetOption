@@ -15,7 +15,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  * 
  * @author Nicolas, Téo, Amandine
  * Responsabilite avec laquelle un intervenant peut etablir une relation
- * UV, Module, Intervention, Option
+ * UV, Module, Intervention, Option, AdjointEnseignement
  *
  */
 @Entity

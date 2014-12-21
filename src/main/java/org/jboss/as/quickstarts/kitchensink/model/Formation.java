@@ -29,7 +29,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  */
 @Entity
-public class Option extends Responsabilite {
+public class Formation extends Responsabilite {
 	
 	/**
 	 * Liste des UVs de l'option

@@ -30,6 +30,7 @@ public class FormePedago {
 	
 	/**
 	 * intitule de la forme pedagogique
+	 * Cle primaire
 	 */
 	@NotNull
 	@NotEmpty
