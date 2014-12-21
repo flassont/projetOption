@@ -67,14 +67,6 @@ public class Intervention extends Responsabilite implements Serializable {
 	@Pattern(regexp="[0-9]*[.,][0-9]*")
 	private double nbHeuresCompl;
 	
-	/**
-	 * Annee pour laquelle l'Intervention est valable
-	 */
-	@NotNull
-	@NotEmpty
-	@Pattern(regexp="[2-9][0-9][0-9][0-9]")
-	private int annee;
-	
 	public Collection<Module> getModules() {
 		return this.modules;
 	}

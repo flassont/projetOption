@@ -27,12 +27,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Module extends Responsabilite {
 	
 	/**
-	 * Annee pour laquelle le module est valable
-	 */
-	@NotNull
-	private int annee;
-	
-	/**
 	 * Interventions regroupees sous le module donne
 	 */
 	@ManyToMany(fetch=FetchType.EAGER)
@@ -43,10 +37,6 @@ public class Module extends Responsabilite {
 	 */
 	@ManyToMany(fetch=FetchType.EAGER)
 	private Collection<UV> uvs;
-	
-	public int getAnnee() {
-		return this.annee;
-	}
 	
 	public Collection<Intervention> getInterventions() {
 		return this.interventions;

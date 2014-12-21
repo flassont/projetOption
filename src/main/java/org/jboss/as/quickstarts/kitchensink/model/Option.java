@@ -32,22 +32,10 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Option extends Responsabilite {
 	
 	/**
-	 * Annee pour laquelle l'option est valable
-	 */
-	@NotNull
-	@NotEmpty
-	@Pattern(regexp="[2-9][0-9][0-9][0-9]")
-	private int annee;
-	
-	/**
 	 * Liste des UVs de l'option
 	 */
 	@ManyToMany(fetch=FetchType.EAGER)
 	private Collection<UV> uvs;
-	
-	public int getAnnee() {
-		return this.annee;
-	}
 	
 	public Collection<UV> getUVs() {
 		return this.uvs;

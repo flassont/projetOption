@@ -26,12 +26,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class UV extends Responsabilite {
 	
 	/**
-	 * Annee pour laquelle l'UV est valable
-	 */
-	@NotNull
-	private int annee;
-	
-	/**
 	 * Liste des modules inclus dans l'UV
 	 */
 	@ManyToMany(fetch=FetchType.EAGER)
@@ -42,10 +36,6 @@ public class UV extends Responsabilite {
 	 */
 	@ManyToMany(fetch=FetchType.EAGER)
 	private Collection<Option> options;
-	
-	public int getAnnee() {
-		return this.annee;
-	}
 	
 	public Collection<Module> getModules() {
 		return this.modules;

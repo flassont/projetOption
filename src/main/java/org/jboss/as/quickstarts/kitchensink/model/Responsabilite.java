@@ -45,6 +45,13 @@ public abstract class Responsabilite {
 	private int nbEleves;
 	
 	/**
+	 * Annee pour laquelle la responsabilite est valable
+	 */
+	@NotNull
+	@NotEmpty
+	private int annee;
+	
+	/**
 	 * Ensemble des relations liees a une Responsabilite
 	 */
 	@OneToMany(fetch = FetchType.EAGER)
@@ -68,6 +75,10 @@ public abstract class Responsabilite {
 	
 	public void setNbEleves(int nbEleves) {
 		this.nbEleves=nbEleves;
+	}
+	
+	public int getAnnee() {
+		return this.annee;
 	}
 	
 	public Collection<Relation> getRelations() {
