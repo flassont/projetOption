@@ -3,17 +3,15 @@ package org.jboss.as.quickstarts.kitchensink.model;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
@@ -57,7 +55,7 @@ public class Relation implements Serializable {
 	 */
 	@NotNull
 	@NotEmpty
-	@Enumerated(EnumType.STRING)
+	@ManyToOne
 	private EtatRelation etatRelation;
 	
 	/**

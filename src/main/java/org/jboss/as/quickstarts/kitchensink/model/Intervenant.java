@@ -22,9 +22,8 @@ import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -93,8 +92,11 @@ public class Intervenant implements Serializable {
     /**
      * Catégorie de l'intervenant
      */
-    @NotNull
-    @NotEmpty
+    //@NotNull
+    //@NotEmpty
+    @ManyToOne
+    //TODO lorsque l'on ajoute un intervenant dans la liste, on doit choisir quel categorie d'intervenant il est
+    //on doit choisir parmi les valeurs de la table CategIntervenant
     private CategIntervenant categ;
 
     public String getName() {
