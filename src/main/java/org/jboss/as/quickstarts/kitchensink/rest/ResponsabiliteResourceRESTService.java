@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import javax.persistence.NoResultException;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import javax.validation.ValidationException;
 import javax.validation.Validator;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -91,7 +92,6 @@ public class ResponsabiliteResourceRESTService {
     private Response createResponsabilite(Responsabilite responsabilite) {
     	
     	Response.ResponseBuilder builder = null;
-
         try {
         	
         	if ( idAlreadyExists(responsabilite.getId()) )
@@ -130,13 +130,17 @@ public class ResponsabiliteResourceRESTService {
         return Response.status(Response.Status.BAD_REQUEST).entity(responseObj);
     }
     
-    private void validateResponsabilite(Responsabilite responsabilite) throws ConstraintViolationException {
+    private void validateResponsabilite(Responsabilite responsabilite) throws ConstraintViolationException, ValidationException {
         // Create a bean validator and check for issues.
-        Set<ConstraintViolation<Responsabilite>> violations = validator.validate(responsabilite);
-
-        if (!violations.isEmpty()) {
-            throw new ConstraintViolationException(new HashSet<ConstraintViolation<?>>(violations));
-        }
+    	// AJout du try catch sinon on ne récupère pas certaines érreures de validation
+    	try {
+	        Set<ConstraintViolation<Responsabilite>> violations = validator.validate(responsabilite);
+	        if (!violations.isEmpty()) {
+	            throw new ConstraintViolationException(new HashSet<ConstraintViolation<?>>(violations));
+	        }
+	    	} catch ( Exception e ) {
+    		System.out.println(e.getStackTrace());
+    	}
     }
     
     public boolean idAlreadyExists(long id) {

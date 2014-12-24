@@ -9,7 +9,13 @@
     				<input type="text" class="form-control input-lg" placeholder="Intitul&eacute;?" ng-model="newUV.intitule" required />
   				</div>
   				<div class="form-group">
-    				<input type="text" class="form-control input-lg" placeholder="Ann&eacute;e ?" ng-model="newUV.annee" required />
+    				<input type="number" class="form-control input-lg" placeholder="Ann&eacute;e ?" ng-model="newUV.annee" required />
+    			</div>
+  				<div class="form-group">
+    				<input type="number" class="form-control input-lg" placeholder="Nombre élèves ?" ng-model="newUV.nbEleves" required />
+    			</div>
+  				<div class="form-group">
+    				<input type="number" step="any" class="form-control input-lg" placeholder="Coeff. UP ?" ng-model="newUV.coeffUP" required />
   				</div>
 				<button type="submit" class="btn btn-primary">Enregistrer</button>
 			</form>

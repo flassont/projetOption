@@ -41,20 +41,17 @@ public abstract class Responsabilite {
 	 * Le nombre d'eleves peut etre utilise pour calculer le nombre d'UP de l'Intervenant
 	 */
 	@NotNull
-	@NotEmpty
 	private int nbEleves;
 	
 	/**
 	 * Annee pour laquelle la responsabilite est valable
 	 */
 	@NotNull
-	@NotEmpty
 	private int annee;
 	
 	/**
 	 * Coefficient permettant de calculer le nombre d'UP que la Responsabilite va rapporter a l'Intervenant
 	 */
-	@NotEmpty
 	@NotNull
 	private double coeffUP;
 	
