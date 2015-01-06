@@ -93,7 +93,6 @@ public class Intervenant implements Serializable {
      * Catégorie de l'intervenant
      */
     //@NotNull
-    //@NotEmpty
     @ManyToOne
     //TODO lorsque l'on ajoute un intervenant dans la liste, on doit choisir quel categorie d'intervenant il est
     //on doit choisir parmi les valeurs de la table CategIntervenant

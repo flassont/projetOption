@@ -41,14 +41,12 @@ public class FormePedago {
 	 * annee pour laquelle le multiplicateur est valable
 	 */	
 	@NotNull
-	@NotEmpty
 	private int annee;
 
 	/**
 	 * coefficient multiplicateur associe
 	 */
 	@NotNull
-	@NotEmpty
 	private double coef;
 	
 	/**
