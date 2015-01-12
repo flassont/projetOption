@@ -16,4 +16,4 @@
 --
 
 -- You can use this file to load seed data into the database using SQL statements
- insert into Intervenant (name, surname, password, email) values ('Amandine', 'Souilleux','0000', 'amandine@mines-nantes.com')
+ insert into Intervenant (name, surname, password, email, version) values ('Amandine', 'Souilleux','0000', 'amandine@mines-nantes.com',0)

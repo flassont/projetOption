@@ -19,11 +19,14 @@ package org.jboss.as.quickstarts.kitchensink.model;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -45,6 +48,18 @@ import org.hibernate.validator.constraints.NotEmpty;
 @XmlRootElement
 //@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Intervenant implements Serializable {
+	
+	
+	protected Intervenant() {
+		super();
+	}
+
+	/**
+	 * Version de l'entité pour la concurrence
+	 */
+	@Version
+	protected int version;
+
 
     /**
      * Nom de l'intervenant
