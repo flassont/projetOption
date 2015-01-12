@@ -42,7 +42,6 @@ public class CategIntervenant {
 	 * Annee pour laquelle est valable la categorie
 	 */
 	@NotNull
-	@NotEmpty
 	private int annee;
 	
 	/**

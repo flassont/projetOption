@@ -37,7 +37,6 @@ public class Relation implements Serializable {
 	 * Annee pour laquelle la relation est valable
 	 */
 	@NotNull
-	@NotEmpty
 	@Pattern(regexp="[2-9][0-9][0-9][0-9]")
 	private int annee;
 	
@@ -45,7 +44,6 @@ public class Relation implements Serializable {
 	 * Intervenant implique dans la relation
 	 */
 	@NotNull
-	@NotEmpty
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Intervenant intervenant;
 	
@@ -54,7 +52,6 @@ public class Relation implements Serializable {
 	 * NON_VALIDE, ACCEPTE, REFUSE, IMPOSE
 	 */
 	@NotNull
-	@NotEmpty
 	@ManyToOne
 	private EtatRelation etatRelation;
 	
@@ -62,7 +59,6 @@ public class Relation implements Serializable {
 	 * Responsabilite liee a l'intervenant
 	 */
 	@NotNull
-	@NotEmpty
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Responsabilite responsabilite;
 	

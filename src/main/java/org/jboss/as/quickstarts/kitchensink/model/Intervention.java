@@ -46,7 +46,6 @@ public class Intervention extends Responsabilite implements Serializable {
 	 * Forme pedagogique de l'intervention
 	 */
 	@NotNull
-	@NotEmpty
 	@ManyToOne(fetch = FetchType.EAGER)
 	private FormePedago formePedago;
 	
@@ -54,7 +53,6 @@ public class Intervention extends Responsabilite implements Serializable {
 	 * Nombre d'heures assurees par les intervenants dans le cadre de l'intervention
 	 */
 	@NotNull
-	@NotEmpty
 	private double nbHeuresProf;
 	
 	/**
@@ -62,7 +60,6 @@ public class Intervention extends Responsabilite implements Serializable {
 	 * Par exemple, les MOOC en sus des interventions en classe
 	 */
 	@NotNull
-	@NotEmpty
 	private double nbHeuresCompl;
 	
 	public Collection<Module> getModules() {
