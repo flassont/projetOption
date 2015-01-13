@@ -50,7 +50,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Intervenant implements Serializable {
 	
 	
-	protected Intervenant() {
+	public Intervenant() {
 		super();
 	}
 
