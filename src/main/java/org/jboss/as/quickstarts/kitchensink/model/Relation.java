@@ -1,13 +1,8 @@
 package org.jboss.as.quickstarts.kitchensink.model;
 
 import java.io.Serializable;
-
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import java.util.Collection;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -51,9 +46,10 @@ public class Relation implements Serializable {
 	 * Etat de la relation
 	 * NON_VALIDE, ACCEPTE, REFUSE, IMPOSE
 	 */
-	@NotNull
-	@ManyToOne
-	private EtatRelation etatRelation;
+	//TODO voir quand il faut initialiser la collection
+	@ElementCollection(fetch=FetchType.EAGER, targetClass=EtatRelation.class)
+	@Enumerated(EnumType.STRING)
+	private Collection<EtatRelation> etatsRelation;
 	
 	/**
 	 * Responsabilite liee a l'intervenant
@@ -74,16 +70,16 @@ public class Relation implements Serializable {
 		return this.intervenant;
 	}
 	
-	public EtatRelation getEtatRelation() {
-		return this.etatRelation;
+	public Collection<EtatRelation> getEtatsRelation() {
+		return this.etatsRelation;
 	}
 	
 	public Responsabilite getResponsabilite() {
 		return this.responsabilite;
 	}
 	
-	public void setEtatRelation(EtatRelation er) {
-		this.etatRelation=er;
+	public void addEtatRelation(EtatRelation er) {
+		this.etatsRelation.add(er);
 	}
 
 }
