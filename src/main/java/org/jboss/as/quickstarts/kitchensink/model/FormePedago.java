@@ -1,10 +1,12 @@
 package org.jboss.as.quickstarts.kitchensink.model;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -25,8 +27,17 @@ import org.hibernate.validator.constraints.NotEmpty;
  * D'autres telles que les MOOC pourront etre rajoutees par la suite
  *
  */
+@SuppressWarnings("serial")
 @Entity
-public class FormePedago {
+public class FormePedago implements Serializable {
+	
+	public FormePedago() {}
+
+	/**
+	 * Version de l'entité pour la concurrence
+	 */
+	@Version
+	protected int version;
 	
 	/**
 	 * intitule de la forme pedagogique

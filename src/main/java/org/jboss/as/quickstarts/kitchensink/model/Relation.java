@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -24,6 +25,14 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @XmlRootElement
 public class Relation implements Serializable {
+	
+	public Relation() {}
+
+	/**
+	 * Version de l'entité pour la concurrence
+	 */
+	@Version
+	protected int version;
 	
 	/**
 	 * Id de la relation

@@ -1,11 +1,13 @@
 package org.jboss.as.quickstarts.kitchensink.model;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -20,8 +22,17 @@ import org.hibernate.validator.constraints.NotEmpty;
  * IMPOSE : aucune demande n'a ete faite mais la Responsabilite incombe tout de meme a l'Intervenant
  *
  */
+@SuppressWarnings("serial")
 @Entity
-public class EtatRelation {
+public class EtatRelation implements Serializable {
+	
+	public EtatRelation() {}
+
+	/**
+	 * Version de l'entité pour la concurrence
+	 */
+	@Version
+	protected int version;
 	
 	/**
 	 * Etat de la relation

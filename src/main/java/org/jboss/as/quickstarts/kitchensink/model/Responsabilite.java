@@ -1,5 +1,6 @@
 package org.jboss.as.quickstarts.kitchensink.model;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -7,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -18,8 +20,17 @@ import org.hibernate.validator.constraints.NotEmpty;
  * UV, Module, Intervention, Option, AdjointEnseignement
  *
  */
+@SuppressWarnings("serial")
 @Entity
-public abstract class Responsabilite {
+public abstract class Responsabilite implements Serializable {
+	
+	public Responsabilite() {}
+
+	/**
+	 * Version de l'entité pour la concurrence
+	 */
+	@Version
+	protected int version;
 	
 	/**
 	 * Id de la responsabilite

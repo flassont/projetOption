@@ -48,9 +48,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Intervenant implements Serializable {
 	
 	
-	public Intervenant() {
-		super();
-	}
+	public Intervenant() {}
 
 	/**
 	 * Version de l'entité pour la concurrence
