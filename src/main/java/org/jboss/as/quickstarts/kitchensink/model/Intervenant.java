@@ -19,10 +19,8 @@ package org.jboss.as.quickstarts.kitchensink.model;
 import java.io.Serializable;
 import java.util.Collection;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -50,7 +48,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Intervenant implements Serializable {
 	
 	
-	protected Intervenant() {
+	public Intervenant() {
 		super();
 	}
 
