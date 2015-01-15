@@ -1,13 +1,12 @@
 package org.jboss.as.quickstarts.kitchensink.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.xml.bind.annotation.XmlRootElement;
-
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * 
@@ -20,6 +19,14 @@ import org.hibernate.validator.constraints.NotEmpty;
 @XmlRootElement
 public class Relation implements Serializable {
 	
+	public Relation(int annee, Intervenant intervenant, Responsabilite responsabilite, EtatRelation etatInitial) {
+		this.annee = annee;
+		this.intervenant = intervenant;
+		this.responsabilite = responsabilite;
+		this.etatsRelation = new ArrayList<>();
+		this.etatsRelation.add(etatInitial);
+	}
+
 	/**
 	 * Id de la relation
 	 * Cle primaire
@@ -41,7 +48,14 @@ public class Relation implements Serializable {
 	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Intervenant intervenant;
-	
+
+	/**
+	 * Responsabilite liee a l'intervenant
+	 */
+	@NotNull
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Responsabilite responsabilite;
+
 	/**
 	 * Etat de la relation
 	 * NON_VALIDE, ACCEPTE, REFUSE, IMPOSE
@@ -50,13 +64,6 @@ public class Relation implements Serializable {
 	@ElementCollection(fetch=FetchType.EAGER, targetClass=EtatRelation.class)
 	@Enumerated(EnumType.STRING)
 	private Collection<EtatRelation> etatsRelation;
-	
-	/**
-	 * Responsabilite liee a l'intervenant
-	 */
-	@NotNull
-	@ManyToOne(fetch = FetchType.EAGER)
-	private Responsabilite responsabilite;
 	
 	public long getId() {
 		return this.id;
