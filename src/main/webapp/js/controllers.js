@@ -7,11 +7,12 @@ function TabsCtrl($scope, $location) {
 
 
 
-function MembersCtrl($scope, $http, Members) {
+function MembersCtrl($scope, $http, Members, Responsabilites) {
 
     // Define a refresh function, that updates the data from the REST service
     $scope.refresh = function() {
         $scope.members = Members.query();
+        $scope.modules = Responsabilites.query({ responsabilite: 'modules' });
     };
 
     // Define a reset function, that clears the prototype newMember object, and

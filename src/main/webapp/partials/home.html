@@ -57,6 +57,7 @@
 				<th>Email</th>
 				<th>Mot de passe</th>
 				<th>Suppr.</th>
+				<th>Faire un veux</th>
 			</tr>
 		</thead>
 		<tr ng-repeat="member in members | orderBy:orderBy"
@@ -69,8 +70,38 @@
 			onbeforesave="updateMemberEmail($data,member)">{{member.email}}</a></td>
 			<td><a href="#" e-name="password" e-type="password" onbeforesave="updateMemberPassword($data,member)" editable-text="member.password" >{{member.password}}</a></td>
 			<td  ng-click="removeMember(member)">x</td>
+			<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Faire un veux</button></td>
 		</tr>
 	</table>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		 aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Demander la responsabilit&eacute; d'un module</h4>
+				</div>
+				<div class="modal-body">
+					<table class="table table-hover" ng-show="modules.length">
+						<thead>
+						<tr>
+							<th>Intitul&eacute;</th>
+							<th>Ann&eacute;e</th>
+							<th>Demander</th>
+						</tr>
+						</thead>
+						<tr ng-repeat="module in modules | orderBy:orderBy" >
+							<td>{{module.intitule}}</td>
+							<td>{{module.annee}}</td>
+							<td><button type="button" class="btn btn-primary">Demander</button></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 
