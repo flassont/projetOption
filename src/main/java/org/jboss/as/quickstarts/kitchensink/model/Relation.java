@@ -39,28 +39,26 @@ public class Relation implements Serializable {
 	 * Annee pour laquelle la relation est valable
 	 */
 	@NotNull
-	@Pattern(regexp="[2-9][0-9][0-9][0-9]")
 	private int annee;
 	
 	/**
 	 * Intervenant implique dans la relation
 	 */
 	@NotNull
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Intervenant intervenant;
 
 	/**
 	 * Responsabilite liee a l'intervenant
 	 */
 	@NotNull
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Responsabilite responsabilite;
 
 	/**
 	 * Etat de la relation
 	 * NON_VALIDE, ACCEPTE, REFUSE, IMPOSE
 	 */
-	//TODO voir quand il faut initialiser la collection
 	@ElementCollection(fetch=FetchType.EAGER, targetClass=EtatRelation.class)
 	@Enumerated(EnumType.STRING)
 	private Collection<EtatRelation> etatsRelation;

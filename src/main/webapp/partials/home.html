@@ -70,7 +70,7 @@
 			onbeforesave="updateMemberEmail($data,member)">{{member.email}}</a></td>
 			<td><a href="#" e-name="password" e-type="password" onbeforesave="updateMemberPassword($data,member)" editable-text="member.password" >{{member.password}}</a></td>
 			<td  ng-click="removeMember(member)">x</td>
-			<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Faire un veux</button></td>
+			<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="setModalMemberEmail(member.email)">Faire un veux</button></td>
 		</tr>
 	</table>
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
@@ -95,7 +95,7 @@
 						<tr ng-repeat="module in modules | orderBy:orderBy" >
 							<td>{{module.intitule}}</td>
 							<td>{{module.annee}}</td>
-							<td><button type="button" class="btn btn-primary">Demander</button></td>
+							<td><button type="button" class="btn btn-primary" ng-click="creerRelation(module.annee, modalMemberEmail, module.id, 'NON_VALIDE')">Demander</button></td>
 						</tr>
 					</table>
 				</div>

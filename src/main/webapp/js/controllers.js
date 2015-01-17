@@ -7,7 +7,7 @@ function TabsCtrl($scope, $location) {
 
 
 
-function MembersCtrl($scope, $http, Members, Responsabilites) {
+function MembersCtrl($scope, $http, Members, Responsabilites, Relations) {
 
     // Define a refresh function, that updates the data from the REST service
     $scope.refresh = function() {
@@ -20,6 +20,36 @@ function MembersCtrl($scope, $http, Members, Responsabilites) {
     $scope.reset = function() {
         // clear input fields
         $scope.newMember = {};
+    };
+
+    $scope.creerRelation = function(annee, emailIntervenant, idResponsabilite, etatInitial) {
+        $scope.successMessages = '';
+        $scope.errorMessages = '';
+        $scope.errors = {};
+
+        $scope.relationPredecessor = {};
+
+        $scope.relationPredecessor.annee = annee;
+        $scope.relationPredecessor.emailIntervenant = emailIntervenant;
+        $scope.relationPredecessor.idResponsabilite = idResponsabilite;
+        $scope.relationPredecessor.etatInitial = etatInitial;
+
+        Relations.save($scope.relationPredecessor, function(data) {
+
+            $scope.successMessages = [ 'Relation Created' ];
+
+            $scope.refresh();
+
+            $scope.reset();
+        }, function(result) {
+            if ((result.status == 409) || (result.status == 400)) {
+                $scope.errors = result.data;
+            } else {
+                $scope.errorMessages = [ 'Unknown  server error' ];
+            }
+            $scope.$apply();
+        });
+
     };
 
     // Define a register function, which adds the member using the REST service,
@@ -186,6 +216,12 @@ function MembersCtrl($scope, $http, Members, Responsabilites) {
     
     //Initialisation de l'onglet actif connexion/inscription
     $scope.formActiveTab = 'connexion';
+
+    $scope.modalMemberEmail = '';
+
+    $scope.setModalMemberEmail = function (email) {
+        $scope.modalMemberEmail = email;
+    }
 }
 
 function UVsModulesCtrl($scope, $http, Responsabilites) {
