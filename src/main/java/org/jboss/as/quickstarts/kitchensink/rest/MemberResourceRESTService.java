@@ -83,7 +83,8 @@ public class MemberResourceRESTService {
         }
         return member;
     }
-    
+
+    //TODO supprimer cette methode? d'ou vient-elle?
     @PUT
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)

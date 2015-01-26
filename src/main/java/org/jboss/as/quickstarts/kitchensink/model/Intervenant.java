@@ -47,7 +47,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 //@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Intervenant implements Serializable {
 	
-	
 	public Intervenant() {}
 
 	/**
@@ -83,6 +82,7 @@ public class Intervenant implements Serializable {
     @Email
     @Id
     // TODO spécifier que l'adresse doit être celle de l'école ? Comme ca, on serait bien certains qu'elle est unique
+    // Pourquoi? une adresse mail est tjrs unique
     private String email;
 
     /**

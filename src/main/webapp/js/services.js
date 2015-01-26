@@ -13,6 +13,10 @@ services.factory('Responsabilites', function($resource){
 	  return $resource('rest/responsabilites/:responsabilite/:responsabiliteId', {}, {});
 });
 
+services.factory('Relations', function($resource){
+    return $resource('rest/relations/:relationId', {}, {});
+});
+
 //services.factory('Member', function($resource){
 //	  return $resource('rest/members:memberId', {});
 //	});
