@@ -32,3 +32,27 @@ var app = angular.module('emn-webapp', ['membersService',"xeditable"])
 app.run(function(editableOptions) {
 	  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
 	});
+
+//Cette partie est sensé rediriger vers la page d'accueil quand on est pas loggé
+app.factory('authInterceptor', function($rootScope, $q, $window) {
+	return {
+		request : function(config) {
+			config.headers = config.headers || {};
+			if ($window.sessionStorage.token) {
+				config.headers.Authorization = $window.sessionStorage.token;
+			}
+			return config;
+		},
+		response : function(response) {
+			if (response.status === 401) {
+				$location.path( "/" );
+				$scope.$apply();
+			}
+			return response || $q.when(response);
+		}
+	};
+});
+
+app.config(function($httpProvider) {
+	$httpProvider.interceptors.push('authInterceptor');
+});

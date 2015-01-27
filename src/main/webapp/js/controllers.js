@@ -7,7 +7,7 @@ function TabsCtrl($scope, $location) {
 
 
 
-function MembersCtrl($scope, $http, Members, Responsabilites, Relations) {
+function MembersCtrl($scope, $http, $window, Members, Responsabilites, Relations) {
 
     // Define a refresh function, that updates the data from the REST service
     $scope.refresh = function() {
@@ -51,6 +51,33 @@ function MembersCtrl($scope, $http, Members, Responsabilites, Relations) {
         });
 
     };
+    
+    $scope.submit = function () {
+        $http({
+            method: 'POST',
+            url: 'rest/auth/login',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            transformRequest: function(obj) {
+                var str = [];
+                for(var p in obj)
+                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+            },
+            data: $scope.user
+        })
+         // .post('rest/auth/login', $scope.user)
+          .success(function (data, status, headers, config) {
+            $window.sessionStorage.token = data.token;
+            $scope.message = 'Bienvenue';
+          })
+          .error(function (data, status, headers, config) {
+            // Erase the token if the user fails to log in
+            delete $window.sessionStorage.token;
+
+            // Handle login errors here
+            $scope.message = 'Error: Invalid user or password';
+          });
+      };
 
     // Define a register function, which adds the member using the REST service,
     // and displays any error messages
