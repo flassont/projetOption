@@ -42,10 +42,6 @@ public class Relation implements Serializable {
 		this.etatsRelation = new ArrayList<>();
 		this.etatsRelation.add(etatInitial);
 	}
-	
-	public Relation() {
-		
-	}
 
 	/**
 	 * Id de la relation
