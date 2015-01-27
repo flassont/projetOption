@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -28,8 +29,11 @@ import org.hibernate.validator.constraints.NotEmpty;
  * La formation ingenierie logicielle 3eme annee
  *
  */
+@SuppressWarnings("serial")
 @Entity
 public class Formation extends Responsabilite {
+	
+	public Formation() {}
 	
 	/**
 	 * Liste des UVs de l'option

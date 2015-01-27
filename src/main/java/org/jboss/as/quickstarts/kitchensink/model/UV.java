@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -24,6 +25,8 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @Entity
 public class UV extends Responsabilite {
+	
+	public UV() {}
 	
 	/**
 	 * Liste des modules inclus dans l'UV

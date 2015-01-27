@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -34,7 +35,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @XmlRootElement
 //@Table(uniqueConstraints = @UniqueConstraint(columnNames = "id"))
-public class Intervention extends Responsabilite implements Serializable {
+public class Intervention extends Responsabilite {
+	
+	public Intervention() {}
 	
 	/**
 	 * Liste des modules incluant l'Intervention concernee

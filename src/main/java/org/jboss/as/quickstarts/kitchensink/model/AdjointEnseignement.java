@@ -1,6 +1,7 @@
 package org.jboss.as.quickstarts.kitchensink.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Version;
 
 /**
  * 
@@ -9,7 +10,10 @@ import javax.persistence.Entity;
  * TODO quelle est la réelle fonction d'un adjoint de suivi de l'enseignement ?
  *
  */
+@SuppressWarnings("serial")
 @Entity
 public class AdjointEnseignement extends Responsabilite {
+	
+	public AdjointEnseignement() {}
 
 }
