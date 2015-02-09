@@ -6,7 +6,7 @@
 
 
  /*!
-  * Ajout de quelques règles pour 
+  * Ajout de quelques rï¿½gles pour 
   * la Todo List
   */
   
@@ -41,6 +41,25 @@ p{
 article{
 	margin:0px!important;
 }
+
+.page-header {
+  -moz-transition:all linear 1s !important;
+  -o-transition:all linear 1s !important;
+  transition:all linear 1s !important;
+  display:block !important !important;
+  -webkit-transition:all linear 1s !important;
+  transition:all linear 1s !important;
+  opacity:1 !important;
+  position: relative;
+  top:0;
+}
+
+.page-header.ng-hide {
+  opacity:0 !important;
+  top: -300px;
+  display: inherit !important;
+}
+
 @media(max-width: 850px){
 	section{
 		margin-left:20px;
