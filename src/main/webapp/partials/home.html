@@ -1,74 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- This is a partial, and is templated by AngularJS -->
 <div ng-controller="MembersCtrl">
-	<div class="row">
-		<div class="page-header col-md-6 col-md-offset-3">
-			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active col-md-6"><a href="#home"
-					role="tab" data-toggle="tab" ng-click="formActiveTab = 'connexion'"
-					style="text-align: center">Se connecter</a></li>
-				<li role="presentation" class="col-md-6"><a href="#profile"
-					role="tab" data-toggle="tab"
-					ng-click="formActiveTab = 'inscription'" style="text-align: center">S'inscrire</a></li>
-			</ul>
-			<div class="panel-body" ng-show="formActiveTab == 'connexion'">
-				<form role="form" ng-submit="submit()">
-					<div class="form-group">
-						<input ng-model="user.email" name="email" type="email" class="form-control input-lg" placeholder="Email ?" required />
-					</div>
-					<div class="form-group">
-						<input type="password" class="form-control input-lg"
-							ng-model="user.password" type="password" name="pass"
-							placeholder="Password" required />
-					</div>
-					<button type="submit" class="btn btn-primary">Connexion</button>
-				</form>
-			</div>
-			<div class="panel-body" ng-show="formActiveTab == 'inscription'">
-				<form role="form" ng-submit="register()">
-					<div class="form-group">
-						<input type="text" class="form-control input-lg"
-							placeholder="Pr&eacute;nom ?" ng-model="newMember.surname"
-							required />
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control input-lg"
-							placeholder="Nom ?" ng-model="newMember.name" required />
-					</div>
-					<div class="form-group">
-						<input type="email" class="form-control input-lg"
-							placeholder="Email ?" ng-model="newMember.email" required />
-					</div>
-					<div class="form-group">
-						<input type="password" class="form-control input-lg"
-							placeholder="Mot de passe ?" ng-model="newMember.password"
-							required />
-					</div>
-					<button type="submit" class="btn btn-primary">Inscription</button>
-				</form>
-			</div>
-		</div>
-	</div>
-	<section id="formInsription" style="display: none">
-		<article ng-show="members.length">
-			<!-- 			<ul id="member-list"> -->
-			<!-- 				<li ng-repeat="member in members | orderBy:orderBy" -->
-			<!-- 					ng-class="{completed: todo.completed}"> -->
-			<!-- 					<div class="view"> -->
-			<!-- 						<input class="mark" type="checkbox" ng-model="member.completed" /> -->
-			<!-- 						<span>{{member.email}}</span> <span class="close" -->
-			<!-- 							ng-click="removeMember(member)">x</span> -->
-			<!-- 					</div> -->
-			<!-- 				</li> -->
-			<!-- 			</ul> -->
-			<input id="mark-all" type="checkbox" ng-model="allChecked"
-				ng-click="markAll(allChecked)" /> <label class="btn btn-info"
-				for="mark-all">Tout cocher</label>
-			<button class="btn btn-danger" ng-click="clearCompletedTodos()">Supprimer
-				les membres coch&eacute;s</button>
-		</article>
-	</section>
-	<h2>Liste des Intervenants</h2>
+	
+	<h2>Liste des Intervenants {{formActiveTab}}</h2>
 	<table class="table table-hover" ng-show="members.length">
 		<thead>
 			<tr>

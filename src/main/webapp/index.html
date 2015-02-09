@@ -1,65 +1,78 @@
 <!DOCTYPE html>
 <html lang="fr" ng-app="emn-webapp">
 <head>
-    <title>EMN WebAPP</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-    
-    <link rel="stylesheet" href="css/xeditable.css" type="text/css" />
-    
-    <link rel="stylesheet" href="css/style.css" type="text/css" />
-    
-    <!-- On met un jQuery local pour pouvoir bosser sans internet ( e.g. dans le train ) -->
-    <script src="js/libs/jquery-1.9.1.min.js"></script>
-    <!-- Load angularjs tes -->
-    <script src="js/libs/angular.js"></script>
-    <!-- Load angularjs-resource, which allows us to interact with REST resources as high level services -->
-    <script src="js/libs/angular-resource.js"></script>
-    
-    <!-- Load the controllers tfor our app -->
-    <script src="js/controllers.js"></script>
-    
-    <!-- Load the application wide JS, such as route definitions -->
-    <script src="js/app.js"></script>
-    
-    <!-- Load the services we have defined for the application, particularly the REST services -->
-    <script src="js/services.js"></script>
-    
-    <!-- Latest compiled and minified JavaScript -->
-	<script src="js/libs/bootstrap.min.js"></script>
-	
-	<!-- Load the js for angular-xeditable -->
-    <script src="js/xeditable.js"></script>
-    
+<title>EMN WebAPP</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+<link rel="stylesheet" href="css/xeditable.css" type="text/css" />
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+
+<!-- On met un jQuery local pour pouvoir bosser sans internet ( e.g. dans le train ) -->
+<script src="js/libs/jquery-1.9.1.min.js"></script>
+<!-- Load angularjs tes -->
+<script src="js/libs/angular.js"></script>
+<!-- Load angularjs routes -->
+<script src="js/libs/angular-route.js"></script>
+<!-- Load angularjs-resource, which allows us to interact with REST resources as high level services -->
+<script src="js/libs/angular-resource.js"></script>
+
+<!-- Load the application wide JS, such as route definitions -->
+<script src="js/app.js"></script>
+
+<!-- Load the controllers tfor our app -->
+<script src="js/controllers.js"></script>
+
+<!-- Load the services we have defined for the application, particularly the REST services -->
+<script src="js/services.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="js/libs/bootstrap.min.js"></script>
+
+<!-- Load the js for angular-xeditable -->
+<script src="js/xeditable.js"></script>
+
 </head>
-<body>
-	<div ng-controller="TabsCtrl">
+<body ng-controller="LoginCtrl">
+	<div >
 		<nav class="navbar navbar-default" role="navigation">
 			<div class="container">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#">Brand</a>
+					<a class="navbar-brand" href="http://localhost:8080/projetOption/#/">Brand</a>
 				</div>
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav" ng-show="auth(0)">
 						<li ng-class="{ active: isActive('/') }"><a href="#">Intervenant</a></li>
 						<li ng-class="{ active: isActive('/dude') }"><a href="#/dude">Explorer</a></li>
+					</ul>
+					
+					<ul class="nav navbar-nav navbar-right" ng-show="auth(0)">
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-expanded="false">{{auth(0).email}}
+								<span class="caret"></span>
+						</a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#" ng-click="logout()">Deconnexion</a></li>
+							</ul></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
 	</div>
-    <aside id="container" class="container">
-        <div id="content" ng-view>
-            <!-- This div will be tempalted by AngularJS -->
-            [Template content will be inserted here]
-        </div>
-        
-        <footer id="footer">
-            <p>
-                Projet EMN-WebApp par Amandine, Téo, et Nicolas.<br />
-            </p>
-        </footer>
-    </aside>
+	<aside id="container" class="container">
+		<div id="content" ng-view>
+			<!-- This div will be tempalted by AngularJS -->
+			[Template content will be inserted here]
+		</div>
+
+		<footer id="footer">
+			<p>
+				Projet EMN-WebApp par Amandine, Téo, et Nicolas.<br />
+			</p>
+		</footer>
+	</aside>
 </body>
 </html>
