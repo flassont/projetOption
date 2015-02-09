@@ -64,8 +64,8 @@ public class AuthenticationRESTService {
     public Response login(
             @FormParam( "email" ) String email,
             @FormParam( "password" ) String password ) {
-       
-		Response.ResponseBuilder builder = null;
+
+       Response.ResponseBuilder builder = null;
             	
        String token = authServices.login(email, password);
        if ( token != null ) {
