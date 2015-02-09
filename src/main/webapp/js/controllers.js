@@ -1,14 +1,85 @@
+// On en a besoin pour définir les routes
+var appControllers = angular.module('appControllers', []);
 
-function TabsCtrl($scope, $location) {
-	$scope.isActive = function (viewLocation) { 
-        return viewLocation === $location.path();
-    };
-}
+appControllers.controller('TabsCtrl', ['$scope','$rootScope', '$location', function TabsCtrl($scope, $rootScope, $location) {
+	
+	
+}]);
 
+appControllers.controller('LoginCtrl', ['$scope', '$rootScope', '$http','$window', '$routeParams','$location', 'Auth', function MembersCtrl($scope,$rootScope, $http, $window, $routeParams, $location, Auth ) {
+	
+		$scope.auth = function (val) {
+			return Auth.isLoggedIn();
+		};
+	
+	//submit
+	  $scope.login = function () {
+	    // Ask to the server, do your job and THEN set the user
 
+	    Auth.setUser(user); //Update the state of the user in the app
+	  };
+	  
+	  $scope.reset = function() {
+	        // clear input fields
+	        $scope.newMember = {};
+	        $scope.user = {};
+	  };
+	  
+	  $scope.isActive = function (viewLocation) { 
+	        return viewLocation === $location.path();
+	  };
+	  
+	  $scope.submit = function () {
+	        $http({
+	            method: 'POST',
+	            url: 'rest/auth/login',
+	            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+	            transformRequest: function(obj) {
+	                var str = [];
+	                for(var p in obj)
+	                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+	                return str.join("&");
+	            },
+	            data: $scope.user
+	        })
+	          .success(function (data, status, headers, config) {
+	            $window.sessionStorage.token = data.token;
+	            $scope.message = 'Bienvenue';
+	            console.log( $scope.message );
+	            Auth.setUser($scope.user);
+	            $scope.auth = true;
+	            // Clear the form
+	 	       	$scope.reset();
+	 	       
+	 	       	$location.path('/');
 
-function MembersCtrl($scope, $http, $window, Members, Responsabilites, Relations) {
+	          })
+	          .error(function (data, status, headers, config) {
+	            // Erase the token if the user fails to log in
+	            delete $window.sessionStorage.token;
 
+	            // Handle login errors here
+	            $scope.message = 'Error: Invalid user or password';
+	            console.log( $scope.message );
+	            // Clear the form
+	 	       	$scope.reset();
+	 	       	// $scope.$apply()
+	          });
+	      };
+	      
+	      $scope.logout = function () {
+	    	  delete $window.sessionStorage.token;
+	    	  delete $window.sessionStorage.user;
+	    	  Auth.reSet();
+		      $scope.message = 'Au revoir';
+		      console.log( $scope.message );
+		      event.preventDefault();
+		 	  $location.path('/login');
+	      }
+}]);
+
+appControllers.controller('MembersCtrl',['$scope', '$rootScope', '$http','$window', '$routeParams', 'Members', 'Responsabilites', 'Relations', function MembersCtrl($scope,$rootScope, $http, $window, $routeParams, Members, Responsabilites, Relations) {
+	
     // Define a refresh function, that updates the data from the REST service
     $scope.refresh = function() {
         $scope.members = Members.query();
@@ -20,6 +91,7 @@ function MembersCtrl($scope, $http, $window, Members, Responsabilites, Relations
     $scope.reset = function() {
         // clear input fields
         $scope.newMember = {};
+        $scope.user = {};
     };
 
     $scope.creerRelation = function(annee, emailIntervenant, idResponsabilite, etatInitial) {
@@ -51,33 +123,6 @@ function MembersCtrl($scope, $http, $window, Members, Responsabilites, Relations
         });
 
     };
-    
-    $scope.submit = function () {
-        $http({
-            method: 'POST',
-            url: 'rest/auth/login',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            transformRequest: function(obj) {
-                var str = [];
-                for(var p in obj)
-                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                return str.join("&");
-            },
-            data: $scope.user
-        })
-         // .post('rest/auth/login', $scope.user)
-          .success(function (data, status, headers, config) {
-            $window.sessionStorage.token = data.token;
-            $scope.message = 'Bienvenue';
-          })
-          .error(function (data, status, headers, config) {
-            // Erase the token if the user fails to log in
-            delete $window.sessionStorage.token;
-
-            // Handle login errors here
-            $scope.message = 'Error: Invalid user or password';
-          });
-      };
 
     // Define a register function, which adds the member using the REST service,
     // and displays any error messages
@@ -231,7 +276,7 @@ function MembersCtrl($scope, $http, $window, Members, Responsabilites, Relations
     	} )
     }
 
-    // Call the refresh() function, to populate the list of members
+    // Call the refresh() function, to populate the list of members2
     $scope.refresh();
 
     // Initialize newMember here to prevent Angular from sending a request
@@ -249,7 +294,7 @@ function MembersCtrl($scope, $http, $window, Members, Responsabilites, Relations
     $scope.setModalMemberEmail = function (email) {
         $scope.modalMemberEmail = email;
     }
-}
+}]);
 
 function UVsModulesCtrl($scope, $http, Responsabilites) {
 	

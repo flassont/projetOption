@@ -20,6 +20,30 @@ services.factory('Relations', function($resource) {
 	return $resource('rest/relations/:relationId', {}, {});
 });
 
+services.factory('Auth', function(){
+	var user;
+	if ( sessionStorage.getItem("user") ) {
+		user = {"email" : sessionStorage.getItem("user")};
+	}
+
+	return{
+	    setUser : function(aUser){
+	    	sessionStorage.setItem("user",aUser.email);
+	        user = aUser;
+	    },
+	    reSet :  function() {
+	    	user = null;
+	    	sessionStorage.removeItem("user");
+	    },
+	    isLoggedIn : function(){
+	        return(user)? user : false;
+	    },
+	    getUser : function() {
+	    	return this.user;
+	    }
+	  }
+});
+
 
 
 // services.factory('Member', function($resource){
