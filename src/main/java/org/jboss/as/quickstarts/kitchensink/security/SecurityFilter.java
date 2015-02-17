@@ -1,10 +1,10 @@
 package org.jboss.as.quickstarts.kitchensink.security;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.inject.Inject;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.PreMatching;
@@ -13,6 +13,8 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
 
+import org.jboss.as.quickstarts.kitchensink.service.AuthenticationServices;
+
 /**
  * This interceptor verify the access permissions for a user based on username
  * and passowrd provided in request
@@ -20,14 +22,12 @@ import javax.ws.rs.ext.Provider;
 @PreMatching
 @Provider
 public class SecurityFilter implements ContainerRequestFilter {
+	
+	@Inject
+	AuthenticationServices authServices;
+	
 	private static final String AUTHORIZATION_PROPERTY = "Authorization";
 	private static final String AUTHENTICATION_SCHEME = "Basic";
-
-	// private static final ServerResponse ACCESS_FORBIDDEN = new
-	// ServerResponse("Nobody can access this resource", 403, new
-	// Headers<Object>());;
-	// private static final ServerResponse SERVER_ERROR = new
-	// ServerResponse("INTERNAL SERVER ERROR", 500, new Headers<Object>());;
 
 	@Override
 	public void filter(ContainerRequestContext requestContext) {
@@ -42,12 +42,12 @@ public class SecurityFilter implements ContainerRequestFilter {
 			.getHeaders();
 
 		// Fetch authorization header
-		final List<String> authorization = headers.get(AUTHORIZATION_PROPERTY);
-
+		String authorization = headers.getFirst(AUTHORIZATION_PROPERTY);
+	
 		// Pour tous les autres que login il faut un token
 		if ( !path.startsWith( "/auth/login" ) ) {
 			// If no authorization information present; block access
-			if (authorization == null || authorization.isEmpty()) {	
+			if (authorization == null || authorization.isEmpty() || !authServices.isAuthTokenValid(authorization)) {
 				Map<String, String> responseObj = new HashMap<String, String>();
 	           responseObj.put("error", "Access denied.");
 	           builder = Response.status(Response.Status.UNAUTHORIZED).type(MediaType.APPLICATION_JSON).entity(responseObj);

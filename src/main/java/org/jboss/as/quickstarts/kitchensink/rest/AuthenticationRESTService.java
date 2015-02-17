@@ -80,5 +80,21 @@ public class AuthenticationRESTService {
     	   return builder.build();
        }
     }
+    
+    @POST
+    @Path( "/logout" )
+    @Consumes( "application/x-www-form-urlencoded" )
+    @Produces( MediaType.APPLICATION_JSON )
+    public Response logout(
+            @FormParam( "email" ) String email,
+            @FormParam( "token" ) String token ) {
+
+       Response.ResponseBuilder builder = null;
+            	
+       authServices.logout(email, token);
+       builder = Response.status(Response.Status.ACCEPTED);
+       return builder.build();
+       
+    }
       
 }

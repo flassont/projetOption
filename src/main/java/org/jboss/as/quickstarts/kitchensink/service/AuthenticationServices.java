@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.logging.Logger;
 
-import javax.ejb.Stateless;
+import javax.ejb.Singleton;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -31,8 +31,9 @@ import javax.persistence.criteria.Root;
 
 import org.jboss.as.quickstarts.kitchensink.model.Intervenant;
 
-// The @Stateless annotation eliminates the need for manual transaction demarcation
-@Stateless
+// The @Singleton annotation permet d'avoir un EJB unique par application et qui peut être partagé entre les classes
+// alors que statful créer un EJB/ client
+@Singleton
 public class AuthenticationServices {
 
 	@Inject
@@ -66,14 +67,8 @@ public class AuthenticationServices {
 			return null;
 	}
 
-	public boolean isAuthTokenValid(String email, String authToken) {
-		if (authorizationTokensStorage.containsKey(authToken)) {
-			String email2 = authorizationTokensStorage.get(authToken);
-			if (email.equals(email2)) {
-				return true;
-			}
-		}
-		return false;
+	public boolean isAuthTokenValid(String authToken) {
+		return authorizationTokensStorage.containsKey(authToken);
 	}
 
 	public void logout(String email, String authToken) {
