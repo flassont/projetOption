@@ -12,11 +12,11 @@ appControllers.controller('LoginCtrl', ['$scope', '$rootScope', '$http','$window
 			return Auth.isLoggedIn();
 		};
 	
-	//submit
+	// submit
 	  $scope.login = function () {
 	    // Ask to the server, do your job and THEN set the user
 
-	    Auth.setUser(user); //Update the state of the user in the app
+	    Auth.setUser(user); // Update the state of the user in the app
 	  };
 	  
 	  $scope.reset = function() {
@@ -68,13 +68,26 @@ appControllers.controller('LoginCtrl', ['$scope', '$rootScope', '$http','$window
 	      };
 	      
 	      $scope.logout = function () {
-	    	  delete $window.sessionStorage.token;
-	    	  delete $window.sessionStorage.user;
-	    	  Auth.reSet();
-		      $scope.message = 'Au revoir';
-		      console.log( $scope.message );
-		      event.preventDefault();
-		 	  $location.path('/login');
+	    	  $http({
+		            method: 'POST',
+		            url: 'rest/auth/logout',
+		            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+		            transformRequest: function(obj) {
+		                var str = [];
+		                for(var p in obj)
+		                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+		                return str.join("&");
+		            },
+		            data: {"email" : $window.sessionStorage.user, "token":$window.sessionStorage.token}
+		        }).success(function (data, status, headers, config) {
+			    	  delete $window.sessionStorage.token;
+			    	  delete $window.sessionStorage.user;
+			    	  Auth.reSet();
+				      $scope.message = 'Au revoir';
+				      console.log( $scope.message );
+				      event.preventDefault();
+				 	  $location.path('/login');
+		        })
 	      }
 }]);
 
@@ -158,12 +171,12 @@ appControllers.controller('MembersCtrl',['$scope', '$rootScope', '$http','$windo
     	
     	$scope.errors = {};
         
-//        $scope.newMember.name = "Nicolas";
+// $scope.newMember.name = "Nicolas";
 //        
 //        
-//        $scope.email = member.email;
+// $scope.email = member.email;
     	
-//        alert( member.email );
+// alert( member.email );
         
     	Members.remove( {memberId: member.email}, function(data) {
     		// mark success on the registration form
@@ -286,7 +299,7 @@ appControllers.controller('MembersCtrl',['$scope', '$rootScope', '$http','$windo
     // Set the default orderBy to the name property
     $scope.orderBy = 'name';
     
-    //Initialisation de l'onglet actif connexion/inscription
+    // Initialisation de l'onglet actif connexion/inscription
     $scope.formActiveTab = 'connexion';
 
     $scope.modalMemberEmail = '';
