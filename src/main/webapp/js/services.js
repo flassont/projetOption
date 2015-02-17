@@ -11,6 +11,11 @@ services.factory('Members', function($resource) {
 	});
 });
 
+services.factory('CategIntervenants', function($resource) {
+	return $resource('rest/categoriesIntervenant',
+		{}, {});
+});
+
 services.factory('Responsabilites', function($resource) {
 	return $resource('rest/responsabilites/:responsabilite/:responsabiliteId',
 			{}, {});
