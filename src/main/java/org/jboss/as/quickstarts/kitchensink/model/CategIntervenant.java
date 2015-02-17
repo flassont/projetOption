@@ -16,6 +16,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  * 
  * @author Nicolas, Téo, Amandine
  * L'intervenant peut appartenir à différentes catégories
+ * ADMIN : administrateur du système
  * PERM_DPT : permanent du departement informatique
  * NON_PERM_DPT : non permanent du departement informatique
  * ECOLE : intervenant de l'ecole qui n'est pas necessairement du departement informatique
