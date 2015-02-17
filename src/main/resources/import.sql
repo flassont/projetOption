@@ -17,3 +17,8 @@
 
 -- You can use this file to load seed data into the database using SQL statements
  insert into Intervenant (name, surname, password, email, version) values ('Amandine', 'Souilleux','0000', 'amandine@mines-nantes.com',0)
+ insert into Intervenant (name, surname, password, email, version) values ('Philippe', 'David','0000', 'philippe.david@mines-nantes.fr',0)
+ insert into CategIntervenant (id, nom, annee, version) values (0, 'ADMIN','2015', 0)
+ insert into CategIntervenant (id, nom, annee, version) values (1, 'PERM_DPT','2015', 0)
+ insert into CATEGINTERVENANT_INTERVENANT (CATEGINTERVENANT_ID, INTERVENANTS_EMAIL) values (0, 'amandine@mines-nantes.com')
+ insert into CATEGINTERVENANT_INTERVENANT (CATEGINTERVENANT_ID, INTERVENANTS_EMAIL) values (1, 'philippe.david@mines-nantes.fr')
