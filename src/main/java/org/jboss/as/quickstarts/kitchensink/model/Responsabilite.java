@@ -69,7 +69,7 @@ public abstract class Responsabilite implements Serializable {
 	/**
 	 * Ensemble des relations liees a une Responsabilite
 	 */
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="responsabilite")
     private Collection<Relation> relations;
 	
 	public long getId() {
