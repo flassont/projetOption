@@ -19,11 +19,14 @@ package org.jboss.as.quickstarts.kitchensink.model;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -44,6 +47,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @SuppressWarnings("serial")
 @Entity
 @XmlRootElement
+@Table(name="intervenant")
 //@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Intervenant implements Serializable {
 	
@@ -53,6 +57,7 @@ public class Intervenant implements Serializable {
 	 * Version de l'entité pour la concurrence
 	 */
 	@Version
+	@Column(name="version")
 	protected int version;
 
 
@@ -62,6 +67,7 @@ public class Intervenant implements Serializable {
     @NotNull
     @Size(min = 1, max = 25)
     @Pattern(regexp = "[^0-9]*", message = "Must not contain numbers")
+    @Column(name="name")
     private String name;
 
     /**
@@ -71,6 +77,7 @@ public class Intervenant implements Serializable {
     @Size(min=1, max=25)
     @Pattern(regexp="[^0-9]*", message="Must not contain numbers")
     @XmlElement(name="surname") // Obligé de rajouter ca sinon le champ n'est pas transmis en REST je ne sais pas pourquoi
+    @Column(name="surname")
     private String surname;
 
     /**
@@ -81,6 +88,7 @@ public class Intervenant implements Serializable {
     @NotEmpty
     @Email
     @Id
+    @Column(name="email")
     // TODO spécifier que l'adresse doit être celle de l'école ? Comme ca, on serait bien certains qu'elle est unique
     // Pourquoi? une adresse mail est tjrs unique
     private String email;
@@ -90,6 +98,7 @@ public class Intervenant implements Serializable {
      */
     @NotNull
     @NotEmpty
+    @Column(name="password")
     // TODO voir l'encodage du mot de passe
     private String password;
 
@@ -105,6 +114,8 @@ public class Intervenant implements Serializable {
      */
     //@NotNull
     @ManyToOne
+    @JoinTable(name="intervenant_categ")
+    @Column(name="categ")
     //TODO lorsque l'on ajoute un intervenant dans la liste, on doit choisir quel categorie d'intervenant il est
     //on doit choisir parmi les valeurs de la table CategIntervenant
     private CategIntervenant categ;

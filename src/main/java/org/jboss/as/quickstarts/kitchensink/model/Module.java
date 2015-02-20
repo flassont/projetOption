@@ -4,7 +4,10 @@ import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 /**
  *
@@ -16,6 +19,7 @@ import javax.persistence.ManyToMany;
  *
  */
 @Entity
+@Table(name="module")
 public class Module extends Responsabilite {
 	
 	public Module() {}
@@ -24,6 +28,7 @@ public class Module extends Responsabilite {
 	 * Interventions regroupees sous le module donne
 	 */
 	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="module_intervention")
 	private Collection<Intervention> interventions;
 	
 	/**

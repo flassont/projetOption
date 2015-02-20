@@ -16,9 +16,17 @@
 --
 
 -- You can use this file to load seed data into the database using SQL statements
- insert into Intervenant (name, surname, password, email, version) values ('Amandine', 'Souilleux','0000', 'amandine@mines-nantes.com',0)
- insert into Intervenant (name, surname, password, email, version) values ('Philippe', 'David','0000', 'philippe.david@mines-nantes.fr',0)
- insert into CategIntervenant (id, nom, annee, version) values (0, 'ADMIN','2015', 0)
- insert into CategIntervenant (id, nom, annee, version) values (1, 'PERM_DPT','2015', 0)
- insert into CATEGINTERVENANT_INTERVENANT (CATEGINTERVENANT_ID, INTERVENANTS_EMAIL) values (0, 'amandine@mines-nantes.com')
- insert into CATEGINTERVENANT_INTERVENANT (CATEGINTERVENANT_ID, INTERVENANTS_EMAIL) values (1, 'philippe.david@mines-nantes.fr')
+insert into Intervenant (name, surname, password, email, version) values ('Amandine', 'Souilleux','0000', 'amandine@ecole.fr',0),
+('Philippe', 'D','0000', 'philippe.d@ecole.fr',0),
+('Herve', 'G', '0000', 'herve.g@ecole.fr', 0),
+('Mario', 'S', '0000', 'mario.s@ecole.fr', 0),
+('Steve', 'S', '0000', 'steve.s@autre.fr', 0),
+('Thomas', 'G', '0000', 'thomas.g@encoreuneautre.fr', 0),
+('Julien', 'L', '0000', 'julien.l@uneautreencore.fr', 0);
+
+insert into CategIntervenant (version, nom, annee) values
+(0, 'ADMIN', 2015),
+(0, 'PERM_DPT', 2015),
+(0, 'NON_PERM_DPT', 2015),
+(0, 'ECOLE', 2015),
+(0, 'EXT', 2015);

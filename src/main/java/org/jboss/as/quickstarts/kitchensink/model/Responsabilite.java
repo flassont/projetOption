@@ -3,11 +3,13 @@ package org.jboss.as.quickstarts.kitchensink.model;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -22,6 +24,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @SuppressWarnings("serial")
 @Entity
+@Table(name="responsabilite")
 public abstract class Responsabilite implements Serializable {
 	
 	public Responsabilite() {}
@@ -30,6 +33,7 @@ public abstract class Responsabilite implements Serializable {
 	 * Version de l'entité pour la concurrence
 	 */
 	@Version
+	@Column(name="version")
 	protected int version;
 	
 	/**
@@ -38,6 +42,7 @@ public abstract class Responsabilite implements Serializable {
 	 */
 	@Id
 	@GeneratedValue
+	@Column(name="id")
 	private long id;
 	
 	/**
@@ -45,6 +50,7 @@ public abstract class Responsabilite implements Serializable {
 	 */
 	@NotNull
 	@NotEmpty
+	@Column(name="intitule")
 	private String intitule;
 	
 	/**
@@ -52,18 +58,21 @@ public abstract class Responsabilite implements Serializable {
 	 * Le nombre d'eleves peut etre utilise pour calculer le nombre d'UP de l'Intervenant
 	 */
 	@NotNull
+	@Column(name="nbEleves")
 	private int nbEleves;
 	
 	/**
 	 * Annee pour laquelle la responsabilite est valable
 	 */
 	@NotNull
+	@Column(name="annee")
 	private int annee;
 	
 	/**
 	 * Coefficient permettant de calculer le nombre d'UP que la Responsabilite va rapporter a l'Intervenant
 	 */
 	@NotNull
+	@Column(name="coeffUP")
 	private double coeffUP;
 	
 	/**

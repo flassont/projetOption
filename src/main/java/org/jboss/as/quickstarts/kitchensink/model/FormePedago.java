@@ -3,9 +3,11 @@ package org.jboss.as.quickstarts.kitchensink.model;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -29,6 +31,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @SuppressWarnings("serial")
 @Entity
+@Table(name="formePedago")
 public class FormePedago implements Serializable {
 	
 	public FormePedago() {}
@@ -37,6 +40,7 @@ public class FormePedago implements Serializable {
 	 * Version de l'entité pour la concurrence
 	 */
 	@Version
+	@Column(name="version")
 	protected int version;
 	
 	/**
@@ -46,18 +50,21 @@ public class FormePedago implements Serializable {
 	@NotNull
 	@NotEmpty
 	@Id
+	@Column(name="formePedago")
 	private String formePedago;
 	
 	/**
 	 * annee pour laquelle le multiplicateur est valable
 	 */	
 	@NotNull
+	@Column(name="annee")
 	private int annee;
 
 	/**
 	 * coefficient multiplicateur associe
 	 */
 	@NotNull
+	@Column(name="coef")
 	private double coef;
 	
 	/**

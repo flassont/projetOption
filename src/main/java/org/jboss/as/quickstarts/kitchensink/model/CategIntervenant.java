@@ -3,10 +3,13 @@ package org.jboss.as.quickstarts.kitchensink.model;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -25,6 +28,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @SuppressWarnings("serial")
 @Entity
+@Table(name="CategIntervenant")
 public class CategIntervenant implements Serializable {
 	
 	public CategIntervenant() {}
@@ -33,6 +37,7 @@ public class CategIntervenant implements Serializable {
 	 * Version de l'entité pour la concurrence
 	 */
 	@Version
+	@Column(name="version")
 	protected int version;
 	
 	/**
@@ -41,6 +46,7 @@ public class CategIntervenant implements Serializable {
 	 */
 	@Id
 	@GeneratedValue
+	@Column(name="id")
 	private int id;
 	
 	/**
@@ -48,12 +54,14 @@ public class CategIntervenant implements Serializable {
 	 */
 	@NotNull
 	@NotEmpty
+	@Column(name="nom")
 	private String nom;
 	
 	/**
 	 * Annee pour laquelle est valable la categorie
 	 */
 	@NotNull
+	@Column(name="annee")
 	private int annee;
 	
 	/**

@@ -4,7 +4,9 @@ import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 /**
  * 
@@ -15,6 +17,7 @@ import javax.persistence.ManyToMany;
  *
  */
 @Entity
+@Table(name="uv")
 public class UV extends Responsabilite {
 	
 	public UV() {}
@@ -23,12 +26,14 @@ public class UV extends Responsabilite {
 	 * Liste des modules inclus dans l'UV
 	 */
 	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="uv_modules")
 	private Collection<Module> modules;
 	
 	/**
 	 * Liste des options dans lesquelles l'UV est enseignee
 	 */
 	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="uv_options")
 	private Collection<Formation> options;
 	
 	public Collection<Module> getModules() {

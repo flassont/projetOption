@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,7 +12,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -25,6 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @SuppressWarnings("serial")
 @Entity
 @XmlRootElement
+@Table(name="relation")
 public class Relation implements Serializable {
 	
 	public Relation() {}
@@ -33,6 +37,7 @@ public class Relation implements Serializable {
 	 * Version de l'entité pour la concurrence
 	 */
 	@Version
+	@Column(name="version")
 	protected int version;
 	
 	public Relation(int annee, Intervenant intervenant, Responsabilite responsabilite, EtatRelation etatInitial) {
@@ -49,12 +54,14 @@ public class Relation implements Serializable {
 	 */
 	@Id
 	@GeneratedValue
+	@Column(name="id")
 	private long id;
 	
 	/**
 	 * Annee pour laquelle la relation est valable
 	 */
 	@NotNull
+	@Column(name="annee")
 	private int annee;
 	
 	/**
@@ -62,6 +69,8 @@ public class Relation implements Serializable {
 	 */
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinTable(name="relation_intervenant")
+	@Column(name="intervenant")
 	private Intervenant intervenant;
 
 	/**
@@ -69,6 +78,8 @@ public class Relation implements Serializable {
 	 */
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinTable(name="relation_responsabilite")
+	@Column(name="responsabilite")
 	private Responsabilite responsabilite;
 
 	/**

@@ -2,10 +2,13 @@ package org.jboss.as.quickstarts.kitchensink.model;
 
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -20,6 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @SuppressWarnings("serial")
 @Entity
 @XmlRootElement
+@Table(name="intervention")
 //@Table(uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class Intervention extends Responsabilite {
 	
@@ -36,12 +40,15 @@ public class Intervention extends Responsabilite {
 	 */
 	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinTable(name="intervention_formePedago")
+	@Column(name="formePedago")
 	private FormePedago formePedago;
 	
 	/**
 	 * Nombre d'heures assurees par les intervenants dans le cadre de l'intervention
 	 */
 	@NotNull
+	@Column(name="nbHeuresProf")
 	private double nbHeuresProf;
 	
 	/**
@@ -49,6 +56,7 @@ public class Intervention extends Responsabilite {
 	 * Par exemple, les MOOC en sus des interventions en classe
 	 */
 	@NotNull
+	@Column(name="nbHeuresCompl")
 	private double nbHeuresCompl;
 	
 	public Collection<Module> getModules() {

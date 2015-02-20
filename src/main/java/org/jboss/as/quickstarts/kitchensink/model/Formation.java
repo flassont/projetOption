@@ -4,15 +4,8 @@ import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Version;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.persistence.Table;
 
 /**
  * 
@@ -31,6 +24,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @SuppressWarnings("serial")
 @Entity
+@Table(name="formation")
 public class Formation extends Responsabilite {
 	
 	public Formation() {}
