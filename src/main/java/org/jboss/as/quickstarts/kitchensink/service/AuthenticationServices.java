@@ -80,4 +80,23 @@ public class AuthenticationServices {
 		}
 		return;
 	}
+	
+	public boolean isAdmin(String authToken) {
+		boolean toReturn = false;
+		if (authorizationTokensStorage.containsKey(authToken)) {
+			String email = authorizationTokensStorage.get(authToken);
+			CriteriaBuilder cb = em.getCriteriaBuilder();
+			CriteriaQuery<Intervenant> criteria = cb.createQuery(Intervenant.class);
+			Root<Intervenant> member = criteria.from(Intervenant.class);
+			criteria.select(member).where(cb.equal(member.get("email"), email));
+			Intervenant inter = em.createQuery(criteria).getSingleResult();
+			if ( inter.isAdmin() )
+				toReturn = true;
+		}
+		return toReturn;
+	}
+	
+	public String getEmail(String token) {
+		return authorizationTokensStorage.get(token);
+	}
 }

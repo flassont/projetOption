@@ -309,7 +309,7 @@ appControllers.controller('MembersCtrl',['$scope', '$rootScope', '$http','$windo
     }
 }]);
 
-function UVsModulesCtrl($scope, $http, Responsabilites) {
+appControllers.controller('UVsModulesCtrl',['$scope', '$http', 'Responsabilites', function UVsModulesCtrl($scope, $http, Responsabilites) {
 	
 	$scope.reset = function() {
         // clear input fields
@@ -343,7 +343,6 @@ function UVsModulesCtrl($scope, $http, Responsabilites) {
             } else {
                 $scope.errorMessages = [ 'Unknown  server error' ];
             }
-            $scope.$apply();
         });
 
     };
@@ -378,4 +377,4 @@ function UVsModulesCtrl($scope, $http, Responsabilites) {
     
     $scope.reset();
     
-}
+}]);

@@ -58,15 +58,9 @@ app.run(['$rootScope', '$location', 'Auth','editableOptions', function ($rootSco
 //  // ...
 //}]);
 
-app.controller('UVsModulesCtrl',[function() {
-	  // ...
-}]);
+
 
 app.controller('TabsCtrl',[function() {
-	  // ...
-}]);
-
-app.controller('UVsModulesCtrl',[function() {
 	  // ...
 }]);
 

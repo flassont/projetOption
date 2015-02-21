@@ -53,13 +53,22 @@ public class SecurityFilter implements ContainerRequestFilter {
 	           builder = Response.status(Response.Status.UNAUTHORIZED).type(MediaType.APPLICATION_JSON).entity(responseObj);
 	           requestContext.abortWith(builder.build());
 	           return;
+			} else if ( path.startsWith("/responsabilites") ) {
+				// Dans ce cas on peut etre identifié mais on doit aussi etre admin
+				if ( !authServices.isAdmin(authorization) ) {
+					Map<String, String> responseObj = new HashMap<String, String>();
+			        responseObj.put("error", "Access denied.");
+			        builder = Response.status(Response.Status.UNAUTHORIZED).type(MediaType.APPLICATION_JSON).entity(responseObj);
+			        requestContext.abortWith(builder.build());
+				} else {
+					return;
+				}
 			}
 		} else {
-	        return;
+			// Cas où on est sur la page login
+			return;
 		}
-//		ResourceMethodInvoker methodInvoker = (ResourceMethodInvoker) requestContext
-//				.getProperty("org.jboss.resteasy.core.ResourceMethodInvoker");
-//		Method method = methodInvoker.getMethod();
+		
 //		// Access allowed for all
 //		if (!method.isAnnotationPresent(PermitAll.class)) {
 //			// Access denied for all

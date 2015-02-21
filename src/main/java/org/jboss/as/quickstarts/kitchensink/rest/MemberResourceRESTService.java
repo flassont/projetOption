@@ -39,7 +39,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
 import org.jboss.as.quickstarts.kitchensink.data.MemberRepository;
@@ -54,6 +57,9 @@ import org.jboss.as.quickstarts.kitchensink.service.MemberRegistration;
 @Path("/members")
 @RequestScoped
 public class MemberResourceRESTService {
+	
+	private static final String AUTHORIZATION_PROPERTY = "Authorization";
+	
     // COmmit test 2
     @Inject
     private Logger log;
@@ -69,8 +75,11 @@ public class MemberResourceRESTService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Intervenant> listAllMembers() {
-        return repository.findAllOrderedByName();
+    public List<Intervenant> listAllMembers(@Context HttpHeaders httpHeaders) {
+
+    	// Fetch authorization header
+    	String token = httpHeaders.getHeaderString(AUTHORIZATION_PROPERTY);
+        return repository.findAllOrderedByName(token);
     }
 
     @GET

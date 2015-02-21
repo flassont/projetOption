@@ -22,15 +22,20 @@ import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+
 import java.util.List;
 
 import org.jboss.as.quickstarts.kitchensink.model.Intervenant;
+import org.jboss.as.quickstarts.kitchensink.service.AuthenticationServices;
 
 @ApplicationScoped
 public class MemberRepository {
 
     @Inject
     private EntityManager em;
+    
+    @Inject
+	AuthenticationServices authServices;
 
 //    public Member findByEmail(Long id) {
 //        return em.find(Member.class, id);
@@ -47,15 +52,20 @@ public class MemberRepository {
         return em.createQuery(criteria).getSingleResult();
     }
 
-    public List<Intervenant> findAllOrderedByName() {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
+    public List<Intervenant> findAllOrderedByName(String token) {
+    	CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Intervenant> criteria = cb.createQuery(Intervenant.class);
         Root<Intervenant> member = criteria.from(Intervenant.class);
+    	if ( authServices.isAdmin(token)) {
+    		criteria.select(member).orderBy(cb.asc(member.get("name")));
+    	} else {
+    		criteria.select(member).where(cb.equal(member.get("email"), authServices.getEmail(token)));
+    	}
+        
         // Swap criteria statements if you would like to try out type-safe criteria queries, a new
         // feature in JPA 2.0
         // criteria.select(member).orderBy(cb.asc(member.get(Member_.name)));
-        criteria.select(member).orderBy(cb.asc(member.get("name")));
-
+        
         return em.createQuery(criteria).getResultList();
     }
 }

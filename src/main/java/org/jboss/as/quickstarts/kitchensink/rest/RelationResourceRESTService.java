@@ -8,11 +8,13 @@ import org.jboss.as.quickstarts.kitchensink.service.RelationRegistration;
 import org.jboss.as.quickstarts.kitchensink.service.ResponsabiliteRegistration;
 import org.jboss.as.quickstarts.kitchensink.util.RelationPredecessor;
 
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
 import java.util.HashMap;
 import java.util.Map;
 
