@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -59,7 +60,7 @@ public class CategIntervenant implements Serializable {
 	/**
 	 * Liste des intervenants appartenant a la categorie sus-citee
 	 */
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 	private Collection<Intervenant> intervenants;
 	
 	public int getId() {
