@@ -67,7 +67,7 @@ public class CategIntervenant implements Serializable {
 		return this.id;
 	}
 	
-	public String getCateg() {
+	public String getNom() {
 		return this.nom;
 	}
 	

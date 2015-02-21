@@ -50,9 +50,10 @@
 							required />
 					</div>
 					<select class="form-control">
-						<div ng-repeat="categ in categs | orderBy:orderBy">
-							<option ng-click="newMember.categ = categ">{{categ.annee}}</option>
-						</div>
+						<option>hh</option>
+						<option ng-repeat="categ in categs | orderBy:orderBy">
+							{{categ.nom}}
+						</option>
 					</select>
 					<button type="submit" class="btn btn-primary">Inscription</button>
 				</form>
