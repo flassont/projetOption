@@ -1,8 +1,6 @@
 package org.jboss.as.quickstarts.kitchensink.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.persistence.Version;
 
 /**
@@ -14,7 +12,6 @@ import javax.persistence.Version;
  */
 @SuppressWarnings("serial")
 @Entity
-@Table(name="AdjointEnseignement")
 public class AdjointEnseignement extends Responsabilite {
 	
 	public AdjointEnseignement() {}
