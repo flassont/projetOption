@@ -15,7 +15,7 @@
 					ng-click="formActiveTab = 'inscription'" href="#profile" role="tab"
 					data-toggle="tab" style="text-align: center">S'inscrire</a></li>
 			</ul>
-			<div class="panel-body" ng-show="formActiveTab = 'connexion'">
+			<div class="panel-body" ng-show="formActiveTab == 'connexion'">
 				<form role="form" ng-submit="submit()">
 					<div class="form-group">
 						<input ng-model="user.email" name="email" type="email"
@@ -49,6 +49,11 @@
 							placeholder="Mot de passe ?" ng-model="newMember.password"
 							required />
 					</div>
+					<select class="form-control">
+						<div ng-repeat="categ in categs | orderBy:orderBy">
+							<option ng-click="newMember.categ = categ">{{categ.annee}}</option>
+						</div>
+					</select>
 					<button type="submit" class="btn btn-primary">Inscription</button>
 				</form>
 			</div>
