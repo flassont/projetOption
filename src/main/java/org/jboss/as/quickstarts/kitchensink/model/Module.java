@@ -4,7 +4,16 @@ import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -29,7 +38,7 @@ public class Module extends Responsabilite {
 	/**
 	 * UVs dans lesquelles le module donne est inclus
 	 */
-	@ManyToMany(fetch=FetchType.EAGER, mappedBy="modules")
+	@ManyToMany(fetch=FetchType.EAGER)
 	private Collection<UV> uvs;
 	
 	public Collection<Intervention> getInterventions() {

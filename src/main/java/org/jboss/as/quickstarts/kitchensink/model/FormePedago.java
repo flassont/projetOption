@@ -63,7 +63,7 @@ public class FormePedago implements Serializable {
 	/**
 	 * interventions ayant la forme pedagogique sus-citee
 	 */
-	@OneToMany(mappedBy="formePedago")
+	@OneToMany
 	private Collection<Intervention> interventions;
 	
 	public String getFormePedago() {

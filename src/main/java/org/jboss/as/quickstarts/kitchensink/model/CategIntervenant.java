@@ -59,7 +59,7 @@ public class CategIntervenant implements Serializable {
 	/**
 	 * Liste des intervenants appartenant a la categorie sus-citee
 	 */
-	@OneToMany(mappedBy="categ")
+	@OneToMany
 	private Collection<Intervenant> intervenants;
 	
 	public int getId() {

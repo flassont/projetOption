@@ -38,7 +38,7 @@ public class Formation extends Responsabilite {
 	/**
 	 * Liste des UVs de l'option
 	 */
-	@ManyToMany(fetch=FetchType.EAGER, mappedBy="options")
+	@ManyToMany(fetch=FetchType.EAGER)
 	private Collection<UV> uvs;
 	
 	public Collection<UV> getUVs() {
