@@ -7,7 +7,10 @@ appControllers.controller('TabsCtrl', ['$scope','$rootScope', '$location', funct
 }]);
 
 appControllers.controller('LoginCtrl', ['$scope', '$rootScope', '$http','$window', '$routeParams','$location', 'Auth', 'CategIntervenants', function MembersCtrl($scope,$rootScope, $http, $window, $routeParams, $location, Auth, CategIntervenants ) {
+
     $scope.categs = CategIntervenants.query();
+
+    $scope.formActiveTab = 'connexion';
 
 
 		$scope.auth = function (val) {
