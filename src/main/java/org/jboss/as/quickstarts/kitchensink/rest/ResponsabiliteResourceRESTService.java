@@ -15,21 +15,13 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
 import javax.validation.Validator;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import jdk.nashorn.internal.parser.JSONParser;
 import org.jboss.as.quickstarts.kitchensink.data.ResponsabiliteRepository;
-import org.jboss.as.quickstarts.kitchensink.model.Intervenant;
-import org.jboss.as.quickstarts.kitchensink.model.Module;
-import org.jboss.as.quickstarts.kitchensink.model.Responsabilite;
-import org.jboss.as.quickstarts.kitchensink.model.UV;
+import org.jboss.as.quickstarts.kitchensink.model.*;
 import org.jboss.as.quickstarts.kitchensink.service.ResponsabiliteRegistration;
 
 @Path("/responsabilites")
@@ -58,6 +50,13 @@ public class ResponsabiliteResourceRESTService {
         }
         return responsabilite;
     }
+
+    @GET
+    @Path("/formations")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Formation> listAllFormations() {
+        return  repository.findAllOrderedByIntitule(Formation.class);
+    }
     
     @GET
     @Path("/uvs")
@@ -71,6 +70,13 @@ public class ResponsabiliteResourceRESTService {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Module> listAllModules() {
         return  repository.findAllOrderedByIntitule(Module.class);
+    }
+
+    @GET
+    @Path("/interventions")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Intervention> listAllInterventions() {
+        return  repository.findAllOrderedByIntitule(Intervention.class);
     }
     
     @POST
@@ -87,6 +93,23 @@ public class ResponsabiliteResourceRESTService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response createModule(Module module) {
         return createResponsabilite(module);
+    }
+
+    @POST
+    @Path("/addmoduletouv")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response addModuleToUV(@QueryParam("moduleId") int moduleId, @QueryParam("UVId") int UVId) {
+        Module module = (Module) repository.findById(moduleId);
+        UV uv = (UV) repository.findById(UVId);
+        if (module == null || uv == null) {
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        } else {
+            uv.getModules().add(module);
+            module.getUVs().add(uv);
+            createResponsabilite(uv);
+            return createResponsabilite(module);
+        }
     }
     
     private Response createResponsabilite(Responsabilite responsabilite) {
