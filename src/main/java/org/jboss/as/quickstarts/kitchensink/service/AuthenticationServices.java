@@ -29,6 +29,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.jboss.as.quickstarts.kitchensink.data.MemberRepository;
 import org.jboss.as.quickstarts.kitchensink.model.Intervenant;
 
 // The @Singleton annotation permet d'avoir un EJB unique par application et qui peut être partagé entre les classes
@@ -44,6 +45,9 @@ public class AuthenticationServices {
 
 	@Inject
 	private Event<Intervenant> memberEventSrc;
+
+	@Inject
+	private MemberRepository memberRepository;
 
 	private final Map<String, String> authorizationTokensStorage = new HashMap();
 
@@ -85,11 +89,7 @@ public class AuthenticationServices {
 		boolean toReturn = false;
 		if (authorizationTokensStorage.containsKey(authToken)) {
 			String email = authorizationTokensStorage.get(authToken);
-			CriteriaBuilder cb = em.getCriteriaBuilder();
-			CriteriaQuery<Intervenant> criteria = cb.createQuery(Intervenant.class);
-			Root<Intervenant> member = criteria.from(Intervenant.class);
-			criteria.select(member).where(cb.equal(member.get("email"), email));
-			Intervenant inter = em.createQuery(criteria).getSingleResult();
+			Intervenant inter = memberRepository.findByEmail(email);
 			if ( inter.isAdmin() )
 				toReturn = true;
 		}
