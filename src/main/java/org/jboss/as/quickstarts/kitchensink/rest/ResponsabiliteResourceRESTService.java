@@ -69,7 +69,7 @@ public class ResponsabiliteResourceRESTService {
     @GET
     @Path("/modules")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Module> listAllMembers() {
+    public List<Module> listAllModules() {
         return  repository.findAllOrderedByIntitule(Module.class);
     }
     
