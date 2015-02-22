@@ -315,8 +315,14 @@ appControllers.controller('MembersCtrl',['$scope', '$rootScope', '$http','$windo
 }]);
 
 appControllers.controller('UVsModulesCtrl',['$scope', '$http', 'Responsabilites', function UVsModulesCtrl($scope, $http, Responsabilites) {
-	
-	$scope.reset = function() {
+
+    $scope.uvmodal = {};
+
+    $scope.setUvModal = function(uv) {
+        $scope.uvmodal = uv;
+    }
+
+    $scope.reset = function() {
         // clear input fields
         $scope.newUV = {};
         $scope.newModule = {};
@@ -377,6 +383,32 @@ appControllers.controller('UVsModulesCtrl',['$scope', '$http', 'Responsabilites'
         });
 
     };
+
+    $scope.addModuleToUV = function(module) {
+        $scope.successMessages = '';
+        $scope.errorMessages = '';
+        $scope.errors = {};
+
+        Responsabilites.save({ responsabilite: 'addmoduletouv', moduleId: module.id, UVId: $scope.uvmodal.id }, $scope.newModule, function(data) {
+
+            // mark success on the registration form
+            $scope.successMessages = [ 'Module Added To UV' ];
+
+            // Update the list of members
+            $scope.refresh();
+
+            // Clear the form
+            $scope.reset();
+        }, function(result) {
+            if ((result.status == 409) || (result.status == 400)) {
+                $scope.errors = result.data;
+            } else {
+                $scope.errorMessages = [ 'Unknown  server error' ];
+            }
+            $scope.$apply();
+        });
+    }
+
     
     $scope.refresh();
     
