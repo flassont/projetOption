@@ -96,9 +96,9 @@ public class Intervenant implements Serializable {
     /**
      * Liste des relations entre l'intervenant et des responsabilites
      */
-    @OneToMany(mappedBy="responsabilite", fetch = FetchType.EAGER) // Ceci permet de ne pas avoir d'erreur, à comprendre cf
+    //@OneToMany(mappedBy="responsabilite", fetch = FetchType.EAGER) // Ceci permet de ne pas avoir d'erreur, à comprendre cf
     // http://stackoverflow.com/questions/22821695/lazyinitializationexception-failed-to-lazily-initialize-a-collection-of-roles
-    private Collection<Relation> relations;
+    //private Collection<Relation> relations;
     
     /**
      * Catégorie de l'intervenant
@@ -139,9 +139,9 @@ public class Intervenant implements Serializable {
     	return this.password;
     }
     
-    public Collection<Relation> getRelations() {
-    	return relations;
-    }
+//    public Collection<Relation> getRelations() {
+//    	return relations;
+//    }
     
     public CategIntervenant getCateg() {
     	return this.categ;
