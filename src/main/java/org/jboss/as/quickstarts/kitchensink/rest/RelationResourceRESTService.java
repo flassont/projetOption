@@ -4,6 +4,7 @@ import org.jboss.as.quickstarts.kitchensink.data.MemberRepository;
 import org.jboss.as.quickstarts.kitchensink.data.RelationRepository;
 import org.jboss.as.quickstarts.kitchensink.data.ResponsabiliteRepository;
 import org.jboss.as.quickstarts.kitchensink.model.*;
+import org.jboss.as.quickstarts.kitchensink.service.MemberRegistration;
 import org.jboss.as.quickstarts.kitchensink.service.RelationRegistration;
 import org.jboss.as.quickstarts.kitchensink.service.ResponsabiliteRegistration;
 import org.jboss.as.quickstarts.kitchensink.util.RelationPredecessor;
@@ -35,6 +36,9 @@ public class RelationResourceRESTService {
     private RelationRepository relationRepository;
 
     @Inject
+    private MemberRegistration memberRegistration;
+
+    @Inject
     RelationRegistration registration;
 
     @POST
@@ -44,9 +48,11 @@ public class RelationResourceRESTService {
         Intervenant intervenant = memberRepository.findByEmail(relationPredecessor.getEmailIntervenant());
         Responsabilite responsabilite = responsabiliteRepository.findById(relationPredecessor.getIdResponsabilite());
         Relation relation = new Relation(relationPredecessor.getAnnee(), intervenant, responsabilite, relationPredecessor.getEtatInitial());
+        intervenant.getRelations().add(relation);
         Response.ResponseBuilder builder = null;
         try {
             registration.register(relation);
+            memberRegistration.update(intervenant);
             builder = Response.ok();
         } catch (Exception e) {
             Map<String, String> responseObj = new HashMap<String, String>();

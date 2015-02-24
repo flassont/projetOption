@@ -37,17 +37,10 @@ public class MemberRepository {
     @Inject
 	AuthenticationServices authServices;
 
-//    public Member findByEmail(Long id) {
-//        return em.find(Member.class, id);
-//    }
-
     public Intervenant findByEmail(String email) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Intervenant> criteria = cb.createQuery(Intervenant.class);
         Root<Intervenant> member = criteria.from(Intervenant.class);
-        // Swap criteria statements if you would like to try out type-safe criteria queries, a new
-        // feature in JPA 2.0
-        // criteria.select(member).where(cb.equal(member.get(Member_.name), email));
         criteria.select(member).where(cb.equal(member.get("email"), email));
         return em.createQuery(criteria).getSingleResult();
     }
@@ -61,11 +54,6 @@ public class MemberRepository {
     	} else {
     		criteria.select(member).where(cb.equal(member.get("email"), authServices.getEmail(token)));
     	}
-        
-        // Swap criteria statements if you would like to try out type-safe criteria queries, a new
-        // feature in JPA 2.0
-        // criteria.select(member).orderBy(cb.asc(member.get(Member_.name)));
-        
         return em.createQuery(criteria).getResultList();
     }
 }

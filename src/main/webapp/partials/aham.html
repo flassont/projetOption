@@ -34,7 +34,7 @@
 			<tr ng-repeat="uv in uvs | orderBy:orderBy" >
 				<td>{{uv.intitule}}</td>
 				<td>{{uv.annee}}</td>
-				<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ajouter module</button></td>
+				<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="setUvModal(uv)">Ajouter module</button></td>
 			</tr>
 		</table>
 	</div>
@@ -61,7 +61,7 @@
 						<tr ng-repeat="module in modules | orderBy:orderBy" >
 							<td>{{module.intitule}}</td>
 							<td>{{module.annee}}</td>
-							<td><button type="button" class="btn btn-primary">Ajouter</button></td>
+							<td><button type="button" class="btn btn-primary" ng-click="addModuleToUV(module)">Ajouter</button></td>
 						</tr>
 					</table>
 				</div>

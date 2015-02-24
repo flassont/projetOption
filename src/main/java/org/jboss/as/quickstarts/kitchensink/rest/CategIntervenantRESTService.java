@@ -26,7 +26,7 @@ public class CategIntervenantRESTService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<CategIntervenant> listAllMembers() {
+    public List<CategIntervenant> listAllCategs() {
         return categIntervenantRepository.findAllOrderedByName();
     }
 
