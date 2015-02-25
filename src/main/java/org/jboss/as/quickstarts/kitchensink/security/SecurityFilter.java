@@ -44,7 +44,8 @@ public class SecurityFilter implements ContainerRequestFilter {
 		// Fetch authorization header
 		String authorization = headers.getFirst(AUTHORIZATION_PROPERTY);
 	
-		// Pour tous les autres que login il faut un token
+		// L'URI /auth/login permet d'obtenir la page d'identification de l'application, il n'est logiquement pas necessaire d'avoir deja
+		// un token pour y acceder. Pour toute autre URI il faut un token.
 		if ( !path.startsWith( "/auth/login" ) && !path.startsWith( "/auth/logout" ) && !path.startsWith( "/categoriesIntervenant" ) ) {
 			// If no authorization information present; block access
 			if (authorization == null || authorization.isEmpty() || !authServices.isAuthTokenValid(authorization)) {
@@ -54,7 +55,9 @@ public class SecurityFilter implements ContainerRequestFilter {
 	           requestContext.abortWith(builder.build());
 	           return;
 			} else if ( path.startsWith("/responsabilites") ) {
-				// Dans ce cas on peut etre identifié mais on doit aussi etre admin
+				// Pour acceder aux ressources donnees par l'URI /responsabilites il faut non seulement un token mais
+				// aussi etre admin. Ce comportement devrait etre modifie: un enseignent devrait pouvoir acceder aux
+				// responsabilites, mais sans pouvoir les modifier.
 				if ( !authServices.isAdmin(authorization) ) {
 					Map<String, String> responseObj = new HashMap<String, String>();
 			        responseObj.put("error", "Access denied.");
@@ -68,82 +71,12 @@ public class SecurityFilter implements ContainerRequestFilter {
 			// Cas où on est sur la page login
 			return;
 		}
-		
-//		// Access allowed for all
-//		if (!method.isAnnotationPresent(PermitAll.class)) {
-//			// Access denied for all
-//			if (method.isAnnotationPresent(DenyAll.class)) {
-//				requestContext.abortWith(ACCESS_FORBIDDEN);
-//				return;
-//			}
-//
-//			// Get request headers
-//			final MultivaluedMap<String, String> headers = requestContext
-//					.getHeaders();
-//
-//			// Fetch authorization header
-//			final List<String> authorization = headers
-//					.get(AUTHORIZATION_PROPERTY);
-//
-//			// If no authorization information present; block access
-//			if (authorization == null || authorization.isEmpty()) {
-//				requestContext.abortWith(ACCESS_DENIED);
-//				return;
-//			}
-//
-//			// Get encoded username and password
-//			final String encodedUserPassword = authorization.get(0)
-//					.replaceFirst(AUTHENTICATION_SCHEME + " ", "");
-//
-//			// Decode username and password
-//			String usernameAndPassword = null;
-//			try {
-//				usernameAndPassword = new String(
-//						Base64.decode(encodedUserPassword));
-//			} catch (IOException e) {
-//				requestContext.abortWith(SERVER_ERROR);
-//				return;
-//			}
-//
-//			// Split username and password tokens
-//			final StringTokenizer tokenizer = new StringTokenizer(
-//					usernameAndPassword, ":");
-//			final String username = tokenizer.nextToken();
-//			final String password = tokenizer.nextToken();
-//
-//			// Verifying Username and password
-//			System.out.println(username);
-//			System.out.println(password);
-//
-//			// Verify user access
-//			if (method.isAnnotationPresent(RolesAllowed.class)) {
-//				RolesAllowed rolesAnnotation = method
-//						.getAnnotation(RolesAllowed.class);
-//				Set<String> rolesSet = new HashSet<String>(
-//						Arrays.asList(rolesAnnotation.value()));
-//
-//				// Is user valid?
-//				if (!isUserAllowed(username, password, rolesSet)) {
-//					requestContext.abortWith(ACCESS_DENIED);
-//					return;
-//				}
-//			}
-//		}
 	}
 
 	private boolean isUserAllowed(final String username, final String password,
 			final Set<String> rolesSet) {
 		boolean isAllowed = false;
-
-		// Step 1. Fetch password from database and match with password in
-		// argument
-		// If both match then get the defined role for user from database and
-		// continue; else return isAllowed [false]
-		// Access the database and do this part yourself
-		// String userRole = userMgr.getUserRole(username);
 		String userRole = "ADMIN";
-
-		// Step 2. Verify user role
 		if (rolesSet.contains(userRole)) {
 			isAllowed = true;
 		}
