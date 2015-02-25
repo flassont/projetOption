@@ -99,7 +99,7 @@ public class MemberResourceRESTService {
              builder = Response.ok();
          } catch (ConstraintViolationException ce) {
              // Handle bean validation issues
-             builder = RESTServicesResources.createViolationResponse(ce.getConstraintViolations());
+             builder = RESTServicesResources.createViolationResponse(ce.getConstraintViolations(), log);
          } catch (ValidationException e) {
              // Handle the unique constrain violation
              Map<String, String> responseObj = new HashMap<String, String>();
@@ -141,7 +141,7 @@ public class MemberResourceRESTService {
             builder = Response.ok();
         } catch (ConstraintViolationException ce) {
             // Handle bean validation issues
-            builder = createViolationResponse(ce.getConstraintViolations());
+            builder = RESTServicesResources.createViolationResponse(ce.getConstraintViolations(), log);
         } catch (ValidationException e) {
             // Handle the unique constrain violation
             Map<String, String> responseObj = new HashMap<String, String>();
@@ -183,26 +183,6 @@ public class MemberResourceRESTService {
         if (emailAlreadyExists(member.getEmail())) {
             throw new ValidationException("Unique Email Violation");
         }
-    }
-
-    /**
-     * Creates a JAX-RS "Bad Request" response including a map of all violation fields, and their message. This can then be used
-     * by clients to show violations.
-     * 
-     * @param violations A set of violations that needs to be reported
-     * @return JAX-RS response containing all violations
-     */
-  //TODO methode a supprimer si RESTServicesResources.createViolationResponse() fonctionne correctement
-    private Response.ResponseBuilder createViolationResponse(Set<ConstraintViolation<?>> violations) {
-        log.fine("Validation completed. violations found: " + violations.size());
-
-        Map<String, String> responseObj = new HashMap<String, String>();
-
-        for (ConstraintViolation<?> violation : violations) {
-            responseObj.put(violation.getPropertyPath().toString(), violation.getMessage());
-        }
-
-        return Response.status(Response.Status.BAD_REQUEST).entity(responseObj);
     }
 
     /**

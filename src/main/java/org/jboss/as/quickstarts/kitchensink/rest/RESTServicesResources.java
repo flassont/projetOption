@@ -10,11 +10,15 @@ import javax.validation.ConstraintViolation;
 import javax.ws.rs.core.Response;
 
 public class RESTServicesResources {
-	
-	@Inject
-    private static Logger log;
-	
-	public static Response.ResponseBuilder createViolationResponse(Set<ConstraintViolation<?>> violations) {
+
+    /**
+     * Creates a JAX-RS "Bad Request" response including a map of all violation fields, and their message. This can then be used
+     * by clients to show violations.
+     *
+     * @param violations A set of violations that needs to be reported
+     * @return JAX-RS response containing all violations
+     */
+	public static Response.ResponseBuilder createViolationResponse(Set<ConstraintViolation<?>> violations, Logger log) {
         log.fine("Validation completed. violations found: " + violations.size());
 
         Map<String, String> responseObj = new HashMap<String, String>();
