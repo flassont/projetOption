@@ -6,10 +6,8 @@ import org.jboss.as.quickstarts.kitchensink.data.ResponsabiliteRepository;
 import org.jboss.as.quickstarts.kitchensink.model.*;
 import org.jboss.as.quickstarts.kitchensink.service.MemberRegistration;
 import org.jboss.as.quickstarts.kitchensink.service.RelationRegistration;
-import org.jboss.as.quickstarts.kitchensink.service.ResponsabiliteRegistration;
 import org.jboss.as.quickstarts.kitchensink.util.RelationPredecessor;
 
-import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;

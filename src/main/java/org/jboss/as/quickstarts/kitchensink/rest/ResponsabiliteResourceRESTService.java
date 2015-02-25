@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
@@ -19,7 +18,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import jdk.nashorn.internal.parser.JSONParser;
 import org.jboss.as.quickstarts.kitchensink.data.ResponsabiliteRepository;
 import org.jboss.as.quickstarts.kitchensink.model.*;
 import org.jboss.as.quickstarts.kitchensink.service.ResponsabiliteRegistration;
