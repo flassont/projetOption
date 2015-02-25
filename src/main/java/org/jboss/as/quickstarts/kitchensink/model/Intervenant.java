@@ -34,6 +34,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * 
  * @author Nicolas, Téo, Amandine
@@ -96,8 +98,9 @@ public class Intervenant implements Serializable {
     /**
      * Liste des relations entre l'intervenant et des responsabilites
      */
-    @OneToMany(fetch = FetchType.EAGER) // Ceci permet de ne pas avoir d'erreur, à comprendre cf
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="intervenant") // Ceci permet de ne pas avoir d'erreur, à comprendre cf
     // http://stackoverflow.com/questions/22821695/lazyinitializationexception-failed-to-lazily-initialize-a-collection-of-roles
+    @JsonIgnoreProperties("intervenant")
     private Collection<Relation> relations;
     
     /**
@@ -161,5 +164,10 @@ public class Intervenant implements Serializable {
     public void setPassword(String pwd) {
     	this.password=pwd;
     }
+
+	public Collection<Relation> getRelations() {
+		// TODO Auto-generated method stub
+		return this.relations;
+	}
 
 }
