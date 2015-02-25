@@ -1,7 +1,6 @@
 package org.jboss.as.quickstarts.kitchensink.data;
 
 import org.jboss.as.quickstarts.kitchensink.model.Relation;
-import org.jboss.as.quickstarts.kitchensink.model.Responsabilite;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
