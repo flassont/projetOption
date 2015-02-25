@@ -15,6 +15,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * 
@@ -61,14 +64,16 @@ public class Relation implements Serializable {
 	 * Intervenant implique dans la relation
 	 */
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnoreProperties("relations")
 	private Intervenant intervenant;
 
 	/**
 	 * Responsabilite liee a l'intervenant
 	 */
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnoreProperties("relations")
 	private Responsabilite responsabilite;
 
 	/**

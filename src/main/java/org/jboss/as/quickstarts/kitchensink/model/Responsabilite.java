@@ -13,6 +13,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * 
  * @author Nicolas, Téo, Amandine
@@ -70,6 +72,7 @@ public abstract class Responsabilite implements Serializable {
 	 * Ensemble des relations liees a une Responsabilite
 	 */
 	@OneToMany(fetch = FetchType.EAGER)
+	@JsonIgnoreProperties("responsabilite")
     private Collection<Relation> relations;
 	
 	public long getId() {

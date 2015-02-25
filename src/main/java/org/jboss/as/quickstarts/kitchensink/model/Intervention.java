@@ -69,6 +69,8 @@ public class Intervention extends Responsabilite {
 		return this.modules;
 	}
 	
+	
+	
 	public FormePedago getFormePedago() {
 		return this.formePedago;
 	}

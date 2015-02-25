@@ -45,7 +45,7 @@ public class SecurityFilter implements ContainerRequestFilter {
 		String authorization = headers.getFirst(AUTHORIZATION_PROPERTY);
 	
 		// Pour tous les autres que login il faut un token
-		if ( !path.startsWith( "/auth/login" ) && !path.startsWith( "/categoriesIntervenant" ) ) {
+		if ( !path.startsWith( "/auth/login" ) && !path.startsWith( "/auth/logout" ) && !path.startsWith( "/categoriesIntervenant" ) ) {
 			// If no authorization information present; block access
 			if (authorization == null || authorization.isEmpty() || !authServices.isAuthTokenValid(authorization)) {
 				Map<String, String> responseObj = new HashMap<String, String>();

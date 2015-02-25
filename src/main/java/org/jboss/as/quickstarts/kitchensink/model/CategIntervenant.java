@@ -60,7 +60,7 @@ public class CategIntervenant implements Serializable {
 	/**
 	 * Liste des intervenants appartenant a la categorie sus-citee
 	 */
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="categ")
 	private Collection<Intervenant> intervenants;
 	
 	public int getId() {
