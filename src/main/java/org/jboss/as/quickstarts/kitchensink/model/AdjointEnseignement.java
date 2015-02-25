@@ -1,7 +1,6 @@
 package org.jboss.as.quickstarts.kitchensink.model;
 
 import javax.persistence.Entity;
-import javax.persistence.Version;
 
 /**
  * 

@@ -1,19 +1,3 @@
-/*
- * JBoss, Home of Professional Open Source
- * Copyright 2013, Red Hat, Inc. and/or its affiliates, and individual
- * contributors by the @authors tag. See the copyright.txt in the
- * distribution for a full listing of individual contributors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package org.jboss.as.quickstarts.kitchensink.model;
 
 import java.io.Serializable;
@@ -46,7 +30,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @SuppressWarnings("serial")
 @Entity
 @XmlRootElement
-//@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Intervenant implements Serializable {
 	
 	public Intervenant() {}
@@ -83,8 +66,6 @@ public class Intervenant implements Serializable {
     @NotEmpty
     @Email
     @Id
-    // TODO spécifier que l'adresse doit être celle de l'école ? Comme ca, on serait bien certains qu'elle est unique
-    // Pourquoi? une adresse mail est tjrs unique
     private String email;
 
     /**
@@ -98,18 +79,14 @@ public class Intervenant implements Serializable {
     /**
      * Liste des relations entre l'intervenant et des responsabilites
      */
-    @OneToMany(fetch = FetchType.EAGER, mappedBy="intervenant") // Ceci permet de ne pas avoir d'erreur, à comprendre cf
-    // http://stackoverflow.com/questions/22821695/lazyinitializationexception-failed-to-lazily-initialize-a-collection-of-roles
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="intervenant")
     @JsonIgnoreProperties("intervenant")
     private Collection<Relation> relations;
     
     /**
      * Catégorie de l'intervenant
      */
-    //@NotNull
     @ManyToOne(fetch = FetchType.EAGER)
-    //TODO lorsque l'on ajoute un intervenant dans la liste, on doit choisir quel categorie d'intervenant il est
-    //on doit choisir parmi les valeurs de la table CategIntervenant
     private CategIntervenant categ;
     
     /**
@@ -141,10 +118,6 @@ public class Intervenant implements Serializable {
     	return this.password;
     }
     
-//    public Collection<Relation> getRelations() {
-//    	return relations;
-//    }
-    
     public CategIntervenant getCateg() {
     	return this.categ;
     }
@@ -166,7 +139,6 @@ public class Intervenant implements Serializable {
     }
 
 	public Collection<Relation> getRelations() {
-		// TODO Auto-generated method stub
 		return this.relations;
 	}
 

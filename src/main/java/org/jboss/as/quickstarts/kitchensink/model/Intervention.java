@@ -1,40 +1,21 @@
 package org.jboss.as.quickstarts.kitchensink.model;
 
-import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * 
  * @author Nicolas, Téo, Amandine
- * Pour un Module appartenant à un UV, il y a plusieurs formes pedagogiques
- * Chaque forme pedagogique peut faire l'objet de plusieurs interventions
- * (s'il y a plusieurs groupes de TP, par exemple)
- *
  */
 @SuppressWarnings("serial")
 @Entity
 @XmlRootElement
-//@Table(uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class Intervention extends Responsabilite {
 	
 	public Intervention() {}
