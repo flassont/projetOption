@@ -4,6 +4,8 @@
 	<meta charset="UTF-8">
 	<title>Attribution des charges d'enseignement</title>
 
+	<link rel="icon" type="image/png" href="favicon.png" />
+
 	<link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'/>
 	<link rel="stylesheet" href="css/bootstrap.min.css" />
 	<link rel="stylesheet" href="css/style.css"/>
@@ -13,9 +15,9 @@
 	<div class="row height-full">
 		<div id="sidebar" class="col-sm-4 col-lg-2" data-ng-controller="MenuCtrl">
 			<div class="user col-xs-12">
-				<div class="user-logo col-xs-3">
+				<a data-ng-href="#/" class="user-logo col-xs-3">
 					<img src="css/images/logo.png" alt="Ecole des Mines de Nantes" class="user-logo-img" />
-				</div>
+				</a>
 				<div class="col-xs-9">
 					<p class="user-name">{{user.firstName}} {{user.lastName}}</p>
 					<p class="user-status">{{user.role}}</p>
@@ -32,7 +34,7 @@
 			</nav>
 		</div>
 
-		<section id="content" class="col-sm-8">
+		<section id="content" class="height-full col-sm-8 col-lg-10">
 			<div data-ng-view></div>
 		</section>
 
