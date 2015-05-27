@@ -1,6 +1,6 @@
 // On définit le service REST sur le module pour pouvoir l'utiliser, c'est ici qu'on fait le lien
 // entre le haut niveau JEE7 et angularJS
-var services = angular.module('membersService', [ 'ngResource' ]);
+var services = angular.module('emn-webapp');
 
 services.factory('Members', function($resource) {
 	return $resource('rest/members/:memberId', {}, {
@@ -49,7 +49,29 @@ services.factory('Auth', function(){
 	  }
 });
 
+services.provider('Menu', function () {
+	var self = this;
 
+	this.defaults = {
+		items: [{
+			template: 'UVs',
+			route: '#/uv'
+		}]
+	};
+
+	this.$get = ['$rootScope', function($rootScope) {
+		var _items = angular.isArray(self.defaults.items) ? self.defaults.items  : [self.defaults.items];
+		return {
+			get items() {
+				return angular.copy(_items);
+			},
+			add: function (item) {
+				_items.push(item);
+				$rootScope.$broadcast('menuChanged');
+			}
+		};
+	}];
+});
 
 // services.factory('Member', function($resource){
 // return $resource('rest/members:memberId', {});

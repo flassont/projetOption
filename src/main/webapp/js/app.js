@@ -8,7 +8,7 @@
 // Cette application est monopage, chaque partie est liée en utilisant une URL relative. 
 // On lie le module pour les membres avec l'application
 
-var app = angular.module('emn-webapp', ['ngRoute','appControllers','membersService',"xeditable"])
+var app = angular.module('emn-webapp', ['ngResource', 'ngRoute','xeditable'])
 	
 	.config([ '$routeProvider','$httpProvider', function($routeProvider,$httpProvider) {
 		
@@ -23,8 +23,8 @@ var app = angular.module('emn-webapp', ['ngRoute','appControllers','membersServi
             templateUrl : 'partials/home.html',
             controller : 'MembersCtrl'
         })
-        .when('/dude', {
-        	templateUrl : 'partials/aham.html',
+        .when('/uv', {
+        	templateUrl : 'partials/uv.html',
             controller : 'MembersCtrl'
         })
         // Add a default route
