@@ -27,3 +27,6 @@ target/
 .tern-project
 SERVICES.md
 .metadata
+
+.idea/
+*.iml
