@@ -49,7 +49,31 @@ services.factory('Auth', function(){
 	  }
 });
 
+services.provider('Menu', function () {
+	var self = this;
 
+	this.defaults = {
+		// Menu items
+		// TODO Replace route once writen
+		items: [{
+			template: 'UVs',
+			route: '#'
+		}]
+	};
+
+	this.$get = ['$rootScope', function($rootScope) {
+		var _items = angular.isArray(self.defaults.items) ? self.defaults.items  : [self.defaults.items];
+		return {
+			get items() {
+				return angular.copy(_items);
+			},
+			add: function (item) {
+				_items.push(item);
+				$rootScope.$broadcast('menuChanged');
+			}
+		};
+	}];
+});
 
 // services.factory('Member', function($resource){
 // return $resource('rest/members:memberId', {});

@@ -415,3 +415,27 @@ appControllers.controller('UVsModulesCtrl',['$scope', '$http', 'Responsabilites'
     $scope.reset();
     
 }]);
+
+
+appControllers.controller('MenuCtrl', ['$scope', 'Menu', function($scope, Menu) {
+    'use strict';
+
+    // Mock for user data
+    // TODO Replace user mock with content from service
+    var user = {
+        lastName: 'DUPONT',
+        firstName: 'Paul',
+        role: 'Reponsable'
+    };
+    $scope.user = user;
+
+    // Menu items
+    // Update from service when adding menu item
+    $scope.menu = {};
+    $scope.menu.items = Menu.items;
+    $scope.$on('menuChanged', onMenuUpdate);
+
+    function onMenuUpdate() {
+        $scope.menu.items = Menu.items;
+    };
+}]);

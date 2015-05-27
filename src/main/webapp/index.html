@@ -11,27 +11,21 @@
 <body>
 <div class="container-fluid height-full">
 	<div class="row height-full">
-		<div id="sidebar" class="col-sm-4 col-lg-2">
+		<div id="sidebar" class="col-sm-4 col-lg-2" data-ng-controller="MenuCtrl">
 			<div class="user col-xs-12">
 				<div class="user-logo col-xs-3">
 					<img src="css/images/logo.png" alt="Ecole des Mines de Nantes" class="user-logo-img" />
 				</div>
 				<div class="col-xs-9">
-					<p class="user-name">Paul DUPONT</p>
-					<p class="user-status">Responsable</p>
+					<p class="user-name">{{user.firstName}} {{user.lastName}}</p>
+					<p class="user-status">{{user.role}}</p>
 				</div>
 			</div>
 			<nav class="col-xs-12 container-fluid">
 				<div class="row">
 					<ul class="menu col-xs-12 list-unstyled">
-						<li class="menu-item">
-							<a class="menu-item-link" href="#">Voeux</a>
-						</li>
-						<li class="menu-item active">
-							<a class="menu-item-link" href="#">UVs</a>
-						</li>
-						<li class="menu-item">
-							<a class="menu-item-link" href="#">Compte</a>
+						<li class="menu-item" data-ng-repeat="item in menu.items track by $index">
+							<a class="menu-item-link" data-ng-href="{{item.route}}">{{item.template}}</a>
 						</li>
 					</ul>
 				</div>
