@@ -22,7 +22,6 @@
 	padding: 0; }
 /* line 27, D:/Documents/Workspaces/WebTest/projetOption/scss/app.scss */
 #sidebar nav ul.menu .menu-item {
-	padding: .5em 0 .5em 5%;
 	transition: background-color .25s ease-in, color .1s ease-in; }
 /* line 34, D:/Documents/Workspaces/WebTest/projetOption/scss/app.scss */
 #sidebar nav ul.menu .menu-item:hover, #sidebar nav ul.menu .menu-item.active {
@@ -36,6 +35,9 @@
 /* line 45, D:/Documents/Workspaces/WebTest/projetOption/scss/app.scss */
 #sidebar nav ul.menu .menu-item .menu-item-link {
 	color: #FFF;
+	width: 100%;
+	padding: .5rem 4%;
+	display: inline-block;
 	text-decoration: none; }
 
 /** User panel */
