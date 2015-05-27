@@ -417,7 +417,7 @@ appControllers.controller('UVsModulesCtrl',['$scope', '$http', 'Responsabilites'
 }]);
 
 
-appControllers.controller('MenuCtrl', ['$scope', 'Menu', function($scope, Menu) {
+appControllers.controller('MenuCtrl', ['$scope', '$location', 'Menu', function($scope, $location, Menu) {
     'use strict';
 
     // Mock for user data
@@ -434,6 +434,10 @@ appControllers.controller('MenuCtrl', ['$scope', 'Menu', function($scope, Menu) 
     $scope.menu = {};
     $scope.menu.items = Menu.items;
     $scope.$on('menuChanged', onMenuUpdate);
+
+    $scope.isActive = function(link) {
+        return '#' + $location.path() === link;
+    }
 
     function onMenuUpdate() {
         $scope.menu.items = Menu.items;
