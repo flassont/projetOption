@@ -53,11 +53,9 @@ services.provider('Menu', function () {
 	var self = this;
 
 	this.defaults = {
-		// Menu items
-		// TODO Replace route once writen
 		items: [{
 			template: 'UVs',
-			route: '#'
+			route: '#/uv'
 		}]
 	};
 

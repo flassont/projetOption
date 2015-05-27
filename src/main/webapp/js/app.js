@@ -23,8 +23,8 @@ var app = angular.module('emn-webapp', ['ngRoute','appControllers','membersServi
             templateUrl : 'partials/home.html',
             controller : 'MembersCtrl'
         })
-        .when('/dude', {
-        	templateUrl : 'partials/aham.html',
+        .when('/uv', {
+        	templateUrl : 'partials/uv.html',
             controller : 'MembersCtrl'
         })
         // Add a default route
