@@ -1,12 +1,12 @@
 // On en a besoin pour définir les routes
-var appControllers = angular.module('appControllers', []);
+var app = angular.module('emn-webapp');
 
-appControllers.controller('TabsCtrl', ['$scope','$rootScope', '$location', function TabsCtrl($scope, $rootScope, $location) {
+app.controller('TabsCtrl', ['$scope','$rootScope', '$location', function TabsCtrl($scope, $rootScope, $location) {
 	
 	
 }]);
 
-appControllers.controller('LoginCtrl', ['$scope', '$rootScope', '$http','$window', '$routeParams','$location', 'Auth', 'CategIntervenants', function MembersCtrl($scope,$rootScope, $http, $window, $routeParams, $location, Auth, CategIntervenants ) {
+app.controller('LoginCtrl', ['$scope', '$rootScope', '$http','$window', '$routeParams','$location', 'Auth', 'CategIntervenants', function MembersCtrl($scope,$rootScope, $http, $window, $routeParams, $location, Auth, CategIntervenants ) {
 
     $scope.categs = CategIntervenants.query();
 
@@ -96,7 +96,7 @@ appControllers.controller('LoginCtrl', ['$scope', '$rootScope', '$http','$window
 	      }
 }]);
 
-appControllers.controller('MembersCtrl',['$scope', '$rootScope', '$http','$window', '$routeParams', 'Members', 'Responsabilites', 'Relations', function MembersCtrl($scope,$rootScope, $http, $window, $routeParams, Members, Responsabilites, Relations) {
+app.controller('MembersCtrl',['$scope', '$rootScope', '$http','$window', '$routeParams', 'Members', 'Responsabilites', 'Relations', function MembersCtrl($scope,$rootScope, $http, $window, $routeParams, Members, Responsabilites, Relations) {
 	
     // Define a refresh function, that updates the data from the REST service
     $scope.refresh = function() {
@@ -314,7 +314,7 @@ appControllers.controller('MembersCtrl',['$scope', '$rootScope', '$http','$windo
     }
 }]);
 
-appControllers.controller('UVsModulesCtrl',['$scope', '$http', 'Responsabilites', function UVsModulesCtrl($scope, $http, Responsabilites) {
+app.controller('UVsModulesCtrl',['$scope', '$http', 'Responsabilites', function UVsModulesCtrl($scope, $http, Responsabilites) {
 
     $scope.uvmodal = {};
 
@@ -417,7 +417,7 @@ appControllers.controller('UVsModulesCtrl',['$scope', '$http', 'Responsabilites'
 }]);
 
 
-appControllers.controller('MenuCtrl', ['$scope', '$location', 'Menu', function($scope, $location, Menu) {
+app.controller('MenuCtrl', ['$scope', '$location', 'Menu', function($scope, $location, Menu) {
     'use strict';
 
     // Mock for user data
