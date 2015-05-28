@@ -25,7 +25,7 @@ var app = angular.module('emn-webapp', ['ngResource', 'ngRoute', 'ui.bootstrap',
         })
         .when('/uv', {
         	templateUrl : 'partials/uv.html',
-            controller : 'MembersCtrl'
+            controller : 'UvCtrl'
         })
         // Add a default route
         .otherwise({

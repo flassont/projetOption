@@ -314,6 +314,25 @@ app.controller('MembersCtrl',['$scope', '$rootScope', '$http','$window', '$route
     }
 }]);
 
+app.controller('UvCtrl', ['$scope', '$modal', 'Uv', function($scope, $modal, Uv) {
+    $scope.uvs = [];
+    $scope.model = new Uv();
+
+    $scope.open = function() {
+        var modalInstance = $modal.open({
+           templateUrl: 'uv-add.html',
+            controller: 'UvModalInstanceCtrl'
+        });
+
+        modalInstance.result.then(function(uv) {
+            //TODO Save once service will be available
+            console.log(JSON.stringify(uv));
+        }, function(reason) {
+            console.log(reason);
+        });
+    };
+}]);
+
 app.controller('UVsModulesCtrl',['$scope', '$http', 'Responsabilites', function UVsModulesCtrl($scope, $http, Responsabilites) {
 
     $scope.uvmodal = {};
@@ -441,5 +460,17 @@ app.controller('MenuCtrl', ['$scope', '$location', 'Menu', function($scope, $loc
 
     function onMenuUpdate() {
         $scope.menu.items = Menu.items;
+    };
+}]);
+
+app.controller('UvModalInstanceCtrl', ['$scope', '$modalInstance', 'Uv', function($scope, $modalInstance, Uv) {
+    $scope.model = new Uv();
+
+    $scope.ok = function() {
+        $modalInstance.close($scope.model);
+    };
+
+    $scope.cancel = function() {
+        $modalInstance.dismiss('Cancelled');
     };
 }]);

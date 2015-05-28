@@ -49,6 +49,13 @@ services.factory('Auth', function(){
 	  }
 });
 
+services.factory('Uv', function() {
+	return function() {
+		this.name ='';
+		this.nbCours = 0;
+	};
+});
+
 services.provider('Menu', function () {
 	var self = this;
 
